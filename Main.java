@@ -16,7 +16,7 @@ public class Main {
 
         // ยกเลิกการจอง
         hotel.cancelRoom(101);
-
+        System.out.println("sdfgfdfghgdfghgfdfg");
         // แสดงห้องพักหลังการยกเลิก
         System.out.println("\nAvailable Rooms After Cancellation:");
         hotel.displayRooms();
