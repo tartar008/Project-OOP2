@@ -24,7 +24,7 @@ public class ReadJSON_6510210200 {
             for (Object obj : peopleList) {
                 JSONObject person = (JSONObject) obj;
 
-                String firstname = (String) person.get("firstname");
+                String firstname = (String) person.get("firstnames");
                 String lastname = (String) person.get("lastname");
                 String studentId = (String) person.get("student_id");
                 long age = (Long) person.get("age");
