@@ -20,5 +20,7 @@ public class Main {
         // แสดงห้องพักหลังการยกเลิก
         System.out.println("\nAvailable Rooms After Cancellation:");
         hotel.displayRooms();
+
+        System.out.println("Hello OOP");
     }
 }
