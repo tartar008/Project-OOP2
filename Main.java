@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         Hotel hotel = new Hotel();
         Customer customer1 = new Customer("John Doe", "john@example.com", "1234567890");
-        System.out.println("Wa ngai");
+        System.out.println(",,,,,,,,,,,,,");
         // แสดงห้องพักทั้งหมด
         System.out.println("Available Rooms:");
         hotel.displayRooms();
