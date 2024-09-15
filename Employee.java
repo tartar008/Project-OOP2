@@ -1,7 +1,7 @@
-public class Customer {
+public class Employee {
     private String name;
 
-    public Customer(String name) {
+    public Employee(String name) {
         this.name = name;
     }
 

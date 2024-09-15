@@ -1,33 +1,32 @@
-public class Room {
-    private int roomNumber;
-    private String type;
-    private double price;
-    private boolean isBooked;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
-    public Room(int roomNumber, String type, double price) {
-        this.roomNumber = roomNumber;
+public class Room {
+    private String type;
+    private int roomNumber;
+    private Map<LocalDate, Boolean> availability = new HashMap<>();
+
+    public Room(String type, int roomNumber) {
         this.type = type;
-        this.price = price;
-        this.isBooked = false;
+        this.roomNumber = roomNumber;
     }
 
-    public int getRoomNumber() {  // เพิ่ม getter สำหรับ roomNumber
+    public String getType() {
+        return type;
+    }
+
+    public int getRoomNumber() {
         return roomNumber;
     }
 
-    public boolean isBooked() {
-        return isBooked;
+    public boolean isAvailable(LocalDate date) {
+        return availability.getOrDefault(date, true);  // true = available
     }
 
-    public void bookRoom() {
-        this.isBooked = true;
-    }
-
-    public void cancelBooking() {
-        this.isBooked = false;
-    }
-
-    public String getRoomInfo() {
-        return "Room Number: " + roomNumber + ", Type: " + type + ", Price: " + price + ", Booked: " + isBooked;
+    public void book(LocalDate startDate, LocalDate endDate) {
+        for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
+            availability.put(date, false);
+        }
     }
 }
