@@ -5,6 +5,8 @@ import java.util.List;
 public class Hotel {
     private List<Room> rooms = new ArrayList<>();
 
+    
+
     public Hotel() {
         // Add rooms to the hotel
         addRooms("Standard", 5);

@@ -1,0 +1,16 @@
+SET CLASSPATH {
+    rinux: {
+        export CLASSPATH=.:./classes:./json-simple-1.1.1.jar
+    }
+    window: {
+        set CLASSPATH=.;classes;json-simple-1.1.1.jar
+    }
+}
+
+Complie {
+    javac -d classes *.java
+}
+
+RUN {
+    java Main
+}
