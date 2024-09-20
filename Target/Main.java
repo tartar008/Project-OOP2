@@ -7,13 +7,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+
+
+        ArrayList<Room> rooms = SETALL();
+
+
+
+
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
         System.out.println("2. Employee [log]");
-        System.out.println("2. receptionist  [log]");
-        System.out.println("3. Manager\t [log]");
-        System.out.println("4. Exit \t [log]");
+        System.out.println("3. Exit \t [log]");
         int ChooseRole = scanner.nextInt();
 
         if (ChooseRole == 1) {
@@ -25,6 +30,19 @@ public class Main {
         }else {
             main(args);
         }
+    }
+
+    public static ArrayList<Room> SETALL( ){
+        ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
+        
+        if (rooms.isEmpty()) {
+            rooms.add(new Room("101", "Standard", 1000));
+            rooms.add(new Room("102", "Deluxe", 2000));
+            rooms.add(new Room("103", "Suite", 3000));
+            Room.saveRoomsToJson(rooms, "rooms.json");
+        }
+
+        return rooms;
     }
 
     public static void User(){
@@ -46,6 +64,8 @@ public class Main {
             
         }
     }
+
+
 
 
     public static void Employee(){

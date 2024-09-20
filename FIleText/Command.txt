@@ -1,8 +1,6 @@
 SET CLASSPATH [
     rinux: {
         export CLASSPATH=.:./classes:./json-simple-1.1.1.jar
-
-
     }
 
     window: {
