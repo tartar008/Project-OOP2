@@ -32,21 +32,21 @@ if {[llength $class_files] == 0} {
 # เริ่มต้นโปรแกรม Java
 spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
 
-# รอข้อความแรกที่โปรแกรมแสดงและให้ input
-expect "Choose an option:"
-send "1\r"
+# # รอข้อความแรกที่โปรแกรมแสดงและให้ input
+# expect "Choose an option:"
+# send "1\r"
 
-# รอข้อความใหม่และให้ input
-expect "Choose an option:"
-send "3\r"
+# # รอข้อความใหม่และให้ input
+# expect "Choose an option:"
+# send "3\r"
 
-# รอข้อความใหม่และให้ input
-expect "Please enter the room number you want to book:"
-send "101\r"
+# # รอข้อความใหม่และให้ input
+# expect "Please enter the room number you want to book:"
+# send "101\r"
 
-# รอข้อความใหม่และให้ input
-expect "Choose an option:"
-send "4\r"
+# # รอข้อความใหม่และให้ input
+# expect "Choose an option:"
+# send "4\r"
 
 # รอให้โปรแกรมเสร็จสิ้น
 expect eof
