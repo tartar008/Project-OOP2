@@ -78,5 +78,6 @@ RUN [
     [ git push ]
     [ git pull ]                    : ดึงโค้ดเป็นปัจจุบัน 
 
+    [ git commit -m "Resolved merge conflicts" ] :
 
  ]
