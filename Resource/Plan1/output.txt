@@ -1,0 +1,26 @@
+spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
+=== Hotel Booking System ===
+1. Show all rooms
+2. Filter available rooms
+3. Book a room
+4. Exit
+Choose an option: 1
+=== All Rooms ===
+Room [roomNumber=101, type=Standard, price=1000.0, available=true]
+Room [roomNumber=102, type=Deluxe, price=2000.0, available=true]
+Room [roomNumber=103, type=Suite, price=3000.0, available=true]
+=== Hotel Booking System ===
+1. Show all rooms
+2. Filter available rooms
+3. Book a room
+4. Exit
+Choose an option: 3
+Please enter the room number you want to book: 101
+Room number 101 has been successfully booked!
+=== Hotel Booking System ===
+1. Show all rooms
+2. Filter available rooms
+3. Book a room
+4. Exit
+Choose an option: 4
+Exiting...
