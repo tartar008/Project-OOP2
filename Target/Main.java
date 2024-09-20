@@ -9,6 +9,8 @@ public class Main {
 
         ArrayList<Room> rooms = SETALL();
 
+        
+
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
