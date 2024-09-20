@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("......");
         System.out.println("......Hello.......");
-        System.out.println("......Hello.......");
+        System.out.println("......welcome.......");
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
