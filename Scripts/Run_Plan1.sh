@@ -1,7 +1,9 @@
 #!/usr/bin/expect -f
 
 # เปลี่ยนไปยังไดเรกทอรีที่มีไฟล์ Java
-cd ../Ignore/Plan1
+cd ../Resource/Plan1
+
+exec sh -c "export CLASSPATH=.:./classes:./json-simple-1.1.1.jar"
 
 # แสดงไดเรกทอรีปัจจุบันและไฟล์ในไดเรกทอรี
 puts "Current directory: [exec pwd]"
@@ -24,21 +26,21 @@ log_file output.txt
 # เริ่มต้นโปรแกรม Java
 spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
 
-# รอข้อความแรกที่โปรแกรมแสดงและให้ input
-expect "Choose an option:"
-send "1\r"
+# # รอข้อความแรกที่โปรแกรมแสดงและให้ input
+# expect "Choose an option:"
+# send "1\r"
 
-# รอข้อความใหม่และให้ input
-expect "Choose an option:"
-send "3\r"
+# # รอข้อความใหม่และให้ input
+# expect "Choose an option:"
+# send "3\r"
 
-# รอข้อความใหม่และให้ input
-expect "Please enter the room number you want to book:"
-send "101\r"
+# # รอข้อความใหม่และให้ input
+# expect "Please enter the room number you want to book:"
+# send "101\r"
 
-# รอข้อความใหม่และให้ input
-expect "Choose an option:"
-send "4\r"
+# # รอข้อความใหม่และให้ input
+# expect "Choose an option:"
+# send "4\r"
 
 # รอให้โปรแกรมเสร็จสิ้น
 expect eof

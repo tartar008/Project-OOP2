@@ -1,18 +1,13 @@
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
-
         ArrayList<Room> rooms = SETALL();
-
-
-
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
@@ -24,29 +19,29 @@ public class Main {
         if (ChooseRole == 1) {
             User();
 
-        }else if (ChooseRole == 2) {
+        } else if (ChooseRole == 2) {
             Employee();
 
-        }else {
+        } else {
             main(args);
         }
     }
 
-    public static ArrayList<Room> SETALL( ){
-        ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
-        
+    public static ArrayList<Room> SETALL() {
+        // ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
+        ArrayList<Room> rooms = new ArrayList<>();
+
         if (rooms.isEmpty()) {
             rooms.add(new Room("101", "Standard", 1000));
             rooms.add(new Room("102", "Deluxe", 2000));
             rooms.add(new Room("103", "Suite", 3000));
-            Room.saveRoomsToJson(rooms, "rooms.json");
+            // Room.saveRoomsToJson(rooms, "rooms.json");
         }
 
         return rooms;
     }
 
-
-    public static void User(){
+    public static void User() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose your booking method:");
@@ -54,7 +49,7 @@ public class Main {
         System.out.println("2. Online");
         System.out.println("3. Exit");
         int choice = scanner.nextInt();
-        
+
         if (choice == 1) {
 
         } else if (choice == 2) {
@@ -62,12 +57,11 @@ public class Main {
         } else if (choice == 3) {
 
         } else {
-            
+
         }
     }
 
-
-    public static void Employee(){
+    public static void Employee() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose your role:");
@@ -78,17 +72,11 @@ public class Main {
 
         if (ChooseRole == 1) {
 
-        }
-        else if (ChooseRole == 2) {
+        } else if (ChooseRole == 2) {
 
         } else {
-            main(args);
+            main(null);
         }
     }
 
-
-
 }
-
-
-
