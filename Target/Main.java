@@ -45,6 +45,7 @@ public class Main {
         return rooms;
     }
 
+
     public static void User(){
         Scanner scanner = new Scanner(System.in);
 
@@ -64,8 +65,6 @@ public class Main {
             
         }
     }
-
-
 
 
     public static void Employee(){
