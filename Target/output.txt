@@ -1,0 +1,7 @@
+spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
+
+Welcome to the Hotel Booking System!
+Choose your role:
+1. User
+2. Employee [log]
+3. Exit 	 [log]
