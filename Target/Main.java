@@ -2,10 +2,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("......");
+        System.out.println("......Hello.......");
+        System.out.println("......welcome.......");
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
@@ -36,3 +39,6 @@ public class Main {
         }
     }
 }
+
+
+

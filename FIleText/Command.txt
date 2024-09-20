@@ -1,6 +1,8 @@
 SET CLASSPATH [
     rinux: {
         export CLASSPATH=.:./classes:./json-simple-1.1.1.jar
+
+
     }
 
     window: {
@@ -8,9 +10,11 @@ SET CLASSPATH [
     }
 ]
 
+
 Complie [
     javac -d classes *.java
 ]
+
 
 RUN [
 
@@ -65,4 +69,13 @@ RUN [
             ./run_java_with_expect.sh
         }
     ]
+ ]
+
+
+ Git [
+    [ git add .  ]                  :
+    [ git commit -m "commit"  ]     :
+    [ git push ]
+    [ git pull ]                    : ดึงโค้ดเป็นปัจจุบัน 
+
  ]
