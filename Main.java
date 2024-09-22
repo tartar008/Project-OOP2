@@ -16,8 +16,6 @@ public class Main {
         //ตามนี้
         ArrayList<TransectionRoom> = new 
 
-        //ตัดออกก่อน
-
         // for (Room runRoom : rooms) {
         //     // สร้างอ็อบเจ็กต์ ReserveRoom ใหม่จาก Room ที่เป็น master
         //     ReserveRoom reserveRoom = new ReserveRoom(runRoom);
