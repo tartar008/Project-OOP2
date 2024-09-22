@@ -32,28 +32,32 @@ public class Main {
 
     private static void handleWalkInBooking(Hotel hotel, Scanner scanner) {
         System.out.println("You chose Walk-in booking.");
-        
+    
         while (true) {
             System.out.println("Enter your arrival day (1-30): ");
             int arrivalDay = scanner.nextInt();
-
+            scanner.nextLine();
+    
+            System.out.println("Arrival day entered: " + arrivalDay);
+            
+            System.out.println("Calculating...");
             // Show available check-out dates based on room availability
             LocalDate checkInDate = LocalDate.of(2024, 9, arrivalDay);
             LocalDate maxStayDate = hotel.getMaxStayDate(checkInDate); // Calculate max possible stay
-
+    
             System.out.println("You can stay until " + maxStayDate + " based on current room availability.");
-
+    
             System.out.println("How many nights would you like to stay (1-" + (maxStayDate.getDayOfMonth() - arrivalDay + 1) + ")? Enter '0' to go back:");
             int nights = scanner.nextInt();
-
+    
             if (nights == 0) {
                 break; // User goes back to arrival day selection
             }
-
+    
             LocalDate checkOutDate = checkInDate.plusDays(nights);
-
+    
             List<Room> availableRooms = hotel.getAvailableRooms(checkInDate, checkOutDate);
-
+    
             if (availableRooms.isEmpty()) {
                 System.out.println("Sorry, no rooms are available for the selected dates.");
             } else {
@@ -61,14 +65,14 @@ public class Main {
                 for (Room room : availableRooms) {
                     System.out.println("Room " + room.getRoomNumber() + " (" + room.getType() + ")");
                 }
-
+    
                 System.out.println("Select a room number to book, or enter '0' to go back:");
                 int roomNumber = scanner.nextInt();
-
+    
                 if (roomNumber == 0) {
                     continue; // Go back to room selection
                 }
-
+    
                 for (Room room : availableRooms) {
                     if (room.getRoomNumber() == roomNumber) {
                         room.book(checkInDate, checkOutDate);
@@ -79,6 +83,7 @@ public class Main {
             }
         }
     }
+    
 
     private static void handleOnlineBooking(Hotel hotel, Scanner scanner) {
         while (true) {
