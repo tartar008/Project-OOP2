@@ -51,7 +51,10 @@ public class Main {
         System.out.println("3. Exit");
         int choice = scanner.nextInt();
 
+        //สร้าง customer
         Customer customer = new Customer(); // เติม Constractor เพิ่ม
+
+
 
         if (choice == 1) {
             handleWalkInBooking();
@@ -85,9 +88,17 @@ public class Main {
 
     private static void handleWalkInBooking() {
 
+        //เลือกวันจอง 
+
+        //เลือกจำนวนห้อง
+
     }
 
     private static void handleOnlineBooking() {
         System.out.println("You chose Online booking.");
+
+        //เลือกวันจอง 
+
+        //เลือกจำนวนห้อง
     }
 }
