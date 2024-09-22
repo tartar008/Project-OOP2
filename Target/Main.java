@@ -14,28 +14,12 @@ public class Main {
         
         // ReserveRoom reserveRooms = new ReserveRoom();
         ArrayList<ReserveRoom> reserveRooms = new ArrayList<>();
-
-        // แสดงผล MasterRoom ก่อนทำการ clone
-        System.out.println("\nBefore modification in ReserveRoom:");
-        for (MasterRoom masterRoom : rooms) {
-            System.out.println("Master Room: " + masterRoom.getRoomNumber() + ", Type: " + masterRoom.getType());
-        }
-
-        System.out.println("Test ReserveRoom and TransectionRoom");
-
+        
         for(MasterRoom runRoom : rooms){
             TransectionRoom transectionRoom = new TransectionRoom(runRoom);
             ReserveRoom reserveRoom = new ReserveRoom(transectionRoom); // สร้างอ็อบเจ็กต์ ReserveRoom
             reserveRooms.add(reserveRoom); // เพิ่มอ็อบเจ็กต์ลงในลิสต์ reserveRooms
         }
-        reserveRooms.get(0).getTransectionRoom().getRoom().setRoomNumber("999");
-        System.out.println("\n " + reserveRooms.get(0).getRoomNumber());
-        // แสดงผลหลังการแก้ไข TransectionRoom เพื่อตรวจสอบผลกระทบต่อ MasterRoom
-        System.out.println("\nAfter modification in ReserveRoom:");
-        for (MasterRoom masterRoom : rooms) {
-            System.out.println("Master Room: " + masterRoom.getRoomNumber() + ", Type: " + masterRoom.getType());
-        }
-
        
         System.exit(1);
 
