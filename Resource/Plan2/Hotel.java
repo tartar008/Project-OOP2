@@ -41,20 +41,27 @@ public class Hotel {
     // เมธอดสำหรับคำนวณวันที่ที่ลูกค้าสามารถพักได้สูงสุด
     public LocalDate getMaxStayDate(LocalDate checkInDate) {
         LocalDate currentDate = checkInDate;
-        while (true) {
+        int maxDays = 30; // Limiting the stay duration to 30 days
+        int dayCount = 0;
+    
+        while (dayCount < maxDays) {
+            // System.out.println("Checking availability for date: " + currentDate);
+    
             boolean allRoomsAvailable = true;
             for (Room room : rooms) {
                 if (!room.isAvailable(currentDate)) {
-                    allRoomsAvailable = false;
-                    break;
+                    System.out.println("Room " + room.getRoomNumber() + " is not available on " + currentDate);
+                    return currentDate.minusDays(1); // Last available day
                 }
             }
-            if (!allRoomsAvailable) {
-                return currentDate.minusDays(1); // วันที่สุดท้ายที่สามารถพักได้คือก่อนวันที่เต็ม
-            }
+    
             currentDate = currentDate.plusDays(1);
+            dayCount++;
         }
+        
+        return currentDate.minusDays(1); // Maximum stay reached
     }
+    
 
     public void displayCalendar(boolean[] availability) {
         String[][] calendar = new String[5][7]; // Simplified for a 30-day month
