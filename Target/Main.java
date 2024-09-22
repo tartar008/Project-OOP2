@@ -61,7 +61,13 @@ public class Main {
 
 
     private static void handleWalkInBooking(ReserveRoom reserveRoom) {
+        System.out.println("Test handle walk in");
+        boolean[] roomAvailability = new boolean[30];
+        for (int i = 0; i < 30; i++) {
+            roomAvailability[i] = true; // Assume all rooms are available
+        }
 
+        reserveRoom.displayCalendar(roomAvailability);
         // เลือกวันจอง
 
         // เลือกจำนวนห้อง
