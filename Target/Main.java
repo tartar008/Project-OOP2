@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,8 +9,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<Room> rooms = SETALL();
-
-        
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
@@ -52,11 +51,13 @@ public class Main {
         System.out.println("3. Exit");
         int choice = scanner.nextInt();
 
-        if (choice == 1) {
-        
-            
-        } else if (choice == 2) {
+        Customer customer = new Customer(); // เติม Constractor เพิ่ม
 
+        if (choice == 1) {
+            handleWalkInBooking();
+
+        } else if (choice == 2) {
+            handleOnlineBooking();
         } else if (choice == 3) {
 
         } else {
@@ -82,4 +83,11 @@ public class Main {
         }
     }
 
+    private static void handleWalkInBooking() {
+
+    }
+
+    private static void handleOnlineBooking() {
+        System.out.println("You chose Online booking.");
+    }
 }
