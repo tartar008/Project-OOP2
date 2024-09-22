@@ -57,13 +57,13 @@ public class Main {
     
             LocalDate checkOutDate = checkInDate.plusDays(nights);
     
-            List<MasterRoom> availableRooms = hotel.getAvailableRooms(checkInDate, checkOutDate);
+            List<Room> availableRooms = hotel.getAvailableRooms(checkInDate, checkOutDate);
     
             if (availableRooms.isEmpty()) {
                 System.out.println("Sorry, no rooms are available for the selected dates.");
             } else {
                 System.out.println("Available rooms:");
-                for (MasterRoom room : availableRooms) {
+                for (Room room : availableRooms) {
                     System.out.println("Room " + room.getRoomNumber() + " (" + room.getType() + ")");
                 }
     
@@ -74,7 +74,7 @@ public class Main {
                     continue; // Go back to room selection
                 }
     
-                for (MasterRoom room : availableRooms) {
+                for (Room room : availableRooms) {
                     if (room.getRoomNumber() == roomNumber) {
                         room.book(checkInDate, checkOutDate);
                         System.out.println("Room " + roomNumber + " has been booked successfully from " + checkInDate + " to " + checkOutDate + ".");
@@ -117,13 +117,13 @@ public class Main {
             LocalDate checkInDate = LocalDate.of(2024, 9, startDay);
             LocalDate checkOutDate = checkInDate.plusDays(nights);
 
-            List<MasterRoom> availableRooms = hotel.getAvailableRooms(checkInDate, checkOutDate);
+            List<Room> availableRooms = hotel.getAvailableRooms(checkInDate, checkOutDate);
 
             if (availableRooms.isEmpty()) {
                 System.out.println("Sorry, no rooms are available for the selected dates.");
             } else {
                 System.out.println("Available rooms:");
-                for (MasterRoom room : availableRooms) {
+                for (Room room : availableRooms) {
                     System.out.println("Room " + room.getRoomNumber() + " (" + room.getType() + ")");
                 }
 
@@ -135,7 +135,7 @@ public class Main {
                     continue;
                 }
 
-                for (MasterRoom room : availableRooms) {
+                for (Room room : availableRooms) {
                     if (room.getRoomNumber() == roomNumber) {
                         room.book(checkInDate, checkOutDate);
                         System.out.println("Room " + roomNumber + " has been booked successfully from " + checkInDate + " to " + checkOutDate + ".");
