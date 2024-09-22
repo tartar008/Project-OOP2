@@ -36,5 +36,31 @@ public class ReserveRoom  {
     
 
     //แสดงปฎิทิน
-    public void displayCalendar(boolean[] availability) {}
+    public void displayCalendar(boolean[] availability) {
+        String[][] calendar = new String[5][7]; // Simplified for a 30-day month
+        int day = 1;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (day <= 30) {
+                    if (availability[day - 1]) {
+                        calendar[i][j] = String.format("%02d", day); // Available day
+                    } else {
+                        calendar[i][j] = "XX"; // Booked day
+                    }
+                    day++;
+                } else {
+                    calendar[i][j] = "  ";
+                }
+            }
+        }
+
+        // Print calendar
+        System.out.println("Mon Tue Wed Thu Fri Sat Sun");
+        for (String[] week : calendar) {
+            for (String dayStr : week) {
+                System.out.print(dayStr + "  ");
+            }
+            System.out.println();
+        }
+    }
 }
