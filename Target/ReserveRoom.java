@@ -5,26 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ReserveRoom {
-    private TransectionRoom transectionRoom;
-    private ArrayList<ReserveRoom> reserveRooms = new ArrayList<>(); // เก็บรายการการจองห้อง
+    private ArrayList<TransectionRoom> reserveRooms = new ArrayList<>(); // เก็บรายการการจองห้อง
     private Map<LocalDate, Boolean> availability = new HashMap<>(); // สถานะห้องว่าง/ไม่ว่างตามวันที่
 
     public ReserveRoom() {
     }
 
     // Constructor ที่รับ object ห้องเข้ามาและเพิ่มเข้าในรายการจอง
-    public ReserveRoom(TransectionRoom room) {
-        this.transectionRoom = room;
+    public ReserveRoom(MasterRoom room) {
+        this.reserveRooms.add(new ReserveRoom(room)); // เพิ่มการจองห้องใหม่ในรายการจอง
     }
-    
-    public TransectionRoom getTransectionRoom(){
-        return transectionRoom;
-    }
-
-    public String getRoomNumber(){
-        return transectionRoom.getRoom().getRoomNumber();
-    }
-
 
     // ตรวจสอบว่าวันที่ที่กำหนดห้องว่างหรือไม่
     public boolean isAvailable(LocalDate date) {

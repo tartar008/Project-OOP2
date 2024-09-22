@@ -82,4 +82,8 @@ RUN [
 
  ]
 
-[$env:CLASSPATH = ".;classes;json-simple-1.1.1.jar"]
+[
+    $env:CLASSPATH = ".;classes;json-simple-1.1.1.jar" //set classpath on powershell
+    $env:CLASSPATH // check classpath
+
+]
