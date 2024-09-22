@@ -7,15 +7,20 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+<<<<<<< HEAD
         
         ArrayList<Room> rooms = SETROOM();
 
         ArrayList<ReserveRoom> reserveRoom = SETRESERVEROOM(rooms);
+=======
+
+        ArrayList<Room> rooms = SETALL();
+>>>>>>> c6642ca4976c53ccbbb710921116186a3830d5ff
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
-        System.out.println("2. Employee [log]");
+        System.out.println("2. Employee [ll]");
         System.out.println("3. Exit \t [log]");
         int ChooseRole = scanner.nextInt();
 
