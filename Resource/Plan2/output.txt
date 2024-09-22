@@ -1,0 +1,6 @@
+
+Welcome to the Hotel Booking System!
+Choose your booking method:
+1. Walk-in
+2. Online
+3. Exit

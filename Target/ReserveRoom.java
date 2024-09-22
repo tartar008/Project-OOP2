@@ -1,3 +1,8 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ReserveRoom  {
     private ArrayList<Room> rooms;
     private Map<LocalDate, Boolean> availability = new HashMap<>();
@@ -12,6 +17,15 @@ public class ReserveRoom  {
         return roomNumber;
     }
 
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
+    }
+
     public boolean isAvailable(LocalDate date) {
         return availability.getOrDefault(date, true);  // true = available
     }
@@ -21,4 +35,8 @@ public class ReserveRoom  {
             availability.put(date, false);
         }
     }
+    
+    
+
+    public void displayCalendar(boolean[] availability) {}
 }

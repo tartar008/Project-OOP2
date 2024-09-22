@@ -10,7 +10,7 @@ public class Main {
         
         ArrayList<Room> rooms = SETROOM();
 
-        ArrayList<ReserveRoom> reserveRoom = SETRESERVEROOM(rooms);
+        ReserveRoom reserveRoom = SETRESERVEROOM(rooms);
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
@@ -20,7 +20,7 @@ public class Main {
         int ChooseRole = scanner.nextInt();
 
         if (ChooseRole == 1) {
-            User();
+            User(reserveRoom);
 
         } else if (ChooseRole == 2) {
             Employee();
@@ -44,16 +44,19 @@ public class Main {
         return rooms;
     }
 
-    public static ArrayList<ReserveRoom> SETRESERVEROOM(ArrayList<Room> rooms) {
-        ArrayList<ReserveRoom> reserveRooms = new ArrayList<>();
+    public static ReserveRoom SETRESERVEROOM(ArrayList<Room> rooms) {
+        ReserveRoom reserveRooms = new ReserveRoom(null, 0)
 
+        for(Room runRoom : rooms){
+            reserveRooms.setRooms(rooms);
+        }
 
         //ให้มีการวนเพื่อนำ room มาเข้า reserveRoom ก่อน
 
         return reserveRooms;
     }
 
-    public static void User() {
+    public static void User(ArrayList<ReserveRoom> reserveRoom) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose your booking method:");
@@ -68,10 +71,10 @@ public class Main {
 
 
         if (choice == 1) {
-            handleWalkInBooking();
+            handleWalkInBooking(reserveRoom);
 
         } else if (choice == 2) {
-            handleOnlineBooking();
+            handleOnlineBooking(reserveRoom);
         } else if (choice == 3) {
 
         } else {
@@ -112,13 +115,20 @@ public class Main {
 
         //เลือกวันจอง 
 
+
         // Display calendar (simplified as boolean array)
         boolean[] roomAvailability = new boolean[30];
         for (int i = 0; i < 30; i++) {
             roomAvailability[i] = true; // Assume all rooms are available
         }
 
-        hotel.displayCalendar(roomAvailability);
+
+        reserveRoom.displayCalendar(roomAvailability);
+
+        System.out.println("Enter check-in date : ");
+        int startDay = scanner.nextInt();
+        System.out.println("Enter check-out date : ");
+        int EndDay = scanner.nextInt();
 
         //เลือกจำนวนห้อง
     }

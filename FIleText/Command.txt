@@ -79,3 +79,5 @@ RUN [
     [ git commit -m "Resolved merge conflicts" ] :
 
  ]
+
+[$env:CLASSPATH = ".;classes;json-simple-1.1.1.jar"]

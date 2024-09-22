@@ -13,6 +13,7 @@ public class Main {
             System.out.println("1. Walk-in");
             System.out.println("2. Online");
             System.out.println("3. Exit");
+            
 
             int choice = scanner.nextInt();
             if (choice == 1) {

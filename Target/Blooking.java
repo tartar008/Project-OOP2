@@ -8,4 +8,5 @@ public class Blooking {
     private LocalDate checkOutDate;
     private double totalPrice;
 
+
 }
