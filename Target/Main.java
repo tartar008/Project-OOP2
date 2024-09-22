@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        ArrayList<Room> rooms = SETALL();
+        ArrayList<Room> rooms = SETROOM();
+
+        ArrayList<ReserveRoom> reserveRoom = SETRESERVEROOM(rooms);
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
@@ -28,7 +30,7 @@ public class Main {
         }
     }
 
-    public static ArrayList<Room> SETALL() {
+    public static ArrayList<Room> SETROOM() {
         // ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
         ArrayList<Room> rooms = new ArrayList<>();
 
@@ -42,6 +44,15 @@ public class Main {
         return rooms;
     }
 
+    public static ArrayList<ReserveRoom> SETRESERVEROOM(ArrayList<Room> rooms) {
+        ArrayList<ReserveRoom> reserveRooms = new ArrayList<>();
+
+
+        //ให้มีการวนเพื่อนำ room มาเข้า reserveRoom ก่อน
+
+        return reserveRooms;
+    }
+
     public static void User() {
         Scanner scanner = new Scanner(System.in);
 
@@ -52,7 +63,7 @@ public class Main {
         int choice = scanner.nextInt();
 
         //สร้าง customer
-        Customer customer = new Customer(); // เติม Constractor เพิ่ม
+        // Customer customer = new Customer(); // เติม Constractor เพิ่ม
 
 
 
@@ -88,6 +99,7 @@ public class Main {
 
     private static void handleWalkInBooking() {
 
+
         //เลือกวันจอง 
 
         //เลือกจำนวนห้อง
@@ -95,10 +107,22 @@ public class Main {
     }
 
     private static void handleOnlineBooking() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("You chose Online booking.");
 
         //เลือกวันจอง 
 
+        // Display calendar (simplified as boolean array)
+        boolean[] roomAvailability = new boolean[30];
+        for (int i = 0; i < 30; i++) {
+            roomAvailability[i] = true; // Assume all rooms are available
+        }
+
+        hotel.displayCalendar(roomAvailability);
+
         //เลือกจำนวนห้อง
     }
+
+
 }
+
