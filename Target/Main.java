@@ -10,8 +10,6 @@ public class Main {
         
         ArrayList<Room> rooms = SETALL();
 
-        
-
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
@@ -53,10 +51,13 @@ public class Main {
         System.out.println("3. Exit");
         int choice = scanner.nextInt();
 
+        Customer customer = new Customer(); // เติม Constractor เพิ่ม
+
         if (choice == 1) {
+            handleWalkInBooking();
 
         } else if (choice == 2) {
-
+            handleOnlineBooking();
         } else if (choice == 3) {
 
         } else {
@@ -82,4 +83,11 @@ public class Main {
         }
     }
 
+    private static void handleWalkInBooking() {
+
+    }
+
+    private static void handleOnlineBooking() {
+        System.out.println("You chose Online booking.");
+    }
 }
