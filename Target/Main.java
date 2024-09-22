@@ -51,9 +51,9 @@ public class Main {
 
         reserveRoom.displayCalendar(roomAvailability);
 
-        System.out.println("Enter check-in date : ");
+        System.out.print("Enter check-in date : ");
         int startDay = scanner.nextInt();
-        System.out.println("Enter check-out date : ");
+        System.out.print("Enter check-out date : ");
         int EndDay = scanner.nextInt();
 
         // เลือกจำนวนห้อง

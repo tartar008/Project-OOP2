@@ -5,6 +5,8 @@ SET CLASSPATH [
 
     window: {
         set CLASSPATH=.;classes;json-simple-1.1.1.jar
+
+        ผ่าน PowerShell : $env:CLASSPATH = ".;classes;json-simple-1.1.1.jar"
     }
 ]
 
@@ -73,7 +75,7 @@ RUN [
  Git [
     [ git add .  ]                  :
     [ git commit -m "commit"  ]     :
-    [ git push ]
+    [ git push -u origin main ]
     [ git pull ]                    : ดึงโค้ดเป็นปัจจุบัน 
 
     [ git commit -m "Resolved merge conflicts" ] :
