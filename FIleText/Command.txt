@@ -1,0 +1,89 @@
+SET CLASSPATH [
+    rinux: {
+        export CLASSPATH=.:./classes:./json-simple-1.1.1.jar
+    }
+
+    window: {
+        set CLASSPATH=.;classes;json-simple-1.1.1.jar
+
+        ผ่าน PowerShell : $env:CLASSPATH = ".;classes;json-simple-1.1.1.jar"
+    }
+]
+
+
+Complie [
+    javac -d classes *.java
+]
+
+
+RUN [
+
+    Normal_Type : {
+        java Main
+    } 
+
+    SaveAsText : {
+        java Main >> output.txt
+    }
+]
+
+เก็บทั้ง output ที่โปรแกรมพิมพ์ออกมา และ input ที่ผู้ใช้กรอกเข้าไป [
+    Linux : {
+        script : {
+            script output.txt ,
+            java Main
+        }
+    }
+
+    Windows : {
+        "PowerShell"
+        Start-Transcript -Path output.txt ,
+        java Main ,
+        Stop-Transcript
+    }
+]
+
+
+  script [
+    run_java.sh : {
+        การให้สิทธิ์ในการรันไฟล์ : {
+            chmod +x run_java.sh
+        }
+    }
+
+    expect : [
+        Install : {
+            sudo apt-get update ,
+            sudo apt-get install expect
+        }  ,
+
+        Create_file : {
+            run_java_with_expect.sh ,
+        },
+
+        การให้สิทธิ์ในการรันไฟล์ : {
+            chmod +x run_java_with_expect.sh
+        }
+
+        Run : {
+            ./run_java_with_expect.sh
+        }
+    ]
+ ]
+
+
+ Git [
+    [ git add .  ]                  :
+    [ git commit -m "commit"  ]     :
+    [ git push -u origin main ]
+    [ git pull ]                    : ดึงโค้ดเป็นปัจจุบัน 
+
+    [ git commit -m "Resolved merge conflicts" ] :
+
+ ]
+
+[
+    $env:CLASSPATH = ".;classes;json-simple-1.1.1.jar" //set classpath on powershell
+    $env:CLASSPATH // check classpath
+
+]
