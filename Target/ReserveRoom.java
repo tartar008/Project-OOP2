@@ -22,11 +22,12 @@ public class ReserveRoom  {
         this.rooms.add(room);
     }
 
+    //เช็คห้องในช่วงวันนั้น
     public boolean isAvailable(LocalDate date) {
         return availability.getOrDefault(date, true);  // true = available
     }
 
-
+    //เก็บช่วงวันที่จอง
     public void book(LocalDate startDate, LocalDate endDate) {
         for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
             availability.put(date, false);
