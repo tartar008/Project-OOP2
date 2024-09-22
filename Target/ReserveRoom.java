@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ReserveRoom {
-    private ArrayList<ReserveRoom> reserveRooms = new ArrayList<>(); // เก็บรายการการจองห้อง
+    private ArrayList<TransectionRoom> reserveRooms = new ArrayList<>(); // เก็บรายการการจองห้อง
     private Map<LocalDate, Boolean> availability = new HashMap<>(); // สถานะห้องว่าง/ไม่ว่างตามวันที่
 
     public ReserveRoom() {
