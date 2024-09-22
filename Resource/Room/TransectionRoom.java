@@ -1,10 +1,10 @@
 
 public class TransectionRoom {
-    private Room room;
+    private MasterRoom room;
     private String statusRoom;
 
 
-    public Room getRoom() {
+    public MasterRoom getRoom() {
         return room;
     }
 
@@ -14,8 +14,8 @@ public class TransectionRoom {
 
     
 
-    public TransectionRoom(Room room , String statusRoom){
-        Room roomTest = new Room(room.getName(), room.getId());
+    public TransectionRoom(MasterRoom room , String statusRoom){
+        MasterRoom roomTest = new MasterRoom(room. , , )
         this.room = roomTest;
         this.statusRoom = statusRoom;
     }

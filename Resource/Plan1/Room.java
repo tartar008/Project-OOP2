@@ -41,10 +41,10 @@ public class Room {
     }
 
     // บันทึกข้อมูลห้องลงไฟล์ JSON
-    public static void saveRoomsToJson(ArrayList<Room> rooms, String filename) {
+    public static void saveRoomsToJson(ArrayList<MasterRoom> rooms, String filename) {
         JSONArray roomList = new JSONArray();
 
-        for (Room room : rooms) {
+        for (MasterRoom room : rooms) {
             JSONObject roomDetails = new JSONObject();
             roomDetails.put("roomNumber", room.getRoomNumber());
             roomDetails.put("type", room.getType());
@@ -63,8 +63,8 @@ public class Room {
     }
 
     // โหลดข้อมูลห้องจากไฟล์ JSON
-    public static ArrayList<Room> loadRoomsFromJson(String filename) {
-        ArrayList<Room> rooms = new ArrayList<>();
+    public static ArrayList<MasterRoom> loadRoomsFromJson(String filename) {
+        ArrayList<MasterRoom> rooms = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader(filename)) {
@@ -83,13 +83,13 @@ public class Room {
         return rooms;
     }
 
-    private static void parseRoomObject(JSONObject room, ArrayList<Room> rooms) {
+    private static void parseRoomObject(JSONObject room, ArrayList<MasterRoom> rooms) {
         String roomNumber = (String) room.get("roomNumber");
         String type = (String) room.get("type");
         double price = ((Number) room.get("price")).doubleValue(); // ใช้ Number เพื่อให้มั่นใจในการแปลง
         boolean available = (boolean) room.get("available");
 
-        rooms.add(new Room(roomNumber, type, price));
+        rooms.add(new MasterRoom(roomNumber, type, price));
     }
 
     @Override

@@ -12,13 +12,18 @@ public class Main {
 
         ArrayList<Room> rooms = SETROOM();
         
-        ArrayList<ReserveRoom> reserveRooms = new ArrayList<>();
+        ReserveRoom reserveRooms = new ReserveRoom();
 
-        for (Room runRoom : rooms) {
-            // สร้างอ็อบเจ็กต์ ReserveRoom ใหม่จาก Room ที่เป็น master
-            ReserveRoom reserveRoom = new ReserveRoom(runRoom);
-            reserveRooms.add(reserveRoom);
-        }
+        //ตามนี้
+        ArrayList<TransectionRoom> = new 
+
+        //ตัดออกก่อน
+
+        // for (Room runRoom : rooms) {
+        //     // สร้างอ็อบเจ็กต์ ReserveRoom ใหม่จาก Room ที่เป็น master
+        //     ReserveRoom reserveRoom = new ReserveRoom(runRoom);
+        //     reserveRooms.add(reserveRoom);
+        // }
 
           
         // ReserveRoom reserveRoom = SETRESERVEROOM(rooms);
@@ -46,7 +51,7 @@ public class Main {
 
 //=====================================================================================
 
-    private static void handleOnlineBooking(ArrayList<ReserveRoom> reserveRooms) {
+    private static void handleOnlineBooking(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("You chose Online booking.");
 
@@ -58,8 +63,8 @@ public class Main {
             roomAvailability[i] = true; // Assume all rooms are available
         }
 
-        // reserveRoom.displayCalendar(roomAvailability);
-        ReserveRoom reserveRoomObj = new ReserveRoom();
+        reserveRoom.displayCalendar(roomAvailability);
+        // ReserveRoom reserveRoomObj = new ReserveRoom();
 
         System.out.print("Enter check-in date : ");
         int startDay = scanner.nextInt();

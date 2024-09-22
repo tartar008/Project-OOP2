@@ -2,11 +2,11 @@ import java.util.Date;
 
 public class Booking {
     private Customer customer;
-    private Room room;
+    private MasterRoom room;
     private Date checkInDate;
     private Date checkOutDate;
 
-    public Booking(Customer customer, Room room, Date checkInDate, Date checkOutDate) {
+    public Booking(Customer customer, MasterRoom room, Date checkInDate, Date checkOutDate) {
         this.customer = customer;
         this.room = room;
         this.checkInDate = checkInDate;
@@ -18,7 +18,7 @@ public class Booking {
         return customer;
     }
 
-    public Room getRoom() {
+    public MasterRoom getRoom() {
         return room;
     }
 

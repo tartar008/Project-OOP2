@@ -1,7 +1,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        Room room1 = new Room("D1", "1111");
+        MasterRoom room1 = new MasterRoom("D1", "1111");
         // Room room2 = new Room("D2", "2222");
 
         TransectionRoom TSRoom = new TransectionRoom(room1, "pass");

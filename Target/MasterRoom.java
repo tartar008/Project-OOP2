@@ -2,13 +2,13 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Room {
+public class MasterRoom {
     private String roomNumber;
     private String type;
     private double price;
 
     // Constructor
-    public Room(String roomNumber, String type, double price) {
+    public MasterRoom(String roomNumber, String type, double price) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.price = price;
