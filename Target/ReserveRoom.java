@@ -26,6 +26,7 @@ public class ReserveRoom  {
         return availability.getOrDefault(date, true);  // true = available
     }
 
+
     public void book(LocalDate startDate, LocalDate endDate) {
         for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
             availability.put(date, false);
@@ -34,5 +35,6 @@ public class ReserveRoom  {
     
     
 
+    //แสดงปฎิทิน
     public void displayCalendar(boolean[] availability) {}
 }

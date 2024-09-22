@@ -1,6 +1,6 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20240922201400
+Start time: 20240922202508
 Username: DESKTOP-6TK4GA9\acer
 RunAs User: DESKTOP-6TK4GA9\acer
 Configuration Name: 
@@ -22,31 +22,32 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 Transcript started, output file is output.txt
-CLASSPATH set to: .;.\classes;.\json-simple-1.1.1.jar
-Compiling: Blooking.java
-Compiled: Blooking.java
-Compiling: Customer.java
-Compiled: Customer.java
-Compiling: Employee.java
-Compiled: Employee.java
-Compiling: Hotel.java
-Compiled: Hotel.java
-Compiling: Main.java
-Compiled: Main.java
-Compiling: Manager.java
-Compiled: Manager.java
-Compiling: Person.java
-Compiled: Person.java
-Compiling: Receptionist.java
-Compiled: Receptionist.java
-Compiling: ReserveRoom.java
-Compiled: ReserveRoom.java
-Compiling: Room.java
-Compiled: Room.java
-Running Java program...
-Java program failed to run.
-Error: Room Number: 101 Room Type: Standard Price per Night: $1000.0 Room Number: 102 Room Type: Deluxe Price per Night: $2000.0 Room Number: 103 Room Type: Suite Price per Night: $3000.0  Welcome to the Hotel Booking System! Choose your role: 1. Customer 2. Employee	 [log] 3. Exit 	 [log]
+]633;D;0]633;A]633;P;Cwd=D:\x5cProjectOOP\x5cProject-OOP2\x5cTargetPS D:\ProjectOOP\Project-OOP2\Target> ]633;B
+PS>$global:__psEditorServices_userInput = $args[0]
+PS>$global:__psEditorServices_userInput = ""
+PS>java Main
+Welcome to the Hotel Booking System!
+Choose your role:
+1. Customer
+2. Employee      [log]
+3. Exit          [log]
+>>>
+1
+Choose your booking method:
+1. Walk-in
+2. Online
+3. Exit
+2
+You chose Online booking.
+Enter check-in date :
+2
+Enter check-out date :
+4
+]633;D;0]633;A]633;P;Cwd=D:\x5cProjectOOP\x5cProject-OOP2\x5cTargetPS D:\ProjectOOP\Project-OOP2\Target> ]633;B
+PS>$global:__psEditorServices_userInput = $args[0]
+PS>$global:__psEditorServices_userInput = ""
+PS>Stop-Transcript
 **********************
 Windows PowerShell transcript end
-End time: 20240922201414
+End time: 20240922202549
 **********************

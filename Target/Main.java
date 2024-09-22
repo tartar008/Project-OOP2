@@ -20,7 +20,8 @@ public class Main {
         System.out.println("1. Customer");
         System.out.println("2. Employee\t [log]");
         System.out.println("3. Exit \t [log]");
-        System.exit(1);
+        System.out.print(">>> ");
+        // System.exit(1);
         int ChooseRole = scanner.nextInt();
 
         if (ChooseRole == 1) {
