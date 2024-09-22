@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         ArrayList<Room> rooms = SETALL();
 
         System.out.println("\nWelcome to the Hotel Booking System!");
         System.out.println("Choose your role:");
         System.out.println("1. User");
-        System.out.println("2. Employee [log]");
+        System.out.println("2. Employee [ll]");
         System.out.println("3. Exit \t [log]");
         int ChooseRole = scanner.nextInt();
 

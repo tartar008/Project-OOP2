@@ -1,7 +1,31 @@
-spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240922173329
+Username: KAREEMA\Lenovo
+RunAs User: KAREEMA\Lenovo
+Configuration Name: 
+Machine: KAREEMA (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\Lenovo\.vscode\extensions\ms-vscode.powershell-2024.2.2\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2024.2.2' -BundledModulesPath 'c:\Users\Lenovo\.vscode\extensions\ms-vscode.powershell-2024.2.2\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2024.2.2
+Copyright (c) Microsoft Corporation.
 
-Welcome to the Hotel Booking System!
-Choose your role:
-1. User
-2. Employee [log]
-3. Exit 	 [log]
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\Lenovo\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1727000620-54b4f3a6-6dbc-49ab-8c45-09e7cd4624021726996335364' -SessionDetailsPath 'c:\Users\Lenovo\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-12076-981457.json' -FeatureFlags @() 
+Process ID: 16452
+PSVersion: 5.1.22621.4111
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.4111
+BuildVersion: 10.0.22621.4111
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is output.txt
+CLASSPATH set to: .;.\classes;.\json-simple-1.1.1.jar
+Compiling: Blooking.java
+Compilation failed for Blooking.java
+**********************
+Windows PowerShell transcript end
+End time: 20240922173329
+**********************
