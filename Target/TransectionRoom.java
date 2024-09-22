@@ -9,7 +9,7 @@ public class TransectionRoom {
     // Constructor เพื่อสร้าง TransectionRoom
     public TransectionRoom(MasterRoom room) {
         // สำเนา MasterRoom โดยใช้คอนสตรัคเตอร์ที่ถูกต้อง
-        this.room = new MasterRoom(room.getName(), room.getId(), room.getPrice());
+        this.room = new MasterRoom(room.getRoomNumber(), room.getType(), room.getPrice());
         this.availability = new HashMap<>();
 
         // กำหนดสถานะความว่างของห้องเป็น true (ว่าง) สำหรับ 30 วันข้างหน้า
@@ -37,7 +37,7 @@ public class TransectionRoom {
         for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
             availability.put(date, false); // ตั้งค่าห้องเป็นไม่ว่าง
         }
-        System.out.println("Room " + room.getName() + " has been booked from " + checkInDate + " to " + checkOutDate);
+        System.out.println("Room " + room.getRoomNumber() + " has been booked from " + checkInDate + " to " + checkOutDate);
         return true;
     }
 
@@ -46,12 +46,12 @@ public class TransectionRoom {
         for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
             availability.put(date, true); // ตั้งค่าห้องเป็นว่าง
         }
-        System.out.println("Booking for room " + room.getName() + " has been cancelled from " + checkInDate + " to " + checkOutDate);
+        System.out.println("Booking for room " + room.getRoomNumber() + " has been cancelled from " + checkInDate + " to " + checkOutDate);
     }
 
     // Method เพื่อแสดงสถานะความว่างของห้อง
     public void displayAvailability() {
-        System.out.println("Availability for Room " + room.getName() + ":");
+        System.out.println("Availability for Room " + room.getRoomNumber() + ":");
         for (Map.Entry<LocalDate, Boolean> entry : availability.entrySet()) {
             String status = entry.getValue() ? "Available" : "Booked";
             System.out.println("Date: " + entry.getKey() + " - " + status);
