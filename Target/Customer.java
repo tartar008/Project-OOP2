@@ -21,7 +21,7 @@ public class Customer extends Person{
     }
 
     public void customerInfo(){
-        System.out.println("Fullname: " + getFirstName()+" "+getLastName());
+        super.printInfo();
     }
 
 }
