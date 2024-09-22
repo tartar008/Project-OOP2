@@ -23,4 +23,8 @@ public class Person {
         return email;
     }
 
+    public void printInfo(){
+        System.out.println("Fullname: " + getFirstName() + " " + getLastName());
+    }
+
 }
