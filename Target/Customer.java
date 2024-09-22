@@ -7,7 +7,7 @@ public class Customer extends Person{
         super(firstName, lastName, phoneNumber, email);
     }
 
-    public void setGuest(){
+    public void setGuest(int roomNumber , String guestName){
         guest.put(roomNumber, guestName); //roomNumber เป็น key, guestName เป็น value
     }
 

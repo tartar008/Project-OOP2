@@ -7,23 +7,19 @@ public class ReserveRoom  {
     private ArrayList<Room> rooms;
     private Map<LocalDate, Boolean> availability = new HashMap<>();
 
-    public ReserveRoom(String type, int roomNumber) {
-        this.type = type;
-        this.roomNumber = roomNumber;
+    public ReserveRoom() {
+        rooms = new ArrayList<>();
+        availability = new HashMap<>();
     }
 
-
-    public int getRoomNumber() {
-        return roomNumber;
-    }
 
     public ArrayList<Room> getRooms() {
         return rooms;
     }
 
 
-    public void setRooms(ArrayList<Room> rooms) {
-        this.rooms = rooms;
+    public void setRooms(Room room) {
+        this.rooms.add(room);
     }
 
     public boolean isAvailable(LocalDate date) {
