@@ -1,21 +1,29 @@
-import java.time.LocalDate;
+// import java.lang.classfile.instruction.StackInstruction;
+// import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+// import java.util.List;
 import java.util.Scanner;
 
-import javax.sql.rowset.serial.SerialStruct;
+// import javax.sql.rowset.serial.SerialStruct;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Room> rooms = SETROOM();
+        ArrayList<MasterRoom> rooms = SETROOM();
         
-        ReserveRoom reserveRooms = new ReserveRoom();
+        // ReserveRoom reserveRooms = new ReserveRoom();
+        ArrayList<ReserveRoom> reserveRooms = new ArrayList<>();
+        
+        for(MasterRoom runRoom : rooms){
+            TransectionRoom transectionRoom = new TransectionRoom(runRoom);
+            ReserveRoom reserveRoom = new ReserveRoom(transectionRoom); // สร้างอ็อบเจ็กต์ ReserveRoom
+            reserveRooms.add(reserveRoom); // เพิ่มอ็อบเจ็กต์ลงในลิสต์ reserveRooms
+        }
+       
+        System.exit(1);
 
-        //ตามนี้
-        ArrayList<TransectionRoom> = new 
-
+        //ตัดออกก่อน
         // for (Room runRoom : rooms) {
         //     // สร้างอ็อบเจ็กต์ ReserveRoom ใหม่จาก Room ที่เป็น master
         //     ReserveRoom reserveRoom = new ReserveRoom(runRoom);
@@ -26,24 +34,24 @@ public class Main {
         // ReserveRoom reserveRoom = SETRESERVEROOM(rooms);
         
 
-        System.out.println("\nWelcome to the Hotel Booking System!");
-        System.out.println("Choose your role:");
-        System.out.println("1. Customer");
-        System.out.println("2. Employee\t [log]");
-        System.out.println("3. Exit \t [log]");
-        System.out.print(">>> ");
-        // System.exit(1);
-        int ChooseRole = scanner.nextInt();
+        // System.out.println("\nWelcome to the Hotel Booking System!");
+        // System.out.println("Choose your role:");
+        // System.out.println("1. Customer");
+        // System.out.println("2. Employee\t [log]");
+        // System.out.println("3. Exit \t [log]");
+        // System.out.print(">>> ");
+        // // System.exit(1);
+        // int ChooseRole = scanner.nextInt();
 
-        if (ChooseRole == 1) {
-            User(reserveRooms);
+        // if (ChooseRole == 1) {
+        //     User(reserveRooms);
 
-        } else if (ChooseRole == 2) {
-            Employee();
+        // } else if (ChooseRole == 2) {
+        //     Employee();
 
-        } else {
-            main(args);
-        }
+        // } else {
+        //     main(args);
+        // }
     }
 
 //=====================================================================================
@@ -60,7 +68,7 @@ public class Main {
             roomAvailability[i] = true; // Assume all rooms are available
         }
 
-        reserveRoom.displayCalendar(roomAvailability);
+        reserveRooms.displayCalendar();
         // ReserveRoom reserveRoomObj = new ReserveRoom();
 
         System.out.print("Enter check-in date : ");
@@ -68,25 +76,25 @@ public class Main {
         System.out.print("Enter check-out date : ");
         int EndDay = scanner.nextInt();
 
-        LocalDate checkInDate = LocalDate.of(2024, 9, startDay); // วันที่เข้าพัก
-        LocalDate checkOutDate = LocalDate.of(2024, 9, EndDay); // วันที่ออก
+        // LocalDate checkInDate = LocalDate.of(2024, 9, startDay); // วันที่เข้าพัก
+        // LocalDate checkOutDate = LocalDate.of(2024, 9, EndDay); // วันที่ออก
 
-        reserveRoomObj.getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate);
+        // reserveRoomObj.getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate);
 
-        for (ReserveRoom reserveRoom : reserveRooms) {
-            if (reserveRoom.isAvailable(checkInDate)) {
-                System.out.println("Room " + reserveRoom.getRoomNumber() + " is available today.");
-            } else {
-                System.out.println("Room " + reserveRoom.getRoomNumber() + " is not available today.");
-            }
-        }
+        // for (ReserveRoom reserveRoom : reserveRooms) {
+        //     if (reserveRoom.isAvailable(checkInDate)) {
+        //         System.out.println("Room " + reserveRoom.getRoomNumber() + " is available today.");
+        //     } else {
+        //         System.out.println("Room " + reserveRoom.getRoomNumber() + " is not available today.");
+        //     }
+        // }
 
 
         // เลือกจำนวนห้อง
     }
 
 
-    private static void handleWalkInBooking(ArrayList<ReserveRoom> reserveRooms) {
+    private static void handleWalkInBooking(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
 
         // System.out.println("Test handle walk in");
@@ -106,7 +114,7 @@ public class Main {
     }
 
 
-    public static void User(ArrayList<ReserveRoom> reserveRooms) {
+    public static void User(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
         // สร้าง customer
         System.out.println("[ Customer ]");
@@ -148,19 +156,17 @@ public class Main {
 
 //=====================================================================================
 
-    public static ArrayList<Room> SETROOM() {
+    public static ArrayList<MasterRoom> SETROOM() {
         // ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
-        ArrayList<Room> rooms = new ArrayList<>();
+        ArrayList<MasterRoom> rooms = new ArrayList<>();
         //สร้างห้อง
         if (rooms.isEmpty()) {
-            rooms.add(new Room("101", "Standard", 1000));
-            rooms.add(new Room("102", "Deluxe", 2000));
-            rooms.add(new Room("103", "Suite", 3000));
+            rooms.add(new MasterRoom("101", "Standard", 1000));
+            rooms.add(new MasterRoom("102", "Deluxe", 2000));
+            rooms.add(new MasterRoom("103", "Suite", 3000));
             // Room.saveRoomsToJson(rooms, "rooms.json");
         }
-        for (Room runRoom : rooms) {
-           System.out.println(rooms);
-        }
+        
         return rooms;
     }
 

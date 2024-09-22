@@ -6,6 +6,7 @@ public class TransectionRoom {
     private MasterRoom room;
     private Map<LocalDate, Boolean> availability; // สถานะห้องว่างตามวันที่
 
+    public TransectionRoom (){}
     // Constructor เพื่อสร้าง TransectionRoom
     public TransectionRoom(MasterRoom room) {
         // สำเนา MasterRoom โดยใช้คอนสตรัคเตอร์ที่ถูกต้อง
@@ -19,6 +20,8 @@ public class TransectionRoom {
         }
     }
 
+
+    
     // Method เพื่อเช็คห้องว่างในวันที่กำหนด
     public boolean isAvailable(LocalDate date) {
         return availability.getOrDefault(date, false); // คืนค่า true หากว่าง, false หากไม่ว่าง
@@ -76,5 +79,9 @@ public class TransectionRoom {
     // Setter สำหรับ availability
     public void setAvailability(Map<LocalDate, Boolean> availability) {
         this.availability = availability;
+    }
+
+    public void displayRoomInfo() {
+        System.out.println("Transection Room: " + room.getRoomNumber() + ", Type: " + room.getType());
     }
 }
