@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hotel {
-    private List<MasterRoom> rooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
 
     
 
@@ -17,13 +17,13 @@ public class Hotel {
 
     private void addRooms(String type, int count) {
         for (int i = 1; i <= count; i++) {
-            rooms.add(new MasterRoom(type, rooms.size() + 1));
+            rooms.add(new Room(type, rooms.size() + 1));
         }
     }
 
-    public List<MasterRoom> getAvailableRooms(LocalDate startDate, LocalDate endDate) {
-        List<MasterRoom> availableRooms = new ArrayList<>();
-        for (MasterRoom room : rooms) {
+    public List<Room> getAvailableRooms(LocalDate startDate, LocalDate endDate) {
+        List<Room> availableRooms = new ArrayList<>();
+        for (Room room : rooms) {
             boolean isAvailable = true;
             for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
                 if (!room.isAvailable(date)) {
@@ -48,7 +48,7 @@ public class Hotel {
             // System.out.println("Checking availability for date: " + currentDate);
     
             boolean allRoomsAvailable = true;
-            for (MasterRoom room : rooms) {
+            for (Room room : rooms) {
                 if (!room.isAvailable(currentDate)) {
                     System.out.println("Room " + room.getRoomNumber() + " is not available on " + currentDate);
                     return currentDate.minusDays(1); // Last available day
