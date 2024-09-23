@@ -7,18 +7,18 @@ public class Customer extends Person{
         super(firstName, lastName, phoneNumber, email);
     }
 
-    public void setGuest(int roomNumber , String guestName){
-        guest.put(roomNumber, guestName); //roomNumber เป็น key, guestName เป็น value
-    }
+    // public void setGuest(int roomNumber , String guestName){
+    //     guest.put(roomNumber, guestName); //roomNumber เป็น key, guestName เป็น value
+    // }
 
-    // Method สำหรับดึงข้อมูล guest ทั้งหมด
-    public HashMap<Integer, String> getGuests() {
-        return guest;
-    }
-    // Method สำหรับดึงข้อมูล guest โดยใช้หมายเลขห้องพัก
-    public String getGuestByRoomNumber(int roomNumber) {
-        return guest.get(roomNumber);
-    }
+    // // Method สำหรับดึงข้อมูล guest ทั้งหมด
+    // public HashMap<Integer, String> getGuests() {
+    //     return guest;
+    // }
+    // // Method สำหรับดึงข้อมูล guest โดยใช้หมายเลขห้องพัก
+    // public String getGuestByRoomNumber(int roomNumber) {
+    //     return guest.get(roomNumber);
+    // }
 
     public void customerInfo(){
         super.printInfo();

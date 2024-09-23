@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Blooking {
+public class Booking {
     private String bookingID;
     private Customer customer;
     private MasterRoom room;
@@ -8,14 +8,8 @@ public class Blooking {
     private LocalDate checkOutDate;
     private double totalPrice;
 
-    public class Booking {
-        private String bookingID;
-        private Customer customer;
-        private MasterRoom room;
-        private LocalDate checkInDate;
-        private LocalDate checkOutDate;
-        private double totalPrice;
     
+        
         public Booking(Customer customer, MasterRoom room, LocalDate checkInDate, LocalDate checkOutDate) {
             this.customer = customer;
             this.room = room;
@@ -78,9 +72,8 @@ public class Blooking {
         public void bookingInfo() {
             
         }
-    
-    
-    
-    }
+        public void confirmBooking(Customer customer, LocalDate checkIn, LocalDate checkOut){
+            
+        }
     
 }

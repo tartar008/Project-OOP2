@@ -9,7 +9,7 @@ public class TransectionRoom {
     public TransectionRoom (){}
     // Constructor เพื่อสร้าง TransectionRoom
     public TransectionRoom(MasterRoom room) {
-        // สำเนา MasterRoom โดยใช้คอนสตรัคเตอร์ที่ถูกต้อง
+        // สำเนา MasterRoom โดยใช้คอนสตรัคเตอร์
         this.room = new MasterRoom(room.getRoomNumber(), room.getType(), room.getPrice());
         this.availability = new HashMap<>();
 

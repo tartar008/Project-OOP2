@@ -13,6 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<MasterRoom> rooms = SETROOM();
+        
 
         // ReserveRoom reserveRooms = new ReserveRoom();
         ReserveRoom reserveRoom = new ReserveRoom();
@@ -165,7 +166,7 @@ public class Main {
         //สร้าง Array เก็บชื่อปรเภทห้อง
         ArrayList<String> TypeRoomRemaining = new ArrayList<>();
 
-        TypeRoomRemaining.add()
+        TypeRoomRemaining.add();
 
         // if(type1Count > 0){
         //     TypeRoomRemaining.add("Standard Room");
