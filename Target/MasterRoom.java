@@ -3,23 +3,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MasterRoom {
-    private String roomNumber;
+    private int roomNumber;
     private String type;
     private double price;
 
     // Constructor
-    public MasterRoom(String roomNumber, String type, double price) {
+    public MasterRoom(int roomNumber, String type, double price) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.price = price;
     }
 
     // Getters and Setters for attributes
-    public String getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 

@@ -24,7 +24,7 @@ public class TransectionRoom {
     
     // Method เพื่อเช็คห้องว่างในวันที่กำหนด
     public boolean isAvailable(LocalDate date) {
-        return availability.getOrDefault(date, false); // คืนค่า true หากว่าง, false หากไม่ว่าง
+        return availability.getOrDefault(date, true); // คืนค่า true หากว่าง, false หากไม่ว่าง
     }
 
     // Method เพื่อทำการจองห้องในช่วงวันที่กำหนด

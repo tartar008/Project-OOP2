@@ -34,7 +34,7 @@ public class MainOnline {
         System.out.println("22  23  24  25  26  27  28");
         System.out.println("29  30");
 
-        // Prompt the user for input
+
         System.out.print("Select the CheckIn (1-30) \n[0] go back\n>>> ");
         int StartDay = scanner.nextInt();
 

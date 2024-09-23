@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,28 +5,30 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
 
-// import javax.sql.rowset.serial.SerialStruct;
+public class UnitTest {
+    // ANSI escape codes for colors
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
-public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+        // Scanner scanner = new Scanner(System.in);
         ArrayList<MasterRoom> rooms = SETROOM();
-
-        // ReserveRoom reserveRooms = new ReserveRoom();
         ReserveRoom reserveRoom = new ReserveRoom();
 
         for (MasterRoom Room : rooms) {
             Room.printInfo();
         }
-
         for (MasterRoom runRoom : rooms) {
             TransectionRoom transectionRoom = new TransectionRoom(runRoom);
             reserveRoom.AddTransectionRoom(transectionRoom);
         }
-
         System.out.println("===========================================================");
-
         for (TransectionRoom runTSRoom : reserveRoom.getTransectionRoom()) {
             runTSRoom.displayRoomInfo();
         }
@@ -39,8 +40,8 @@ public class Main {
         System.out.println("1. Customer");
         System.out.println("2. Employee\t [log]");
         System.out.println("3. Exit \t [log]");
-        System.out.print(">>> ");
-        int ChooseRole = scanner.nextInt();
+        System.out.print(ANSI_GREEN + ">>> 1\n" + ANSI_RESET);
+        int ChooseRole = 1;
 
         if (ChooseRole == 1) {
             User(reserveRoom);
@@ -58,27 +59,26 @@ public class Main {
     public static void User(ReserveRoom reserveRoom) {
         Scanner scanner = new Scanner(System.in);
         // สร้าง customer
-        System.out.println("[ Customer ]");
-        System.out.print("Enter Firstname: ");
-        String firstName = scanner.nextLine();
-        System.out.print("Enter Lastname: ");
-        String lastName = scanner.nextLine();
-        System.out.print("Enter Phone number: ");
-        String phoneNumber = scanner.nextLine();
-        System.out.print("Enter Email: ");
-        String email = scanner.nextLine();
+        System.out.println(ANSI_GREEN + "[ Customer ]" + ANSI_RESET);
+        System.out.print("Enter Firstname: " + ANSI_GREEN + "Piyachai\n" + ANSI_RESET);
+        String firstName = "Piyachai";
+        System.out.print("Enter Lastname: " + ANSI_GREEN + "Narongsab\n" + ANSI_RESET);
+        String lastName = "Narongsab";
+        System.out.print("Enter Phone number: " + ANSI_GREEN + "081XXXXXXX\n" + ANSI_RESET);
+        String phoneNumber = "081XXXXXXX";
+        System.out.print("Enter Email: " + ANSI_GREEN + "tartar0081@gmail.com\n" + ANSI_RESET);
+        String email = "tartar0081@gmail.com";
 
         Customer customer1 = new Customer(firstName, lastName, phoneNumber, email);
         // customer1.customerInfo();
-        System.out.println("\nWelcome khun " + firstName);
+        System.out.println("\nWelcome khun " + ANSI_GREEN + firstName + ANSI_RESET);
         System.out.println();
         System.out.println("Choose your booking method:");
         System.out.println("1. Walk-in");
         System.out.println("2. Online");
         System.out.println("3. Exit");
-        System.out.print("Enter your method: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Enter your method: " + ANSI_GREEN + "2\n" + ANSI_RESET);
+        int choice = 2;
 
         // Customer customer = new Customer(); // เติม Constractor เพิ่ม
 
@@ -96,7 +96,7 @@ public class Main {
 
     private static void handleOnlineBooking(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("You chose Online booking.");
+        System.out.println(ANSI_GREEN + "You chose Online booking." + ANSI_RESET);
 
         // สมมติแสดงปฏิทิน (ใช้เป็น boolean array สำหรับความง่าย)
         boolean[] roomAvailability = new boolean[30];
@@ -107,10 +107,10 @@ public class Main {
         reserveRooms.displayCalendar();
 
         // รับวันที่เช็คอินและเช็คเอาท์จากผู้ใช้
-        System.out.print("Enter check-in date (day): ");
-        int startDay = scanner.nextInt();
-        System.out.print("Enter check-out date (day): ");
-        int endDay = scanner.nextInt();
+        System.out.print("Enter check-in date (day): " + ANSI_GREEN + "3\n" + ANSI_RESET);
+        int startDay = 3;
+        System.out.print("Enter check-out date (day): " + ANSI_GREEN + "7\n" + ANSI_RESET);
+        int endDay = 7;
 
         // ======================================================================================================
 
@@ -122,20 +122,20 @@ public class Main {
         List<TransectionRoom> availableRooms = reserveRooms.getAvailableRooms(checkInDate, checkOutDate);
 
         System.out.println("....Start Debug....");
-        System.out.print("AvailableRooms : [ ");
+        System.out.print("AvailableRooms : " + ANSI_GREEN + "[ ");
         for (TransectionRoom TSroom : availableRooms) {
-            System.out.print(TSroom.getRoom().getRoomNumber() + ", ");
+            System.out.print(ANSI_GREEN + TSroom.getRoom().getRoomNumber() + ", " + ANSI_RESET);
 
         }
-        System.out.println("]");
+        System.out.println(ANSI_GREEN + "]" + ANSI_RESET);
         System.out.println("....End Debug....");
 
         // ตรวจสอบห้องที่ว่างใน availableRooms
         for (TransectionRoom TSroom : availableRooms) {
             if (TSroom.isAvailable(checkInDate)) {
-                System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is available today.");
+                System.out.println(ANSI_GREEN + "Room " + TSroom.getRoom().getRoomNumber() + " is available today." + ANSI_RESET);
             } else {
-                System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is not available today.");
+                System.out.println(ANSI_RED + "Room " + TSroom.getRoom().getRoomNumber() + " is not available today." + ANSI_RESET);
             }
         }
 
@@ -158,39 +158,50 @@ public class Main {
             }
         }
 
-        System.out.println("Rooms in type 1 (100-199): " + type1Count);
-        System.out.println("Rooms in type 2 (200-299): " + type2Count);
-        System.out.println("Rooms in type 3 (300-399): " + type3Count);
+        System.out.println("Rooms in type 1 (100-199): " + ANSI_GREEN + type1Count + ANSI_RESET);
+        System.out.println("Rooms in type 2 (200-299): " + ANSI_GREEN + type2Count + ANSI_RESET);
+        System.out.println("Rooms in type 3 (300-399): " + ANSI_GREEN + type3Count + ANSI_RESET);
 
-        //สร้าง Array เก็บชื่อปรเภทห้อง
-        ArrayList<String> TypeRoomRemaining = new ArrayList<>();
 
-        TypeRoomRemaining.add()
+        // สร้าง HashMap เก็บชื่อประเภทห้องและจำนวนห้องที่เหลือ
+        HashMap<String, Integer> TypeRoomRemaining = new HashMap<>();
 
-        // if(type1Count > 0){
-        //     TypeRoomRemaining.add("Standard Room");
-        // }
-        // else if(type2Count > 0){
-        //     TypeRoomRemaining.add("Superior Room");
-        // }
-        // else if(type3Count > 0){
-        //     TypeRoomRemaining.add("Family Room");
-        // }
+        if (type1Count > 0) {
+            TypeRoomRemaining.put("Standard", type1Count); // ประเภทห้อง 100-199
+        }
+        if (type2Count > 0) {
+            TypeRoomRemaining.put("Paeior", type2Count); // ประเภทห้อง 200-299
+        }
+        if (type3Count > 0) {
+            TypeRoomRemaining.put("family", type3Count); // ประเภทห้อง 300-399
+        }
 
-        //เลือกประเภทห้องที่ต้องการ
-
+        // แสดงข้อมูลประเภทห้องและจำนวนห้องที่เหลือ
         if (TypeRoomRemaining.isEmpty()) {
             System.out.println("Sorry, no rooms are available for the selected dates.");
         } else {
             System.out.println("Available rooms:");
-            for (String TRR : TypeRoomRemaining) {
-                System.out.println("Room " + TRR + ": " +  );
+            for (Map.Entry<String, Integer> entry : TypeRoomRemaining.entrySet()) {
+                System.out.println("Room Type: " + entry.getKey() + ", Remaining: " + entry.getValue());
             }
         }
 
 
+        //เลือกประเภทห้องที่ต้องการ
 
-        // ======================================================================================================
+        // System.out.println("Enter your TypeRoom : ");
+        // int ChooseTypeRoom = 1;
+
+
+
+        // สรุปรายการที่ลูกค้าเลือก
+
+        //ชำระเงิน
+
+        //สร้างใบเสร็จ
+
+        //
+        
     }
 
     private static void handleWalkInBooking(ReserveRoom reserveRooms) {
@@ -203,9 +214,9 @@ public class Main {
             roomAvailability[i] = true; // Assume all rooms are available
         }
         // reserveRoom.displayCalendar(roomAvailability);
-        System.out.println("Enter Check-In Date: ");
+        System.out.print(ANSI_GREEN + "Enter Check-In Date: " + ANSI_RESET);
         int checkInDate = scanner.nextInt();
-        System.out.println("Enter Check-Out Date: ");
+        System.out.print(ANSI_GREEN + "Enter Check-Out Date: " + ANSI_RESET);
         int checkOutDate = scanner.nextInt();
 
         // เลือกจำนวนห้อง
@@ -219,9 +230,9 @@ public class Main {
         ArrayList<MasterRoom> rooms = new ArrayList<>();
         // สร้างห้อง
         if (rooms.isEmpty()) {
-            rooms.add(new MasterRoom(101, "Standard", 1000));
-            rooms.add(new MasterRoom(102, "Deluxe", 2000));
-            rooms.add(new MasterRoom(103, "Suite", 3000));
+            rooms.add(new MasterRoom(101, "Standard", 1000.0));
+            rooms.add(new MasterRoom(102, "Deluxe", 2000.0));
+            rooms.add(new MasterRoom(103, "Suite", 3000.0));
             // Room.saveRoomsToJson(rooms, "rooms.json");
         }
 
@@ -235,15 +246,15 @@ public class Main {
         System.out.println("1. Receptionist  [log]");
         System.out.println("2. Manager\t [log]");
         System.out.println("3. Exit \t [log]");
-        int ChooseRole = scanner.nextInt();
+        System.out.print("Enter your role: ");
+        int employeeRole = scanner.nextInt();
+        if (employeeRole == 1) {
+            System.out.println(">> Receptionist <<");
+            handleWalkInBooking(null);
+        } else if (employeeRole == 2) {
 
-        if (ChooseRole == 1) {
-
-        } else if (ChooseRole == 2) {
-            // สร้างห้อง
-        } else {
+        } else if (employeeRole == 3) {
             main(null);
         }
     }
-
 }

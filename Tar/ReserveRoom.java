@@ -5,25 +5,28 @@ import java.util.List;
 import java.util.Map;
 
 public class ReserveRoom {
-    private TransectionRoom transectionRoom;
-    private ArrayList<ReserveRoom> reserveRooms = new ArrayList<>(); // เก็บรายการการจองห้อง
-    private Map<LocalDate, Boolean> availability = new HashMap<>(); // สถานะห้องว่าง/ไม่ว่างตามวันที่
+    private ArrayList<TransectionRoom> transectionRooms;
+    private Map<LocalDate, Boolean> availability; // สถานะห้องว่าง/ไม่ว่างตามวันที่
 
     public ReserveRoom() {
+        this.transectionRooms = new ArrayList<>();
+        this.availability = new HashMap<>();
     }
 
-    // Constructor ที่รับ object ห้องเข้ามาและเพิ่มเข้าในรายการจอง
-    public ReserveRoom(TransectionRoom room) {
-        this.transectionRoom = room;
+
+    public void AddTransectionRoom(TransectionRoom transectionRoom){
+        transectionRooms.add(transectionRoom);
     }
+
     
-    public TransectionRoom getTransectionRoom(){
-        return transectionRoom;
+    
+    public ArrayList<TransectionRoom> getTransectionRoom(){
+        return transectionRooms;
     }
 
-    public String getRoomNumber(){
-        return transectionRoom.getRoom().getRoomNumber();
-    }
+    // public String getRoomNumber(){
+    //     return transectionRoom.getRoom().getRoomNumber();
+    // }
 
 
     // ตรวจสอบว่าวันที่ที่กำหนดห้องว่างหรือไม่
@@ -44,18 +47,22 @@ public class ReserveRoom {
     }
 
     // ดึงรายการห้องที่ว่างในช่วงวันที่กำหนด
-    public List<ReserveRoom> getAvailableRooms(LocalDate startDate, LocalDate endDate) {
-        List<ReserveRoom> availableRooms = new ArrayList<>();
-        for (ReserveRoom room : reserveRooms) {
+    public List<TransectionRoom> getAvailableRooms(LocalDate startDate, LocalDate endDate) {
+        List<TransectionRoom> availableRooms = new ArrayList<>();
+        System.out.println("startDate : " + startDate);
+        System.out.println("endDate : " + endDate);
+        for (TransectionRoom TSroom : transectionRooms) {
             boolean isRoomAvailable = true;
             for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
-                if (!room.isAvailable(date)) {
+                // System.out.println("TSroom : " + TSroom.getAvailability().entrySet().);
+                if (!TSroom.isAvailable(date)) {
+                    System.out.println("TSroomCheckAvailable: " + TSroom.isAvailable(date));
                     isRoomAvailable = false;
                     break;
                 }
             }
             if (isRoomAvailable) {
-                availableRooms.add(room); // เพิ่มห้องที่ว่างในรายการ
+                availableRooms.add(TSroom); // เพิ่มห้องที่ว่างในรายการ
             }
         }
         return availableRooms;
