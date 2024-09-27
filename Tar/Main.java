@@ -165,7 +165,7 @@ public class Main {
         //สร้าง Array เก็บชื่อปรเภทห้อง
         ArrayList<String> TypeRoomRemaining = new ArrayList<>();
 
-        TypeRoomRemaining.add()
+        // TypeRoomRemaining.add()
 
         // if(type1Count > 0){
         //     TypeRoomRemaining.add("Standard Room");
