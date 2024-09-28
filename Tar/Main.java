@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,12 +82,11 @@ public class Main {
         scanner.nextLine();
 
         // Customer customer = new Customer(); // เติม Constractor เพิ่ม
-
         if (choice == 1) {
             System.out.print(">> WALK IN <<");
             handleWalkInBooking(reserveRoom);
         } else if (choice == 2) {
-            handleOnlineBooking(reserveRoom);
+            handleOnlineBooking(reserveRoom , customer1);
         } else if (choice == 3) {
 
         } else {
@@ -94,7 +94,7 @@ public class Main {
         }
     }
 
-    private static void handleOnlineBooking(ReserveRoom reserveRooms) {
+    private static void handleOnlineBooking(ReserveRoom reserveRooms , Customer customer1) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("You chose Online booking.");
 
@@ -158,40 +158,111 @@ public class Main {
             }
         }
 
-        System.out.println("Rooms in type 1 (100-199): " + type1Count);
-        System.out.println("Rooms in type 2 (200-299): " + type2Count);
-        System.out.println("Rooms in type 3 (300-399): " + type3Count);
+        // System.out.println("Rooms in type 1 (100-199): " + type1Count);
+        // System.out.println("Rooms in type 2 (200-299): " + type2Count);
+        // System.out.println("Rooms in type 3 (300-399): " + type3Count);
 
-        //สร้าง Array เก็บชื่อปรเภทห้อง
-        ArrayList<String> TypeRoomRemaining = new ArrayList<>();
+        // แสดงข้อมูลประเภทห้องที่ว่าง
+        HashMap<String, Integer> TypeRoomRemaining = new HashMap<>();
+        if (type1Count > 0) {
+            TypeRoomRemaining.put("Standard", type1Count);
+        }
+        if (type2Count > 0) {
+            TypeRoomRemaining.put("Paeior", type2Count);
+        }
+        if (type3Count > 0) {
+            TypeRoomRemaining.put("Family", type3Count);
+        }
 
-        // TypeRoomRemaining.add()
+        System.out.println();
 
-        // if(type1Count > 0){
-        //     TypeRoomRemaining.add("Standard Room");
-        // }
-        // else if(type2Count > 0){
-        //     TypeRoomRemaining.add("Superior Room");
-        // }
-        // else if(type3Count > 0){
-        //     TypeRoomRemaining.add("Family Room");
-        // }
-
-        //เลือกประเภทห้องที่ต้องการ
-
+        int Index = 0;
         if (TypeRoomRemaining.isEmpty()) {
             System.out.println("Sorry, no rooms are available for the selected dates.");
         } else {
+
             System.out.println("Available rooms:");
-            for (String TRR : TypeRoomRemaining) {
-                System.out.println("Room " + TRR + ": " +  );
+            for (Map.Entry<String, Integer> entry : TypeRoomRemaining.entrySet()) {
+                Index++;
+                System.out.println(
+                        "[" + Index + "] " + "Room Type: " + entry.getKey() + ", Remaining: " + entry.getValue());
             }
         }
 
+        HashMap<String, Integer> ChooseRoom = new HashMap<>();
+        Index = 0;
+        int numberOfRooms = 0;
+        // เลือกประเภทห้องและจำนวนห้องที่ต้องการจอง
+        // เลือกประเภทห้อง
+        System.out.print("\nEnter your Type Room: ");
+        int roomType = scanner.nextInt();
+        roomType -= 1;
+        // สับเปลี่ยนตัวแปรที่เก็บ เพื่อตั้งลิมิตการกดเลือก
+        for (Map.Entry<String, Integer> entry : TypeRoomRemaining.entrySet()) {
+            if (Index == roomType) {
+                String key = entry.getKey();
+                int value = entry.getValue();
+                ChooseRoom.put(key, value);
+            }
+            Index++;
+        }
 
+        boolean LimitRoom = true;
+        while (LimitRoom) {
+            System.out.print("Enter number of room(s): ");
+            numberOfRooms = scanner.nextInt();
+
+            for (Map.Entry<String, Integer> entry : ChooseRoom.entrySet()) {
+                if (numberOfRooms <= entry.getValue()) {
+                    LimitRoom = false;
+                }else{
+                    System.out.println("You choose more limit!!");
+                }
+            }
+
+        }
+
+        // สรุปการจองและชำระเงิน
+        String selectedRoomType = (roomType == 1) ? "Standard" : (roomType == 2) ? "Paeior" : "Honeymoon";
+
+
+
+        System.out.print("\nComplete Booking (Y/N): ");
+        String completeBooking = scanner.nextLine();
+
+        double totalAmount = 0;
+        if (completeBooking.equalsIgnoreCase("Y")) {
+            if (selectedRoomType.equals("Standard")) {
+                totalAmount = 1728 * numberOfRooms;
+            } else if (selectedRoomType.equals("Paeior")) {
+                totalAmount = 3690 * numberOfRooms;
+            } else if (selectedRoomType.equals("Family")) {
+                totalAmount = 5364 * numberOfRooms;
+            }
+
+            System.out.println("\nBooking Completed. Thank you for your reservation!");
+        } else {
+            System.out.println("Booking canceled.");
+        }
 
         // ======================================================================================================
     }
+
+    // private static void Receipt(){
+
+    // System.out.println("\n-- Payment Process --");
+    // System.out.println("Total Amount: THB " + totalAmount);
+    // System.out.print("Enter payment method (Cash/Card): ");
+    // String paymentMethod = scanner.nextLine();
+
+    // System.out.println("\n-- Receipt --");
+    // System.out.println("Customer: Piyachai Narongsab");
+    // System.out.println("Phone: 081XXXXXXX");
+    // System.out.println("Email: tartar0081@gmail.com");
+    // System.out.println("Total Amount: THB " + totalAmount);
+    // System.out.println("Payment Method: " + paymentMethod);
+
+    // }
 
     private static void handleWalkInBooking(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
@@ -220,8 +291,8 @@ public class Main {
         // สร้างห้อง
         if (rooms.isEmpty()) {
             rooms.add(new MasterRoom(101, "Standard", 1000));
-            rooms.add(new MasterRoom(102, "Deluxe", 2000));
-            rooms.add(new MasterRoom(103, "Suite", 3000));
+            rooms.add(new MasterRoom(201, "Paeior", 2000));
+            rooms.add(new MasterRoom(301, "Family", 3000));
             // Room.saveRoomsToJson(rooms, "rooms.json");
         }
 

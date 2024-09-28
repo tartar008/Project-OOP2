@@ -86,7 +86,7 @@ public class Main {
             System.out.print(">> WALK IN <<");
             handleWalkInBooking(reserveRoom);
         } else if (choice == 2) {
-            handleOnlineBooking(reserveRoom , customer1);
+            handleOnlineBooking(reserveRoom, customer1);
         } else if (choice == 3) {
 
         } else {
@@ -94,7 +94,7 @@ public class Main {
         }
     }
 
-    private static void handleOnlineBooking(ReserveRoom reserveRooms , Customer customer1) {
+    private static void handleOnlineBooking(ReserveRoom reserveRooms, Customer customer1) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("You chose Online booking.");
 
@@ -131,119 +131,122 @@ public class Main {
         System.out.println("....End Debug....");
 
         // ตรวจสอบห้องที่ว่างใน availableRooms
-        for (TransectionRoom TSroom : availableRooms) {
-            if (TSroom.isAvailable(checkInDate)) {
-                System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is available today.");
-            } else {
-                System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is not available today.");
-            }
-        }
+        // for (TransectionRoom TSroom : availableRooms) {
+        // if (TSroom.isAvailable(checkInDate)) {
+        // System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is
+        // available today.");
+        // } else {
+        // System.out.println("Room " + TSroom.getRoom().getRoomNumber() + " is not
+        // available today.");
+        // }
+        // }
 
         // ======================================================================================================
         // คัดกรองให้เลือกเป็นประเภทห้อง
-
-        int type1Count = 0; // ห้องประเภท 100-199
-        int type2Count = 0; // ห้องประเภท 200-299
-        int type3Count = 0; // ห้องประเภท 300-399
+        ArrayList<TransectionRoom> Standards = new ArrayList<>();
+        ArrayList<TransectionRoom> Paeiors = new ArrayList<>();
+        ArrayList<TransectionRoom> Familys = new ArrayList<>();
 
         for (TransectionRoom tsRoom : availableRooms) {
-            int roomNumber = tsRoom.getRoom().getRoomNumber();
-
-            if (roomNumber >= 100 && roomNumber < 200) {
-                type1Count++; // ห้องประเภท 100-199
-            } else if (roomNumber >= 200 && roomNumber < 300) {
-                type2Count++; // ห้องประเภท 200-299
-            } else if (roomNumber >= 300 && roomNumber < 400) {
-                type3Count++; // ห้องประเภท 300-399
+            if (tsRoom.getRoom().getRoomNumber() > 100 && tsRoom.getRoom().getRoomNumber() < 200) {
+                Standards.add(tsRoom);
+            } else if (tsRoom.getRoom().getRoomNumber() > 200 && tsRoom.getRoom().getRoomNumber() < 300) {
+                Paeiors.add(tsRoom);
+            } else if (tsRoom.getRoom().getRoomNumber() > 300 && tsRoom.getRoom().getRoomNumber() < 400) {
+                Familys.add(tsRoom);
             }
         }
-
-        // System.out.println("Rooms in type 1 (100-199): " + type1Count);
-        // System.out.println("Rooms in type 2 (200-299): " + type2Count);
-        // System.out.println("Rooms in type 3 (300-399): " + type3Count);
-
-        // แสดงข้อมูลประเภทห้องที่ว่าง
-        HashMap<String, Integer> TypeRoomRemaining = new HashMap<>();
-        if (type1Count > 0) {
-            TypeRoomRemaining.put("Standard", type1Count);
-        }
-        if (type2Count > 0) {
-            TypeRoomRemaining.put("Paeior", type2Count);
-        }
-        if (type3Count > 0) {
-            TypeRoomRemaining.put("Family", type3Count);
-        }
-
-        System.out.println();
 
         int Index = 0;
-        if (TypeRoomRemaining.isEmpty()) {
-            System.out.println("Sorry, no rooms are available for the selected dates.");
-        } else {
+        HashMap<Integer, String> ChooseRoomMap = new HashMap<>();
 
-            System.out.println("Available rooms:");
-            for (Map.Entry<String, Integer> entry : TypeRoomRemaining.entrySet()) {
-                Index++;
-                System.out.println(
-                        "[" + Index + "] " + "Room Type: " + entry.getKey() + ", Remaining: " + entry.getValue());
-            }
+        if (!Standards.isEmpty()) {
+            Index++;
+            System.out.println("[" + Index + "] Room Type: Standard, Room Amount: " + Standards.size());
+            ChooseRoomMap.put(Index, "Standard");
+        }
+        if (!Paeiors.isEmpty()) {
+            Index++;
+            System.out.println("[" + Index + "] Room Type: Paeior, Room Amount: " + Paeiors.size());
+            ChooseRoomMap.put(Index, "Paeior");
+        }
+        if (!Familys.isEmpty()) {
+            Index++;
+            System.out.println("[" + Index + "] Room Type: Family, Room Amount: " + Familys.size());
+            ChooseRoomMap.put(Index, "Family");
         }
 
-        HashMap<String, Integer> ChooseRoom = new HashMap<>();
         Index = 0;
-        int numberOfRooms = 0;
+        String ChooseRoomStringName = "";
         // เลือกประเภทห้องและจำนวนห้องที่ต้องการจอง
         // เลือกประเภทห้อง
         System.out.print("\nEnter your Type Room: ");
         int roomType = scanner.nextInt();
-        roomType -= 1;
-        // สับเปลี่ยนตัวแปรที่เก็บ เพื่อตั้งลิมิตการกดเลือก
-        for (Map.Entry<String, Integer> entry : TypeRoomRemaining.entrySet()) {
-            if (Index == roomType) {
-                String key = entry.getKey();
-                int value = entry.getValue();
-                ChooseRoom.put(key, value);
+        for (Map.Entry<Integer, String> entry : ChooseRoomMap.entrySet()) {
+            int key = entry.getKey();
+            String value = entry.getValue();
+            if (roomType == key) {
+                ChooseRoomStringName = value;
             }
-            Index++;
+        }
+
+        ArrayList<TransectionRoom> ChooseTypeRooms = new ArrayList<>();
+        if (ChooseRoomStringName.equals("Standard")) {
+            ChooseTypeRooms = Standards;
+        } else if (ChooseRoomStringName.equals("Paeior")) {
+            ChooseTypeRooms = Paeiors;
+        } else if (ChooseRoomStringName.equals("Family")) {
+            ChooseTypeRooms = Familys;
         }
 
         boolean LimitRoom = true;
+        int numberOfRooms = 0;
+        TransectionRoom ComfirmRoom = new TransectionRoom();
         while (LimitRoom) {
             System.out.print("Enter number of room(s): ");
             numberOfRooms = scanner.nextInt();
 
-            for (Map.Entry<String, Integer> entry : ChooseRoom.entrySet()) {
-                if (numberOfRooms <= entry.getValue()) {
-                    LimitRoom = false;
-                }else{
-                    System.out.println("You choose more limit!!");
-                }
+            System.out.println("============ Debug Start ============");
+
+            System.out.println("numberOfRooms: " + numberOfRooms);
+            System.out.println("ChooseTypeRooms: " + ChooseTypeRooms.size());
+
+            System.out.println("============ Debug End ============");
+
+            if (numberOfRooms <= ChooseTypeRooms.size()) {
+                LimitRoom = false;
+                ComfirmRoom = ChooseTypeRooms.get(0);
+            } else {
+                System.out.println("You choose more limit!!");
             }
 
         }
 
-        // สรุปการจองและชำระเงิน
-        String selectedRoomType = (roomType == 1) ? "Standard" : (roomType == 2) ? "Paeior" : "Honeymoon";
-
-
+        // สุดท้ายก็ต้องใส่ Room เป็น Object อยู่ดี
+        Booking booking = new Booking(customer1, ComfirmRoom, checkInDate, checkOutDate);
 
         System.out.print("\nComplete Booking (Y/N): ");
         String completeBooking = scanner.nextLine();
 
-        double totalAmount = 0;
-        if (completeBooking.equalsIgnoreCase("Y")) {
-            if (selectedRoomType.equals("Standard")) {
-                totalAmount = 1728 * numberOfRooms;
-            } else if (selectedRoomType.equals("Paeior")) {
-                totalAmount = 3690 * numberOfRooms;
-            } else if (selectedRoomType.equals("Family")) {
-                totalAmount = 5364 * numberOfRooms;
-            }
+        // สรุปการจอง
+        booking.bookingInfo();
 
-            System.out.println("\nBooking Completed. Thank you for your reservation!");
-        } else {
-            System.out.println("Booking canceled.");
-        }
+        // ชำระเงิน
+
+        // double totalAmount = 0;
+        // if (completeBooking.equalsIgnoreCase("Y")) {
+        // if (selectedRoomType.equals("Standard")) {
+        // totalAmount = 1728 * numberOfRooms;
+        // } else if (selectedRoomType.equals("Paeior")) {
+        // totalAmount = 3690 * numberOfRooms;
+        // } else if (selectedRoomType.equals("Family")) {
+        // totalAmount = 5364 * numberOfRooms;
+        // }
+
+        // System.out.println("\nBooking Completed. Thank you for your reservation!");
+        // } else {
+        // System.out.println("Booking canceled.");
+        // }
 
         // ======================================================================================================
     }
@@ -291,6 +294,7 @@ public class Main {
         // สร้างห้อง
         if (rooms.isEmpty()) {
             rooms.add(new MasterRoom(101, "Standard", 1000));
+            rooms.add(new MasterRoom(102, "Standard", 1000));
             rooms.add(new MasterRoom(201, "Paeior", 2000));
             rooms.add(new MasterRoom(301, "Family", 3000));
             // Room.saveRoomsToJson(rooms, "rooms.json");
