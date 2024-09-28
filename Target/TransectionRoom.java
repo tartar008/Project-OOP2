@@ -5,6 +5,7 @@ import java.util.Map;
 public class TransectionRoom {
     private MasterRoom room;
     private Map<LocalDate, Boolean> availability; // สถานะห้องว่างตามวันที่
+    private Guest guest;
 
     public TransectionRoom (){}
     // Constructor เพื่อสร้าง TransectionRoom
@@ -19,7 +20,11 @@ public class TransectionRoom {
             availability.put(date, true); // ว่าง
         }
     }
-
+    public TransectionRoom(MasterRoom room, Guest guest) {
+        // ใช้ room ที่โคลนจากคอนสตรัคเตอร์ก่อนหน้า
+        this.room = room; // ไม่ต้องโคลนใหม่อีกแล้ว
+        this.guest = guest; // เก็บข้อมูลผู้เข้าพัก
+    }
 
     
     // Method เพื่อเช็คห้องว่างในวันที่กำหนด

@@ -69,7 +69,7 @@ public class UnitTest {
         System.out.print("Enter Email: " + ANSI_GREEN + "tartar0081@gmail.com\n" + ANSI_RESET);
         String email = "tartar0081@gmail.com";
 
-        Customer customer1 = new Customer(firstName, lastName, phoneNumber, email);
+        Booker booker1 = new Booker(firstName, lastName, phoneNumber, email, "B1111");
         // customer1.customerInfo();
         System.out.println("\nWelcome khun " + ANSI_GREEN + firstName + ANSI_RESET);
         System.out.println();
@@ -84,9 +84,15 @@ public class UnitTest {
 
         if (choice == 1) {
             System.out.print(">> WALK IN <<");
+<<<<<<< HEAD
             handleWalkInBooking(reserveRoom);
         } else if (choice == 2) {
             handleOnlineBooking(reserveRoom);
+=======
+            handleWalkInBooking(reserveRoom, booker1);
+        } else if (choice == 2) {
+            handleOnlineBooking(reserveRoom, booker1);
+>>>>>>> cbf5bae (commit)
         } else if (choice == 3) {
 
         } else {
@@ -94,7 +100,11 @@ public class UnitTest {
         }
     }
 
+<<<<<<< HEAD
     private static void handleOnlineBooking(ReserveRoom reserveRooms) {
+=======
+    private static void handleOnlineBooking(ReserveRoom reserveRooms, Booker booker1) {
+>>>>>>> cbf5bae (commit)
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(ANSI_GREEN + "You chose Online booking." + ANSI_RESET);
@@ -189,6 +199,7 @@ public class UnitTest {
         System.out.print("Enter number of room(s): ");
         int numberOfRooms = 2;
 
+<<<<<<< HEAD
         // สรุปการจองและชำระเงิน
         String selectedRoomType = (roomType == 1) ? "Standard" : (roomType == 2) ? "Family" : "Honeymoon";
         System.out.print("\nComplete Booking (Y/N): ");
@@ -208,6 +219,53 @@ public class UnitTest {
             System.out.println("Total Amount: THB " + totalAmount);
             System.out.print("Enter payment method (Cash/Card): ");
             String paymentMethod = "Cash";
+=======
+        //เลือกประเภทห้องที่ต้องการ
+        ArrayList<Guest> guests = new ArrayList<>(); // เก็บ Guest หลายคน
+        while (true) {
+
+            System.out.print("Enter your Type Room: "+ ANSI_GREEN + "1\n" + ANSI_RESET);
+            int ChooseTypeRoom = 1;
+            
+            System.out.print("Enter number of room(s): "+ ANSI_GREEN + "2\n" + ANSI_RESET);
+            int numOfRoom = 1;
+            if(ChooseTypeRoom == 1){
+                System.out.println(ANSI_YELLOW + "> Guest Details" + ANSI_RESET);
+                for(int i = 0; i < numOfRoom ; i++){
+                    System.out.print("Enter Firstname: " + ANSI_GREEN + "Kareema\n" + ANSI_RESET);
+                    String firstName = "Kareema";
+                    System.out.print("Enter Lastname: " + ANSI_GREEN + "Mukem\n" + ANSI_RESET);
+                    String lastName = "Mukem";
+                    System.out.print("Enter Phone number: " + ANSI_GREEN + "095XXXXXXX\n" + ANSI_RESET);
+                    String phoneNumber = "095XXXXXXX";
+                    System.out.print("Enter Email: " + ANSI_GREEN + "kareemaeieie@gmail.com\n" + ANSI_RESET);
+                    String email = "kareemaieie@gmail.com";
+                    Guest guest = new Guest(firstName, lastName, phoneNumber, email, "101");
+                }
+                System.out.print(ANSI_BLUE + "--\nComfirm Booking(Y/N): "+ ANSI_GREEN + "Y\n" + ANSI_RESET); // N = cencle bookin
+
+                String isComplete = "Y";
+                if(isComplete.equalsIgnoreCase("Y")){
+                    Booking booking = new Booking();
+                    booking.confirmBooking(booker1, guest, ChooseTypeRoom, numOfRoom, checkInDate, checkOutDate);
+                    break;
+                }
+            }
+
+
+        }
+        
+        //กรอก guest 
+      
+        
+
+        // Guest guest = new Guest("Jane Smith", "jane@example.com", "101");
+
+        // สรุปรายการที่ลูกค้าเลือก
+        System.out.println(ANSI_YELLOW + "> Booking Details" + ANSI_RESET);
+        
+        //ชำระเงิน
+>>>>>>> cbf5bae (commit)
 
             System.out.println("\n-- Receipt --");
             System.out.println("Customer: Piyachai Narongsab");
