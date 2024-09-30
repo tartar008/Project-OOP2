@@ -96,7 +96,7 @@ public class Main {
 
     private static void handleOnlineBooking(ReserveRoom reserveRooms, Customer customer1) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("You chose Online booking.");
+        System.out.println("You choose Online booking.");
 
         // สมมติแสดงปฏิทิน (ใช้เป็น boolean array สำหรับความง่าย)
         boolean[] roomAvailability = new boolean[30];
@@ -144,16 +144,16 @@ public class Main {
         // ======================================================================================================
         // คัดกรองให้เลือกเป็นประเภทห้อง
         ArrayList<TransectionRoom> Standards = new ArrayList<>();
-        ArrayList<TransectionRoom> Paeiors = new ArrayList<>();
-        ArrayList<TransectionRoom> Familys = new ArrayList<>();
+        ArrayList<TransectionRoom> Family = new ArrayList<>();
+        ArrayList<TransectionRoom> Honeymoon = new ArrayList<>();
 
         for (TransectionRoom tsRoom : availableRooms) {
             if (tsRoom.getRoom().getRoomNumber() > 100 && tsRoom.getRoom().getRoomNumber() < 200) {
                 Standards.add(tsRoom);
             } else if (tsRoom.getRoom().getRoomNumber() > 200 && tsRoom.getRoom().getRoomNumber() < 300) {
-                Paeiors.add(tsRoom);
+                Family.add(tsRoom);
             } else if (tsRoom.getRoom().getRoomNumber() > 300 && tsRoom.getRoom().getRoomNumber() < 400) {
-                Familys.add(tsRoom);
+                Honeymoon.add(tsRoom);
             }
         }
 
@@ -165,15 +165,15 @@ public class Main {
             System.out.println("[" + Index + "] Room Type: Standard, Room Amount: " + Standards.size());
             ChooseRoomMap.put(Index, "Standard");
         }
-        if (!Paeiors.isEmpty()) {
+        if (!Family.isEmpty()) {
             Index++;
-            System.out.println("[" + Index + "] Room Type: Paeior, Room Amount: " + Paeiors.size());
-            ChooseRoomMap.put(Index, "Paeior");
-        }
-        if (!Familys.isEmpty()) {
-            Index++;
-            System.out.println("[" + Index + "] Room Type: Family, Room Amount: " + Familys.size());
+            System.out.println("[" + Index + "] Room Type: Family, Room Amount: " + Family.size());
             ChooseRoomMap.put(Index, "Family");
+        }
+        if (!Honeymoon.isEmpty()) {
+            Index++;
+            System.out.println("[" + Index + "] Room Type: Honeymoon, Room Amount: " + Honeymoon.size());
+            ChooseRoomMap.put(Index, "Honeymoon");
         }
 
         Index = 0;
@@ -193,10 +193,10 @@ public class Main {
         ArrayList<TransectionRoom> ChooseTypeRooms = new ArrayList<>();
         if (ChooseRoomStringName.equals("Standard")) {
             ChooseTypeRooms = Standards;
-        } else if (ChooseRoomStringName.equals("Paeior")) {
-            ChooseTypeRooms = Paeiors;
         } else if (ChooseRoomStringName.equals("Family")) {
-            ChooseTypeRooms = Familys;
+            ChooseTypeRooms = Family;
+        } else if (ChooseRoomStringName.equals("Honeymoon")) {
+            ChooseTypeRooms = Honeymoon;
         }
 
         boolean LimitRoom = true;
@@ -295,8 +295,8 @@ public class Main {
         if (rooms.isEmpty()) {
             rooms.add(new MasterRoom(101, "Standard", 1000));
             rooms.add(new MasterRoom(102, "Standard", 1000));
-            rooms.add(new MasterRoom(201, "Paeior", 2000));
-            rooms.add(new MasterRoom(301, "Family", 3000));
+            rooms.add(new MasterRoom(201, "Family", 2000));
+            rooms.add(new MasterRoom(301, "Honeymoon", 3000));
             // Room.saveRoomsToJson(rooms, "rooms.json");
         }
 

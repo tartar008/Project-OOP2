@@ -1,18 +1,21 @@
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Booking {
     private String bookingID;
     private Customer customer;
     private Guest guest;
-    private MasterRoom room;
+    private TransectionRoom room;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private double totalPrice;
     
     public Booking(Customer customer, TransectionRoom room, LocalDate checkInDate, LocalDate checkOutDate) {
-        this.bookingID = UUID.randomUUID().toString(); // Automatically generate a unique booking ID
+        // this.bookingID = UUID.randomUUID().toString(); // Automatically generate a unique booking ID
+        this.bookingID = generateBookingID(); // Generate booking ID with prefix
         this.customer = customer;
         this.room = room;
         this.checkInDate = checkInDate;
@@ -20,13 +23,22 @@ public class Booking {
         this.totalPrice = calculateTotalPrice(); // Calculate total price at the time of booking
     }
 
+    private String generateBookingID() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        return "BKG-" + LocalDateTime.now().format(formatter); // Add BKG- prefix
+    }
+
     public String getBookingID() {
         return bookingID;
     }
 
-    public void setBookingID(String bookingID) {
-        this.bookingID = bookingID;
-    }
+    // public String getBookingID() {
+    //     return bookingID;
+    // }
+
+    // public void setBookingID(String bookingID) {
+    //     this.bookingID = bookingID;
+    // }
 
     public Customer getCustomer() {
         return customer;
