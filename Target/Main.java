@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,20 +58,20 @@ public class Main {
     public static void User(ReserveRoom reserveRoom) {
         Scanner scanner = new Scanner(System.in);
         // สร้าง customer
-        System.out.println("[ Customer ]");
-        System.out.print("Enter Firstname: ");
-        String firstName = scanner.nextLine();
-        System.out.print("Enter Lastname: ");
-        String lastName = scanner.nextLine();
-        System.out.print("Enter Phone number: ");
-        String phoneNumber = scanner.nextLine();
-        System.out.print("Enter Email: ");
-        String email = scanner.nextLine();
+        // System.out.println("[ Customer ]");
+        // System.out.print("Enter Firstname: ");
+        // String firstName = scanner.nextLine();
+        // System.out.print("Enter Lastname: ");
+        // String lastName = scanner.nextLine();
+        // System.out.print("Enter Phone number: ");
+        // String phoneNumber = scanner.nextLine();
+        // System.out.print("Enter Email: ");
+        // String email = scanner.nextLine();
 
-        Customer customer1 = new Customer(firstName, lastName, phoneNumber, email);
-        // customer1.customerInfo();
-        System.out.println("\nWelcome khun " + firstName);
-        System.out.println();
+        // Customer customer1 = new Customer(firstName, lastName, phoneNumber, email);
+        // // customer1.customerInfo();
+        // System.out.println("\nWelcome khun " + firstName);
+        // System.out.println();
         System.out.println("Choose your booking method:");
         System.out.println("1. Walk-in");
         System.out.println("2. Online");
@@ -86,7 +85,7 @@ public class Main {
             System.out.print(">> WALK IN <<");
             handleWalkInBooking(reserveRoom);
         } else if (choice == 2) {
-            handleOnlineBooking(reserveRoom, customer1);
+            handleOnlineBooking(reserveRoom);
         } else if (choice == 3) {
 
         } else {
@@ -94,7 +93,7 @@ public class Main {
         }
     }
 
-    private static void handleOnlineBooking(ReserveRoom reserveRooms, Customer customer1) {
+    private static void handleOnlineBooking(ReserveRoom reserveRooms) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("You choose Online booking.");
 
@@ -147,6 +146,7 @@ public class Main {
         ArrayList<TransectionRoom> Family = new ArrayList<>();
         ArrayList<TransectionRoom> Honeymoon = new ArrayList<>();
 
+        // สร้าง list แยกออกเป็นแต่ละประเภท
         for (TransectionRoom tsRoom : availableRooms) {
             if (tsRoom.getRoom().getRoomNumber() > 100 && tsRoom.getRoom().getRoomNumber() < 200) {
                 Standards.add(tsRoom);
@@ -182,8 +182,9 @@ public class Main {
         // เลือกประเภทห้อง
         System.out.print("\nEnter your Type Room: ");
         int roomType = scanner.nextInt();
+        //วนเพื่อหาว่า roomType ของ user ตรงกับ key ไหนใน Map
         for (Map.Entry<Integer, String> entry : ChooseRoomMap.entrySet()) {
-            int key = entry.getKey();
+            int key = entry.getKey(); //ดึง key มา
             String value = entry.getValue();
             if (roomType == key) {
                 ChooseRoomStringName = value;
@@ -201,35 +202,118 @@ public class Main {
 
         boolean LimitRoom = true;
         int numberOfRooms = 0;
-        TransectionRoom ComfirmRoom = new TransectionRoom();
+
+        ArrayList<TransectionRoom> confirmRooms = new ArrayList<>(); //สำหรับเก็บเก็บห้องที่ลูกค้าเข้าพัก
+        Booker booker = null;
+        List<Guest> guests = new ArrayList<>(); // สร้าง List เพื่อเก็บ Guest แต่ละคน
         while (LimitRoom) {
             System.out.print("Enter number of room(s): ");
             numberOfRooms = scanner.nextInt();
+            scanner.nextLine();
+            //
+            System.out.println("\n> Guest Details");
+            for(int i = 0; i<numberOfRooms; i++){
+                System.out.println("Guest " + (i+1));
+                System.out.print("Enter First name: ");
+                String guestFirstName = scanner.nextLine();
+                System.out.print("Enter Last name: ");
+                String guestLastName = scanner.nextLine();
+                Guest guest = new Guest(guestFirstName, guestLastName);
+
+                guests.add(guest);
+            }
+
+            System.out.println("> Contact Details");
+            System.out.print("I am booking for someone else? (Y/N): "); //ถ้าใช่จะทำการสร้างผู้จองแต่ถ้าไม่จะให้ guest index 0 เป็นตัวแทน เพื่อเก็บรายการจอง (booking)
+            String isBooker = scanner.nextLine();
+           
+            if(isBooker.equalsIgnoreCase("Y")){
+
+                System.out.print("Enter First name: ");
+                String bookerFirstName = scanner.nextLine();
+                System.out.print("Enter Last name: ");
+                String bookerLastName = scanner.nextLine();
+                System.out.print("Enter Phone number: ");
+                String phoneNum = scanner.nextLine();
+                System.out.print("Enter Email: ");
+                String email = scanner.nextLine();
+                
+                booker = new Booker(bookerFirstName, bookerLastName, phoneNum, email);
+            }
+            else{
+                System.out.print("Enter Phone number: ");
+                String phoneNum = scanner.nextLine();
+                System.out.print("Enter Email: ");
+                String email = scanner.nextLine();
+
+                //กำหนดให้ผู้เข้าพักคนที่หนึ่งเป็นตัวเเทน
+                guests.get(0).setPhoneNumber(phoneNum);
+                guests.get(0).setEmail(email);
+
+            }
+
 
             System.out.println("============ Debug Start ============");
 
             System.out.println("numberOfRooms: " + numberOfRooms);
             System.out.println("ChooseTypeRooms: " + ChooseTypeRooms.size());
 
-            System.out.println("============ Debug End ============");
-
+            
             if (numberOfRooms <= ChooseTypeRooms.size()) {
                 LimitRoom = false;
-                ComfirmRoom = ChooseTypeRooms.get(0);
+                // วนลูปเพื่อสร้าง TransectionRoom สำหรับห้องแต่ละห้องที่เลือก
+                for (int i = 0; i < numberOfRooms; i++) {
+                    TransectionRoom chooseRoom = ChooseTypeRooms.get(i); // ดึงห้องที่เลือก
+                    TransectionRoom confirmRoom = new TransectionRoom(chooseRoom.getRoom());  // ใช้ chooseRoom เพื่อสร้าง TransectionRoom ใหม่
+                    confirmRooms.add(confirmRoom);
+                }
             } else {
                 System.out.println("You choose more limit!!");
             }
+            
+        }
+        
+        for(TransectionRoom run : confirmRooms){
+            System.out.println("Type room: " + run.getRoom().getType());
+            System.out.println("Number: " + run.getRoom().getRoomNumber());
+            System.out.println("Price: " + run.getRoom().getPrice());
+        }
+        System.out.println("============ Debug End ============");
+        
+        System.out.print("\nConfirm Booking (Y/N): ");
+        String confirmBooking = scanner.nextLine();
+        Booking booking = null;
+        
+        if(confirmBooking.equalsIgnoreCase("Y")){
+            if(booker!=null){
+                booking = new Booking(booker, confirmRooms, checkInDate, checkOutDate);
+                booking.bookerBookingInfo();
+                
+            }else{
+                booking = new Booking(guests.get(0), confirmRooms, checkInDate, checkOutDate);
+                booking.noBookerBookingInfo();
+            }
+        } else{}
 
+        // กำหนด booking ให้กับ Guest เพื่อนำหมายเลขการจองไปยืนยันกับพนง.
+        for (Guest guest : guests) {
+            guest.setBooking(booking);  // กำหนดการจองให้ guest แต่ละคน
         }
 
-        // สุดท้ายก็ต้องใส่ Room เป็น Object อยู่ดี
-        Booking booking = new Booking(customer1, ComfirmRoom, checkInDate, checkOutDate);
-
-        System.out.print("\nComplete Booking (Y/N): ");
-        String completeBooking = scanner.nextLine();
-
-        // สรุปการจอง
-        booking.bookingInfo();
+        //จ่ายหมายเลขการจองกรณีมีผู้อิ่นจองให้
+        if(booker!=null){
+            booker.setBooking(booking);
+        }
+        
+        System.out.println("==================== debug ===================");
+        for(Guest run : guests){
+            System.err.println("Booking Id of " + run.firstName + " : " + run.getBooking().getBookingID());
+        }
+        if(booker!=null){
+            System.out.println("Booking ID of booker: " + booker.getBooking().getBookingID());
+        }
+        
+        
 
         // ชำระเงิน
 

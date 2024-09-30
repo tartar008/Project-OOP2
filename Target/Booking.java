@@ -3,21 +3,32 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Booking {
     private String bookingID;
     private Customer customer;
     private Guest guest;
-    private TransectionRoom room;
+    private Booker booker;
+    private List<TransectionRoom> rooms;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private double totalPrice;
     
-    public Booking(Customer customer, TransectionRoom room, LocalDate checkInDate, LocalDate checkOutDate) {
-        // this.bookingID = UUID.randomUUID().toString(); // Automatically generate a unique booking ID
-        this.bookingID = generateBookingID(); // Generate booking ID with prefix
-        this.customer = customer;
-        this.room = room;
+    public Booking(Guest guest, List<TransectionRoom> rooms, LocalDate checkInDate, LocalDate checkOutDate) {
+        this.bookingID = generateBookingID(); // Generate booking ID ตามปีเดือนวันเวลา
+        this.guest = guest;
+        this.rooms = rooms;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.totalPrice = calculateTotalPrice(); // Calculate total price at the time of booking
+    }
+    
+    // with booker
+    public Booking(Booker booker, List<TransectionRoom> rooms, LocalDate checkInDate, LocalDate checkOutDate) {
+        this.bookingID = generateBookingID(); // Generate booking ID ตามปีเดือนวันเวลา
+        this.booker = booker;
+        this.rooms = rooms;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.totalPrice = calculateTotalPrice(); // Calculate total price at the time of booking
@@ -32,14 +43,6 @@ public class Booking {
         return bookingID;
     }
 
-    // public String getBookingID() {
-    //     return bookingID;
-    // }
-
-    // public void setBookingID(String bookingID) {
-    //     this.bookingID = bookingID;
-    // }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -48,12 +51,12 @@ public class Booking {
         this.customer = customer;
     }
 
-    public TransectionRoom getRoom() {
-        return room;
+    public List<TransectionRoom> getRooms() {
+        return rooms;
     }
-
-    public void setRoom(TransectionRoom room) {
-        this.room = room;
+    
+    public void setRooms(List<TransectionRoom> rooms) {
+        this.rooms = rooms;
     }
 
     public LocalDate getCheckInDate() {
@@ -85,7 +88,12 @@ public class Booking {
     // Calculate the total price based on room rate and the number of days
     private double calculateTotalPrice() {
         long numberOfDays = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
-        return room.getRoom().getPrice() * numberOfDays;
+        double totalPrice = 0;
+        for(TransectionRoom runRooms : rooms){
+            totalPrice += runRooms.getRoom().getPrice() * numberOfDays;
+        }
+        // System.out.println("rooms(0): " + rooms.get(0).getRoom().getPrice());
+        return totalPrice;
     }
 
     public void cancelBooking() {
@@ -93,12 +101,23 @@ public class Booking {
         // Additional cancellation logic, such as refunding or updating system records, can be added here.
     }
 
-    public void bookingInfo() {
+    public void noBookerBookingInfo() {
         System.out.println("Booking Information:");
         System.out.println("Booking ID: " + bookingID);
-        System.out.print("Customer: " + customer.getFirstName());
-        System.out.println(" " + customer.getLastName());
-        System.out.println("Room: " + room.getRoom().getType());
+        System.out.print("Customer: " + guest.getFirstName());
+        System.out.println(" " + guest.getLastName());
+        System.out.println("Room: " + rooms.get(0).getRoom().getType());
+        System.out.println("Check-in Date: " + checkInDate);
+        System.out.println("Check-out Date: " + checkOutDate);
+        System.out.println("Total Price: " + totalPrice);
+    }
+
+    public void bookerBookingInfo() {
+        System.out.println("Booking Information:");
+        System.out.println("Booking ID: " + bookingID);
+        System.out.print("Customer: " + booker.getFirstName());
+        System.out.println(" " + booker.getLastName());
+        System.out.println("Room: " + rooms.get(0).getRoom().getType());
         System.out.println("Check-in Date: " + checkInDate);
         System.out.println("Check-out Date: " + checkOutDate);
         System.out.println("Total Price: " + totalPrice);
