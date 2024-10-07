@@ -1,3 +1,5 @@
+package src.customers;
+
 public class Person {
     protected String firstName;
     protected String lastName;
@@ -17,7 +19,6 @@ public class Person {
         
     }
 
-    
     public String getFirstName(){
         return firstName;
     }

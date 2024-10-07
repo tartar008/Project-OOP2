@@ -1,9 +1,15 @@
+package src.bookings;
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import src.rooms.*;
+import src.customers.*;
 
 public class Booking {
     private static ArrayList<Booking> bookings = new ArrayList<>();
@@ -145,7 +151,7 @@ public class Booking {
             System.out.println("==================================================");
             System.out.printf("| Booking ID:        %s                         |\n", b.getBookingID());
             System.out.printf("| Customer:          %s %s                     |\n",
-                    b.getAgent().firstName, b.getAgent().getLastName());
+                    b.getAgent().getFirstName(), b.getAgent().getLastName());
             System.out.printf("| Room Type:         %s %d                      |\n",
                     b.getRooms().get(roomType).getRoom().getType(), b.getAmountRoom());
             System.out.printf("| Check-in Date:     %s                         |\n", b.getCheckInDate());

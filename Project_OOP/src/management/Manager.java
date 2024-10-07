@@ -1,3 +1,4 @@
+package src.management;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import src.rooms.MasterRoom;
 
 import java.util.ArrayList;
 import java.util.HashMap;

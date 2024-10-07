@@ -33,6 +33,9 @@ export CLASSPATH=.:./classes:./json-simple-1.1.1.jar
 To compile the Java files, run:
 ```bash
 javac -cp .;lib/json-simple-1.1.1.jar;bin -d bin *.java
+
+javac -cp .;lib/json-simple-1.1.1.jar -d bin src/bookings/*.java src/customers/*.java src/management/*.java src/rooms/*.java Main.java MainManager.java
+
 ```
 
 ## Running the Application

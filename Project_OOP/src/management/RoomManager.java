@@ -1,7 +1,10 @@
+package src.management;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import src.rooms.MasterRoom;
 
 import java.io.FileWriter;
 import java.io.FileReader;

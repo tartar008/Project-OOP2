@@ -1,3 +1,7 @@
+package src.customers;
+
+import src.bookings.*;;
+
 public class Customer extends Person{
     private boolean isBookingAgent;  
     private String bookingId;

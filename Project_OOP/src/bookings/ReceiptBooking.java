@@ -1,3 +1,5 @@
+package src.bookings;
+
 public class ReceiptBooking {
     private Booking booking;
 

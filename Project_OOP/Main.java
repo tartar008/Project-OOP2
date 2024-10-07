@@ -2,6 +2,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import src.management.Manager;
+import src.rooms.MasterRoom;
+import src.rooms.TransectionRoom;
+import src.bookings.*;
+import src.customers.*;
+
 import java.util.HashMap;
 
 public class Main {

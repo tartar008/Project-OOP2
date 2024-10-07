@@ -1,3 +1,5 @@
+package src.bookings;
+
 //สำหรับสร้างใบยืนยันการจอง
 public class Confirmation {
     public Booking booking;
