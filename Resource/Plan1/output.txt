@@ -1,7 +1,0 @@
-spawn java -cp .:./classes:./json-simple-1.1.1.jar Main
-=== Hotel Booking System ===
-1. Show all rooms
-2. Filter available rooms
-3. Book a room
-4. Exit
-Choose an option: 
