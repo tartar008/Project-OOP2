@@ -19,18 +19,17 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Manager {
-    private static final String ROOM_FILE = "./resources/JSON_MaterRoom.json"; // เส้นทางไฟล์ JSON สำหรับห้อง
-    private static final String BOOKING_FILE = "./JSON_Booking.json"; // เส้นทางไฟล์ JSON สำหรับห้อง
-
-    private ArrayList<MasterRoom> rooms = new ArrayList<>(); // รายการห้อง
+    private static final String ROOM_FILE = "./resources/JSON_MaterRoom.json";
+    private static final String BOOKING_FILE = "./JSON_Booking.json"; 
+    private static final String RESERVEROOM_FILE = "./resources/JSON_ReserveRoom.json";
 
     public Manager() {
         loadRooms();
-
     }
 
-    public void loadRooms() {
-        JSONParser parser = new JSONParser();
+    public ArrayList<MasterRoom> loadRooms() {
+        ArrayList<MasterRoom> rooms = new ArrayList<>();
+        JSONParser jsonParser = new JSONParser();
 
         File roomFile = new File(ROOM_FILE);
 
@@ -41,33 +40,27 @@ public class Manager {
             WriteJson(roomArray); // เขียนข้อมูลกลับไปที่ไฟล์
         }
 
-        //อ่านไฟล์
         try (FileReader reader = new FileReader(ROOM_FILE)) {
-            JSONArray roomArray = (JSONArray) parser.parse(reader);
+            // อ่านข้อมูล JSON
+            Object obj = jsonParser.parse(reader);
+            JSONArray roomList = (JSONArray) obj;
 
-            // ตรวจสอบว่า roomArray ว่างหรือไม่
-            if (roomArray.isEmpty()) {
-                System.out.println("File is empty. Creating default room data.");
-                roomArray = addDefaultRooms(); // สร้างข้อมูลห้องพื้นฐาน
-                WriteJson(roomArray); // เขียนข้อมูลกลับไปที่ไฟล์
+            // ประมวลผลข้อมูลแต่ละห้อง
+            for (Object roomObject : roomList) {
+                JSONObject roomJson = (JSONObject) roomObject;
+                int roomNumber = ((Long) roomJson.get("roomNumber")).intValue();
+                double price = (Double) roomJson.get("price");
+                String type = (String) roomJson.get("type");
+
+                rooms.add(new MasterRoom(roomNumber, type, price));
             }
 
-            for (Object obj : roomArray) {
-                JSONObject roomObject = (JSONObject) obj;
-                int roomNumber = ((Long) roomObject.get("roomNumber")).intValue();
-                String type = (String) roomObject.get("roomType"); // แก้ไขเป็น "roomType"
-                double price = ((Number) roomObject.get("price")).doubleValue();
-
-                MasterRoom room = new MasterRoom(roomNumber, type, price);
-                rooms.add(room);
-            }
-            System.out.println("rooms size: " + rooms.size());
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-    }
 
-    public ArrayList<MasterRoom> getRooms() {
         return rooms;
     }
 
@@ -101,7 +94,6 @@ public class Manager {
         return roomJson;
     }
 
-    // =============================================================================================
     // =============================================================================================
 
     // เพิ่มห้องใหม่
@@ -253,8 +245,7 @@ public class Manager {
         }
     }
 
-    // =============================================================================================
-    // =============================================================================================
+// =============================================================================================
 
     // ส่วนที่เกี่ยวข้องกับการอ่านและเขียน JSON
     private static JSONArray ReadJsonMasterRoom() {
@@ -299,14 +290,13 @@ public class Manager {
     }
 
     // =============================================================================================
-    // =============================================================================================
 
     private static JSONArray ReadJsonReserveRoom() {
         JSONObject existingData = new JSONObject();
         JSONParser jsonParser = new JSONParser();
         JSONArray rooms = new JSONArray(); // เปลี่ยนจาก JSONObject เป็น JSONArray เนื่องจาก 'rooms' เป็นลิสต์ของห้อง
 
-        try (FileReader reader = new FileReader("./resources/JSON_ReserveRoom.json")) {
+        try (FileReader reader = new FileReader(RESERVEROOM_FILE)) {
             existingData = (JSONObject) jsonParser.parse(reader); // อ่านไฟล์ JSON
             rooms = (JSONArray) existingData.get("ReserveRoom"); // ดึงข้อมูลห้องที่จอง
         } catch (FileNotFoundException e) {
@@ -317,7 +307,6 @@ public class Manager {
         return rooms; // คืนค่า JSONArray ที่เก็บข้อมูลห้องที่จอง
     }
 
-    // =============================================================================================
     // =============================================================================================
 
     //
