@@ -1,7 +1,7 @@
 {
   "rooms": [
     {
-      "roomNumber": "101",
+      "roomNumber": 101,
       "type": "Deluxe",
       "price": 1200.00,
       "unavailableDates": [

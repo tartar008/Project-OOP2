@@ -10,7 +10,8 @@ public class TransectionRoom {
    
     
     public TransectionRoom (){
-        room = new MasterRoom();
+        this.room = new MasterRoom();
+        this.availability = new HashMap<>();
     }
     
     public TransectionRoom(MasterRoom room) {
@@ -27,9 +28,11 @@ public class TransectionRoom {
     public boolean isAvailable(LocalDate date) {
         return availability.getOrDefault(date, true);
     }
- 
 
-    
+    public Map<LocalDate, Boolean> getAvailable(){
+        return availability;
+    }
+
     public boolean bookRoom(LocalDate checkInDate, LocalDate checkOutDate) {
         for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
             if (!isAvailable(date)) {
@@ -43,7 +46,6 @@ public class TransectionRoom {
         System.out.println("Room " + room.getRoomNumber() + " has been booked from " + checkInDate + " to " + checkOutDate);
         return true;
     }
-
  
     public void cancelBooking(LocalDate checkInDate, LocalDate checkOutDate) {
         for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
@@ -60,20 +62,18 @@ public class TransectionRoom {
         }
     }
 
-
     public MasterRoom getRoom() {
         return room;
     }
-
 
     public void setRoom(MasterRoom room) {
         this.room = room;
     }
 
-
     public void setAvailabilityMap(Map<LocalDate, Boolean> availability) {
         this.availability = availability;
     }
+    
     public void setAvailability(LocalDate date,  boolean status) {
         availability.put(date, status);
     }
@@ -92,4 +92,6 @@ public class TransectionRoom {
             }
         }
     }
+
+
 }
