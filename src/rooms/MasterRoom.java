@@ -8,6 +8,9 @@ public class MasterRoom {
     private String type;
     private double price;
 
+    public MasterRoom(){
+        
+    }
     public MasterRoom(int roomNumber, String type, double price) {
         this.roomNumber = roomNumber;
         this.type = type;

@@ -24,7 +24,6 @@ public class Manager {
     private static final String RESERVEROOM_FILE = "./resources/JSON_ReserveRoom.json";
 
     public Manager() {
-        loadRooms();
     }
 
     public ArrayList<MasterRoom> loadRooms() {

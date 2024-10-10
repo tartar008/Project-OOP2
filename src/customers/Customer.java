@@ -16,10 +16,15 @@ public class Customer extends Person{
         
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName; // ปรับค่าตัวแปร lastName
+    }
+
 
     public Customer (String firstName, String lastName, String phoneNumber, String email){
         super(firstName, lastName, phoneNumber, email);
     }
+
     
 
 }

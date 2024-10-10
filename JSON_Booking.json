@@ -1,0 +1,30 @@
+{
+    "bookings": [
+        {
+            "checkOutDate": "2024-10-25",
+            "totalPrice": 20000.0,
+            "checkInDate": "2024-10-20",
+            "bookingID": "BKG-20241010175718",
+            "room": [
+                {
+                    "roomNumber": 103,
+                    "guest": "Jane",
+                    "roomType": "Standard",
+                    "pricePerNight": 1500.0
+                },
+                {
+                    "roomNumber": 104,
+                    "guest": "Emily",
+                    "roomType": "Standard",
+                    "pricePerNight": 2500.0
+                }
+            ],
+            "customer": {
+                "phone": "123456789",
+                "customerID": null,
+                "name": "John",
+                "email": "john.doe@example.com"
+            }
+        }
+    ]
+}

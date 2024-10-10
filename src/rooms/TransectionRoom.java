@@ -1,4 +1,5 @@
 package src.rooms;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,9 @@ public class TransectionRoom {
     private Map<LocalDate, Boolean> availability;
    
     
-    public TransectionRoom (){}
+    public TransectionRoom (){
+        room = new MasterRoom();
+    }
     
     public TransectionRoom(MasterRoom room) {
         
