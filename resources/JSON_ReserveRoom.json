@@ -1,0 +1,93 @@
+{
+  "rooms": [
+    {
+      "isOccupied": false,
+      "roomNumber": 101,
+      "unavailableDates": [
+        "2024-10-05",
+        "2024-10-06",
+        "2024-10-07"
+      ],
+      "price": 1000.0,
+      "type": "Standard"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 102,
+      "unavailableDates": [
+        "2024-10-05",
+        "2024-10-06"
+      ],
+      "price": 1000.0,
+      "type": "Standard"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 103,
+      "unavailableDates": [
+        "2024-10-05",
+        "2024-10-06",
+        "2024-10-07"
+      ],
+      "price": 1000.0,
+      "type": "Standard"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 104,
+      "unavailableDates": [
+        "2024-10-02",
+        "2024-10-03",
+        "2024-10-04",
+        "2024-10-05"
+      ],
+      "price": 1000.0,
+      "type": "Standard"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 105,
+      "unavailableDates": [
+        "2024-10-05",
+        "2024-10-06"
+      ],
+      "price": 1000.0,
+      "type": "Standard"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 201,
+      "unavailableDates": [],
+      "price": 2000.0,
+      "type": "Family"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 202,
+      "unavailableDates": [],
+      "price": 2000.0,
+      "type": "Family"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 203,
+      "unavailableDates": [],
+      "price": 2000.0,
+      "type": "Family"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 301,
+      "unavailableDates": [],
+      "price": 3000.0,
+      "type": "Honeymoon"
+    },
+    {
+      "isOccupied": false,
+      "roomNumber": 302,
+      "unavailableDates": [],
+      "price": 3000.0,
+      "type": "Honeymoon"
+    }
+  ]
+}
