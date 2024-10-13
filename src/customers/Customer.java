@@ -29,6 +29,4 @@ public class Customer extends Person{
         super(firstName, lastName);
     }
 
-    
-
 }
