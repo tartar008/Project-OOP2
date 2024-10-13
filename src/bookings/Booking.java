@@ -64,7 +64,7 @@ public class Booking {
     }
 
     private String generateBookingID() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddss");
         return "BKG-" + LocalDateTime.now().format(formatter);
     }
 
@@ -173,80 +173,6 @@ public class Booking {
 
     // ====================================================================================================================
 
-    // อ่าน JSON Booking ทั้งหมด
-    // public List<Booking> readJsonBooking(String filePath) {
-    // List<Booking> bookings = new ArrayList<>(); // สร้างรายการ bookings
-    // เพื่อเก็บข้อมูลที่อ่านได้
-    // JSONParser parser = new JSONParser();
-    // try (FileReader reader = new FileReader(filePath)) {
-    // // อ่าน object ใหญ่
-    // JSONObject jsonObject = (JSONObject) parser.parse(reader);
-    // // อ่าน Array ใน bookings
-    // JSONArray bookingArray = (JSONArray) jsonObject.get("bookings");
-
-    // // ดึงแต่ละ object ใน Array นั้น
-    // for (Object obj : bookingArray) {
-    // JSONObject bookingObject = (JSONObject) obj;
-
-    // // ข้อมูลการจอง
-    // String bookingID = (String) bookingObject.get("bookingID");
-
-    // // ข้อมูลลูกค้า
-    // JSONObject customerObject = (JSONObject) bookingObject.get("customer");
-    // Customer customer = new Customer();
-    // customer.setCustomerID((String) customerObject.get("customerID"));
-    // customer.setFirstName((String) customerObject.get("name"));
-    // customer.setEmail((String) customerObject.get("email"));
-    // customer.setPhoneNumber((String) customerObject.get("phone"));
-
-    // // ข้อมูลห้องพักและผู้อยู่
-    // JSONArray roomArray = (JSONArray) bookingObject.get("room");
-    // List<TransectionRoom> rooms = new ArrayList<>();
-    // List<Customer> guests = new ArrayList<>();
-    // for (Object roomObj : roomArray) {
-    // JSONObject roomObject = (JSONObject) roomObj;
-    // int roomNumber = ((Long) roomObject.get("roomNumber")).intValue();
-    // String roomType = (String) roomObject.get("roomType");
-    // double pricePerNight = ((Number)
-    // roomObject.get("pricePerNight")).doubleValue();
-
-    // // ข้อมูลผู้อยู่ในห้อง
-    // Customer guest = new Customer();
-    // guest.setFirstName((String) roomObject.get("guest"));
-    // guests.add(guest);
-    // // สร้าง TransectionRoom และเพิ่มเข้าไปในรายการห้อง
-    // TransectionRoom room = new TransectionRoom();
-    // room.getRoom().setRoomNumber(roomNumber);
-    // room.getRoom().setType(roomType);
-    // room.getRoom().setPrice(pricePerNight);
-    // rooms.add(room); // เพิ่มห้องไปในรายการ
-    // }
-
-    // // ข้อมูลวัน check-in และ check-out
-    // LocalDate checkInDate = LocalDate.parse((String)
-    // bookingObject.get("checkInDate"),
-    // DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    // LocalDate checkOutDate = LocalDate.parse((String)
-    // bookingObject.get("checkOutDate"),
-    // DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-    // // ข้อมูลราคา
-    // double totalPrice = ((Number) bookingObject.get("totalPrice")).doubleValue();
-
-    // Booking booking = new Booking(bookingID, customer, guests, rooms,
-    // checkInDate, checkOutDate,
-    // totalPrice);
-
-    // // สร้าง Booking ใหม่และเพิ่มเข้าไปในรายการ bookings
-    // bookings.add(booking);
-    // }
-
-    // } catch (IOException | ParseException e) {
-    // e.printStackTrace();
-    // }
-    // return bookings; // คืนค่ารายการ bookings
-    // }
-
     public List<Booking> readJsonBooking() {
         List<Booking> bookings = new ArrayList<>(); // สร้างรายการ bookings เพื่อเก็บข้อมูลที่อ่านได้
         JSONParser parser = new JSONParser();
@@ -280,6 +206,7 @@ public class Booking {
                 for (Object roomObj : roomsArray) {
                     JSONObject roomObject = (JSONObject) roomObj;
 
+                    String customerID = (String) roomObject.get("customerID"); //
                     int roomNumber = ((Long) roomObject.get("roomNumber")).intValue();
                     String roomType = (String) roomObject.get("roomType");
                     double pricePerNight = ((Number) roomObject.get("pricePerNight")).doubleValue();

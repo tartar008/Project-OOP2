@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class TransectionRoom {
     private MasterRoom room;
-    private Map<LocalDate, Boolean> availability;//จำเป็นอยู่มั้ย
+    private Map<LocalDate, Boolean> availability;
     private boolean isOccupied;
 
     public TransectionRoom (){
@@ -26,7 +26,7 @@ public class TransectionRoom {
             availability.put(date, true);
         }
     }
-    
+
 
   
     public boolean getIsOccupied() {

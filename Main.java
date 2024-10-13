@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import src.management.Manager;
+import src.management.Receptionist;
 import src.rooms.MasterRoom;
 import src.rooms.TransectionRoom;
 import src.bookings.*;
@@ -70,8 +71,23 @@ public class Main {
             }
 
         } else {
-            
-            System.out.println("emp/manager");
+            Receptionist receptionist = new Receptionist("Somchai", "Mukem", "0999999999", "somchai@email.hotel.ac.th", "RP-001");
+            System.out.println("[ 1 ]. Check-In\n[ 2 ]. Check-Out");
+            System.out.print("Enter your choice: ");
+            int choiceMain = scanner.nextInt(); scanner.nextLine();
+            switch (choiceMain) {
+                case 1:
+                    checkIn(receptionist);
+                    break;
+                
+                case 2:
+                    checkOut(receptionist);
+                    break;
+                
+                default:
+                    break;
+            }
+
         }
 
     }// end main
@@ -180,6 +196,41 @@ public class Main {
         }
 
     }// end reservationOnline
+
+    public static void checkIn(Receptionist receptionist){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter booking id: ");
+        String bookingIdCustomer = scanner.nextLine();
+
+        boolean findBooking = receptionist.findBookingById(bookingIdCustomer); 
+
+        if (findBooking) {
+            receptionist.updateRoomStatus(bookingIdCustomer, true);
+        }
+        else {
+            System.out.println("Booking with ID: " + bookingIdCustomer + " not found.");
+        }
+
+    }
+    public static void checkOut(Receptionist receptionist){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter booking id: ");
+        String bookingIdCustomer = scanner.nextLine();
+
+        boolean findBooking = receptionist.findBookingById(bookingIdCustomer); 
+
+        if (findBooking) {
+            receptionist.updateRoomStatus(bookingIdCustomer, false);
+        }
+        else {
+            System.out.println("Booking with ID: " + bookingIdCustomer + " not found.");
+        }
+
+    }
+
+
+
+
 
     private static TransectionRoom assignRoom(List<TransectionRoom> selectedRoomType) {
         // TODO Auto-generated method stub
