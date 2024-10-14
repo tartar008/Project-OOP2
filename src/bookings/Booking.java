@@ -32,8 +32,7 @@ public class Booking {
 
     }
 
-    public Booking(Customer agent, List<Customer> guests, List<TransectionRoom> rooms, LocalDate checkInDate,
-            LocalDate checkOutDate) {
+    public Booking(Customer agent, List<Customer> guests, List<TransectionRoom> rooms, LocalDate checkInDate, LocalDate checkOutDate) {
         this.bookingID = generateBookingID();
         this.agent = agent;
         this.guests = guests;
@@ -133,6 +132,9 @@ public class Booking {
         long numberOfDays = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
         double totalPrice = 0;
         for (TransectionRoom runRooms : rooms) {
+            if(numberOfDays == 0){
+                totalPrice += runRooms.getRoom().getPrice() * (numberOfDays+1);
+            }
             totalPrice += runRooms.getRoom().getPrice() * numberOfDays;
         }
 
@@ -194,6 +196,7 @@ public class Booking {
                 Customer customer = new Customer();
                 customer.setCustomerID((String) customerObject.get("customerID"));
                 customer.setFirstName((String) customerObject.get("name"));
+                customer.setLastName((String) customerObject.get("surname"));
                 customer.setEmail((String) customerObject.get("email"));
                 customer.setPhoneNumber((String) customerObject.get("phone"));
 
@@ -213,7 +216,8 @@ public class Booking {
 
                     // ข้อมูลผู้อยู่ในห้อง
                     Customer guest = new Customer();
-                    guest.setFirstName((String) roomObject.get("guest"));
+                    guest.setFirstName((String) roomObject.get("guestFirstName"));
+                    guest.setLastName((String) roomObject.get("guestLastName"));
                     guests.add(guest);
 
                     // สร้าง TransectionRoom และเพิ่มเข้าไปในรายการห้อง
@@ -261,6 +265,7 @@ public class Booking {
             JSONObject customerObject = new JSONObject();
             customerObject.put("customerID", booking.getAgent().getCustomerID());
             customerObject.put("name", booking.getAgent().getFirstName());
+            customerObject.put("surname", booking.getAgent().getLastName());
             customerObject.put("email", booking.getAgent().getEmail());
             customerObject.put("phone", booking.getAgent().getPhoneNumber());
             bookingObject.put("customer", customerObject);
@@ -275,7 +280,8 @@ public class Booking {
 
                 // ใส่ข้อมูล guest ของห้อง
                 if (!booking.getGuest().isEmpty()) {
-                    roomObject.put("guest", booking.getGuest().get(booking.getRooms().indexOf(room)).getFirstName());
+                    roomObject.put("guestFirstName", booking.getGuest().get(booking.getRooms().indexOf(room)).getFirstName());
+                    roomObject.put("guestLastName", booking.getGuest().get(booking.getRooms().indexOf(room)).getLastName());
                 } else {
                     roomObject.put("guest", " ");
                 }

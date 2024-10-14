@@ -1,8 +1,9 @@
 [
     {
         "roomNumber": 101,
-        "price": 1000.0,
-        "type": "Standard"
+        "price": 2000.0,
+        "type": "Standard",
+        "roomType": "Family"
     },
     {
         "roomNumber": 102,
