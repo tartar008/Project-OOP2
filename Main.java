@@ -30,16 +30,6 @@ public class Main {
 
         ArrayList<MasterRoom> rooms = manager.loadRooms();
 
-        if (rooms.isEmpty()) {
-            System.out.println("rooms is null");
-        } else {
-            System.out.println("yesss");
-
-        }
-        for (MasterRoom room : rooms) {
-            System.out.println(" -" + room.getType() + " " + room.getRoomNumber());
-        }
-
         // สร้าง TransectionRoom สำหรับเก็บ MasterRoom
         ReserveRoom reserveRoom = new ReserveRoom();
         
@@ -72,22 +62,29 @@ public class Main {
 
         } else {
             Receptionist receptionist = new Receptionist("Somchai", "Mukem", "0999999999", "somchai@email.hotel.ac.th", "RP-001");
-            System.out.println("[ 1 ]. Check-In\n[ 2 ]. Check-Out");
-            System.out.print("Enter your choice: ");
-            int choiceMain = scanner.nextInt(); scanner.nextLine();
-            switch (choiceMain) {
-                case 1:
-                    checkIn(receptionist);
-                    break;
-                
-                case 2:
-                    checkOut(receptionist);
-                    break;
-                
-                default:
-                    break;
-            }
+            boolean choiceMain = true;
 
+            while(choiceMain){
+                System.out.println("[ 1 ] Check-In\n[ 2 ] Check-Out\n[ 3 ] Exit");
+                System.out.print("Enter your choice: ");
+                int choice = scanner.nextInt(); scanner.nextLine();
+                switch (choice) {
+                    case 1:
+                        checkIn(receptionist);
+                        break;
+                    
+                    case 2:
+                        checkOut(receptionist);
+                        break;
+                    
+                    case 3:
+                        choiceMain = false;
+                    
+                    default:
+                        break;
+                }
+
+            }
         }
 
     }// end main
@@ -181,7 +178,7 @@ public class Main {
             } // end limitRoom loop
             System.out.print("Do you want to book another room? (y/n): ");
             String complete = scanner.nextLine();
-            if (complete.equals("y")) {
+            if (complete.equals("n")) {
                 break;
             }
         } // end complete loop
@@ -192,7 +189,9 @@ public class Main {
         String comfirm = scanner.nextLine();
         if (comfirm.equalsIgnoreCase("y")) {
             booking.confirmBooking();
-            reserveRoom.UpdateJsonBookingDates(listBookRoom, checkInDate, checkOutDate); // ส่งไปอัพเดตสถานะ
+            reserveRoom.UpdateJsonBookingDates(listBookRoom, checkInDate, checkOutDate); // ส่งไปอัพเดตวันที่ห้องถูกจอง
+
+            payment(booking);
         }
 
     }// end reservationOnline
@@ -228,17 +227,6 @@ public class Main {
 
     }
 
-
-
-
-
-    private static TransectionRoom assignRoom(List<TransectionRoom> selectedRoomType) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'assignRoom'");
-    }
-
-    // Booking(Customer agent, List<Customer> guests, List<TransectionRoom> rooms,
-    // int amountRoom, int roomType,LocalDate checkInDate, LocalDate checkOutDate)
     public static boolean signIn() {
         printHeader("Sign In");
         Scanner scanner = new Scanner(System.in);
@@ -339,131 +327,15 @@ public class Main {
         }
     }
 
-    // private static Customer collectBookingAgentDetails(Scanner scanner,
-    // ArrayList<Customer> guests) {
-    // Customer agent = null;
-    // System.out.print("> Contact Details\nI am booking for someone else? (Y/N):
-    // ");
-    // String isBooker = scanner.nextLine();
+    public static void payment(Booking booking) {
+        PaymentAndReceipt payment = new PaymentAndReceipt();
 
-    // if (isBooker.equalsIgnoreCase("Y")) {
-    // System.out.print("Enter First name: ");
-    // String firstName = scanner.nextLine();
-    // System.out.print("Enter Last name: ");
-    // String lastName = scanner.nextLine();
-    // System.out.print("Enter Phone number: ");
-    // String phoneNum = scanner.nextLine();
-    // System.out.print("Enter Email: ");
-    // String email = scanner.nextLine();
-    // agent = new Customer(firstName, lastName, phoneNum, email, true);
-    // } else {
-    // System.out.print("Enter Phone number: ");
-    // String phoneNum = scanner.nextLine();
-    // System.out.print("Enter Email: ");
-    // String email = scanner.nextLine();
+        double amount1 = 4000.0;  // ตัวอย่างจำนวนเงินที่ต้องชำระ
+        String paymentMethod = "Credit Card";  // วิธีการชำระเงิน
+        
+        payment.processPayment(booking, amount1, paymentMethod);
+    }
 
-    // agent = guests.get(0);
-    // agent.setPhoneNumber(phoneNum);
-    // agent.setEmail(email);
-    // agent.setAgent(true);
-    // }
-    // return agent;
-    // }
-
-    // private static void RoleManager(Manager manager) {
-    // Scanner scanner = new Scanner(System.in);
-
-    // while (true) {
-    // System.out.println("\n=== Hotel Management System ===");
-    // System.out.println("1. Manage Rooms");
-    // System.out.println("2. View Customer Stay History");
-    // System.out.println("3. View Hotel Income");
-    // System.out.println("4. Exit");
-    // System.out.print(">>> ");
-
-    // int choice = scanner.nextInt();
-
-    // switch (choice) {
-    // case 1:
-    // ManageRooms(manager); // ฟังก์ชันสำหรับจัดการห้อง
-    // break;
-    // case 2:
-    // ViewCustomerStayHistory(manager); // ฟังก์ชันสำหรับดูประวัติการเข้าพัก
-    // break;
-    // case 3:
-    // ViewHotelIncome(manager); // ฟังก์ชันสำหรับดูรายได้โรงแรม
-    // break;
-    // case 4:
-    // System.out.println("Exiting the system...");
-    // scanner.close();
-    // return; // ออกจากโปรแกรม
-    // default:
-    // System.out.println("Invalid choice. Please try again.");
-    // break;
-    // }
-    // }
-    // }
-
-    // public static void ManageRooms(Manager manager) {
-    // Scanner scanner = new Scanner(System.in);
-
-    // while (true) {
-    // System.out.println("1. Add Room");
-    // System.out.println("2. Remove Room");
-    // System.out.println("3. Edit Room [Log]");
-    // System.out.println("4. View All Rooms");
-    // System.out.println("5. Exit");
-    // System.out.println(">>> ");
-
-    // int choice = scanner.nextInt();
-
-    // switch (choice) {
-    // case 1:
-    // System.out.print("Enter room number: ");
-    // int roomNumber = scanner.nextInt();
-    // System.out.print("Enter room type (Standard/Family/Honeymoon): ");
-    // String roomType = scanner.next();
-    // System.out.print("Enter room price: ");
-    // double price = scanner.nextDouble();
-    // manager.AddRoom(roomNumber, roomType, price);
-    // break;
-    // case 2:
-    // System.out.print("Enter room number to remove: ");
-    // roomNumber = scanner.nextInt();
-    // manager.RemoveRoom(roomNumber);
-    // break;
-    // case 3:
-    // System.out.print("Enter room number to edit: ");
-    // int editRoomNumber = scanner.nextInt();
-    // scanner.nextLine(); // รับค่า new line
-
-    // System.out.print("Enter new room type: ");
-    // String newRoomType = scanner.nextLine();
-
-    // System.out.print("Enter new room price: ");
-    // double newPrice = scanner.nextDouble();
-
-    // manager.EditRoom(editRoomNumber, newRoomType, newPrice);
-    // break;
-    // case 4:
-    // manager.DisplayAllRooms();
-    // break;
-    // case 5:
-    // return; // ออกจากเมนูจัดการ
-    // default:
-    // System.out.println("Invalid choice.");
-    // }
-    // }
-    // }
-
-    // private static void ViewCustomerStayHistory(Manager manager) {
-    // manager.DisplayReserveRoom();
-
-    // }
-
-    // private static void ViewHotelIncome(Manager manager) {
-    // manager.HotelIncome();
-    // }
 
     private static void printHeader(String message) {
         System.out.println("\n" + "=".repeat(50));
