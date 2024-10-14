@@ -124,7 +124,8 @@ public class Main {
                 
                 System.out.print("Enter check-out date (day): ");
                 int endDay = scanner.nextInt();
-                
+                System.out.println();
+
                 if (endDay < 1 || endDay > 30) {
                     System.out.println("Invalid check-out day. Please enter a day between 1 and 30.");
                     continue;
@@ -226,7 +227,7 @@ public class Main {
                     isCompleteInput = true; // ออกจากลูปการตรวจสอบการกรอกข้อมูล
                 }
                 else if (complete.equalsIgnoreCase("y")) {
-                    System.out.println("Please complete the process.");
+                    System.out.println("\nPlease complete the process.");
                     isCompleteInput = true; // ออกจากลูปการตรวจสอบการกรอกข้อมูล แต่ยังอยู่ในลูปหลัก
                 }
                 else {
@@ -378,7 +379,7 @@ public class Main {
             if (email == null || email.trim().isEmpty()) {
                 System.out.println("Email cannot be null or empty. Please enter again.");
             } else if (!email.matches("^[\\w-\\.]+@[\\w-]+\\.[a-zA-Z]{2,}$")) { // ตรวจสอบรูปแบบ email
-                System.out.println("Invalid email format. Please enter a valid email.");
+                System.out.println(red+"Invalid email format. Please enter a valid email."+reset);
             } else {
                 validEmail = true;
             }
@@ -641,9 +642,9 @@ public class Main {
         int paddingSize = (totalWidth - message.length()) / 2; 
         String padding = " ".repeat(paddingSize); // สร้างช่องว่าง
     
-        System.out.println("\n" + "=".repeat(totalWidth));
+        System.out.println("\n" + "-".repeat(totalWidth));
         System.out.printf("%s%s%s%n", padding, message, padding); // แทรกช่องว่างด้านซ้ายขวา
-        System.out.println("=".repeat(totalWidth));
+        System.out.println("-".repeat(totalWidth));
     }
     
 
@@ -654,7 +655,7 @@ public class Main {
 
         while (true) {  
             try {
-                System.out.println("[ 1 ] Check-In\n[ 2 ] Check-Out\n[ 3 ] Exit");
+                System.out.println("\n"+"[ 1 ] Check-In\n[ 2 ] Check-Out\n[ 3 ] Exit");
                 System.out.print("Enter your choice: ");   
                 int choiceMain = scanner.nextInt();
                 scanner.nextLine();  
@@ -676,7 +677,7 @@ public class Main {
                     boolean isFound = somchai.findBookingById(bookingInput);
         
                     if (!isFound) {
-                        System.out.println("Sorry, booking ID " + bookingInput + " not found.");
+                        System.out.println(red+"Sorry, booking ID " + bookingInput + " not found."+reset);
                         System.out.print("Please enter your booking number again (y/n): ");
                         bookingInput = scanner.nextLine();
                         if (bookingInput.equalsIgnoreCase("n")) {
@@ -710,9 +711,8 @@ public class Main {
         System.out.print("Confirm check-in(pressing 'y'): ");
         confirm = scanner.nextLine();
         if(confirm.equalsIgnoreCase("y")){
-            receptionist.updateRoomStatus(bookingIdCustomer, true);
+           receptionist.checkIn(bookingIdCustomer);
         }
-
     }//end checkIn
 
     public static void checkOut(Receptionist receptionist, String bookingIdCustomer){
@@ -726,7 +726,6 @@ public class Main {
         if(confirm.equalsIgnoreCase("y")){
             receptionist.checkOut(bookingIdCustomer);
             System.out.println();
-        
             receptionist.updateRoomStatus(bookingIdCustomer, false);
         }
     }//end checkOut

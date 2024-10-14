@@ -28,6 +28,115 @@
                 "name": "Kareema",
                 "email": "kareema@gmail.com"
             }
+        },
+        {
+            "checkOutDate": "2024-10-12",
+            "totalPrice": 8000.0,
+            "checkInDate": "2024-10-10",
+            "bookingID": "BKG-2024101554",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": "Minji",
+                    "guestFirstName": "Kim",
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                },
+                {
+                    "roomNumber": 201,
+                    "guestLastName": "Minza",
+                    "guestFirstName": "Kang",
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0999999999",
+                "surname": "Mukem",
+                "customerID": "CTM-2024101514",
+                "name": "Kareema",
+                "email": "kareema@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-25",
+            "totalPrice": 10000.0,
+            "checkInDate": "2024-10-23",
+            "bookingID": "BKG-2024101532",
+            "room": [
+                {
+                    "roomNumber": 302,
+                    "guestLastName": "Mukem",
+                    "guestFirstName": "Kareema",
+                    "roomType": "Honeymoon",
+                    "pricePerNight": 3000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": "Kinza",
+                    "guestFirstName": "Kim",
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0999999999",
+                "surname": "Mukem",
+                "customerID": "CTM-2024101555",
+                "name": "Kareema",
+                "email": "kareema@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-19",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-18",
+            "bookingID": "BKG-2024101531",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": "Kreem",
+                    "guestFirstName": "Kang",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 201,
+                    "guestLastName": "jaiyai",
+                    "guestFirstName": "Gagi",
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0999999999",
+                "surname": "Kreem",
+                "customerID": "CTM-2024101546",
+                "name": "Kang",
+                "email": "kna@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-30",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-29",
+            "bookingID": "BKG-2024101522",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": "Bub",
+                    "guestFirstName": "Tytai",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "0909999999",
+                "surname": "Bub",
+                "customerID": "CTM-2024101509",
+                "name": "Tytai",
+                "email": "ty@gmail.com"
+            }
         }
     ]
 }
