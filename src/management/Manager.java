@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import src.customers.Person;
 import src.rooms.MasterRoom;
 
 import java.util.ArrayList;
@@ -18,14 +19,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Manager {
+public class Manager extends Person{
+    private String stuffId;
     private static final String ROOM_FILE = "./resources/JSON_MaterRoom.json";
     private static final String BOOKING_FILE = "./resources/JSON_Booking.json";
     private static final String RESERVEROOM_FILE = "./resources/JSON_ReserveRoom.json";
+    private String staffId;
 
-    public Manager() {
+    public Manager(String firstName, String lastName, String phoneNumber, String email, String staffId) {
+        super(firstName, lastName, phoneNumber, email);
+        this.staffId = staffId;
     }
-
+    public void setStaffId(String staffId){
+        this.staffId = staffId;
+    }
+    
+    public String getStaffId(){
+        return staffId;
+    }
     public ArrayList<MasterRoom> loadRooms() {
         ArrayList<MasterRoom> rooms = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
@@ -49,9 +60,9 @@ public class Manager {
                 JSONObject roomJson = (JSONObject) roomObject;
                 int roomNumber = ((Long) roomJson.get("roomNumber")).intValue();
                 double price = (Double) roomJson.get("price");
-                String type = (String) roomJson.get("type");
+                String roomType = (String) roomJson.get("roomType");
 
-                rooms.add(new MasterRoom(roomNumber, type, price));
+                rooms.add(new MasterRoom(roomNumber, roomType, price));
             }
 
         } catch (IOException e) {
@@ -116,7 +127,7 @@ public class Manager {
         if (isRoomNumberUnique) {
             JSONObject newRoom = new JSONObject();
             newRoom.put("roomNumber", roomNumber);
-            newRoom.put("type", roomType);
+            newRoom.put("roomType", roomType);
             newRoom.put("price", price);
 
             // เพิ่มห้องใหม่
@@ -173,7 +184,7 @@ public class Manager {
                 int currentRoomNumber = ((Long) room.get("roomNumber")).intValue();
 
                 if (currentRoomNumber == roomNumber) {
-                    room.put("type", newRoomType); // Update room type
+                    room.put("roomType", newRoomType); // Update room type
                     room.put("price", newPrice); // Update room price
                     roomFound = true;
                     break;
@@ -200,7 +211,7 @@ public class Manager {
             for (Object roomObject : existingData) {
                 JSONObject room = (JSONObject) roomObject;
                 System.out.println("Room Number: " + room.get("roomNumber"));
-                System.out.println("Room Type: " + room.get("type"));
+                System.out.println("Room Type: " + room.get("roomType"));
                 System.out.println("Price: " + room.get("price"));
                 System.out.println("---------------------------");
             }

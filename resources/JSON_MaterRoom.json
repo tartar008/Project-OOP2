@@ -1,52 +1,57 @@
 [
     {
+        "roomNumber": 101,
+        "price": 1000.0,
+        "roomType": "Standard"
+    },
+    {
         "roomNumber": 102,
         "price": 1000.0,
-        "type": "Standard"
+        "roomType": "Standard"
     },
     {
         "roomNumber": 103,
         "price": 1000.0,
-        "type": "Standard"
+        "roomType": "Standard"
     },
     {
         "roomNumber": 104,
         "price": 1000.0,
-        "type": "Standard"
+        "roomType": "Standard"
     },
     {
         "roomNumber": 105,
         "price": 1000.0,
-        "type": "Standard"
+        "roomType": "Standard"
     },
     {
         "roomNumber": 201,
         "price": 2000.0,
-        "type": "Family"
+        "roomType": "Family"
     },
     {
         "roomNumber": 202,
         "price": 2000.0,
-        "type": "Family"
+        "roomType": "Family"
     },
     {
         "roomNumber": 203,
         "price": 2000.0,
-        "type": "Family"
+        "roomType": "Family"
     },
     {
         "roomNumber": 301,
         "price": 3000.0,
-        "type": "Honeymoon"
+        "roomType": "Honeymoon"
     },
     {
         "roomNumber": 302,
         "price": 3000.0,
-        "type": "Honeymoon"
+        "roomType": "Honeymoon"
     },
     {
-        "roomNumber": 205,
-        "price": 2000.0,
-        "type": "Family"
+        "roomNumber": 106,
+        "price": 1000.0,
+        "roomType": "Standard"
     }
 ]

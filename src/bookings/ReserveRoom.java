@@ -96,7 +96,7 @@ public class ReserveRoom {
         TransectionRoom room = new TransectionRoom();
         room.getRoom().setRoomNumber(((Long) roomJson.get("roomNumber")).intValue());
         room.getRoom().setPrice((Double) roomJson.get("price"));
-        room.getRoom().setType((String) roomJson.get("type"));
+        room.getRoom().setType((String) roomJson.get("roomType"));
         // ค่าต่างๆ ตามที่ TransectionRoom ต้องการ
         return room;
     }
@@ -208,7 +208,7 @@ public class ReserveRoom {
         for (TransectionRoom room : transectionRooms) {
             JSONObject roomObject = new JSONObject();
             roomObject.put("roomNumber", room.getRoom().getRoomNumber());
-            roomObject.put("type", room.getRoom().getType());
+            roomObject.put("roomType", room.getRoom().getType());
             roomObject.put("price", room.getRoom().getPrice());
             roomObject.put("isOccupied", room.getIsOccupied());
 
@@ -297,7 +297,7 @@ public class ReserveRoom {
             // ตรวจสอบห้องทั้งหมดจาก JSON
             for (Object roomObj : roomsArray) {
                 JSONObject roomJson = (JSONObject) roomObj;
-                String type = (String) roomJson.get("type");
+                String type = (String) roomJson.get("roomType");
                 Double price = (Double) roomJson.get("price");
 
                 TransectionRoom transectionRoom = new TransectionRoom();

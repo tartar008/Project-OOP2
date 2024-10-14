@@ -28,10 +28,10 @@ public class Main {
         File fileReserveRoom = new File("./resources/JSON_ReserveRoom.json");
 
         // สร้างผู้จัดการ และ สร้างห้องขึ้นมาผ่านผู้จัดการ
-        Manager manager = new Manager();
+        Manager manager = new Manager("somying","sudsuay","0111111111", "somyingza@hotel.c", "M-0001");
 
         ArrayList<MasterRoom> rooms = manager.loadRooms();
-
+        
         // สร้าง TransectionRoom สำหรับเก็บ MasterRoom
         ReserveRoom reserveRoom = new ReserveRoom();
         
