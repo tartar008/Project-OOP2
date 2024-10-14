@@ -207,7 +207,7 @@ public class Manager {
             for (Object roomObject : existingData) {
                 JSONObject room = (JSONObject) roomObject;
                 System.out.println("Room Number: " + room.get("roomNumber"));
-                System.out.println("Room Type: " + room.get("roomType"));
+                System.out.println("Room Type: " + room.get("type"));
                 System.out.println("Price: " + room.get("price"));
                 System.out.println("---------------------------");
             }
