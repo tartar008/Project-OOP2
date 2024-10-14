@@ -630,13 +630,22 @@ public class Main {
                         manager.RemoveRoom(roomNumber);
                         break;
                     case 3:
-                    System.out.println("\n> Edit Room");
+                        System.out.println("\n> Edit Room");
                         System.out.print("Enter room number to edit: ");
                         int editRoomNumber = scanner.nextInt();
                         scanner.nextLine(); 
 
-                        System.out.print("Enter new room type: ");
-                        String newRoomType = scanner.nextLine();
+                        System.out.print("Enter new room type [Standard/Family/Honeymoon]: ");
+                        String newRoomType = scanner.nextLine().trim();
+
+                        // ใช้ลูปเพื่อตรวจสอบว่าประเภทห้องถูกต้องหรือไม่ (ไม่สนใจตัวพิมพ์ใหญ่หรือพิมพ์เล็ก)
+                        while (!newRoomType.equalsIgnoreCase("Standard") && 
+                            !newRoomType.equalsIgnoreCase("Family") && 
+                            !newRoomType.equalsIgnoreCase("Honeymoon")) {
+                            System.out.println("Invalid room type! Please enter 'Standard', 'Family', or 'Honeymoon'.");
+                            System.out.print("Enter new room type [Standard/Family/Honeymoon]: ");
+                            newRoomType = scanner.nextLine().trim();
+                        }
 
                         System.out.print("Enter new room price: ");
                         double newPrice = scanner.nextDouble();
@@ -680,6 +689,7 @@ public class Main {
         String bookingInput;
 
         while (true) {  
+            System.out.println("\n=== Hotel Reception System ===");
             try {
                 System.out.println("[ 1 ] Check-In\n[ 2 ] Check-Out\n[ 3 ] Exit");
                 System.out.print("Enter your choice: ");   
@@ -765,7 +775,6 @@ public class Main {
         // แสดงรายละเอียดห้องของลูกค้า
         receptionist.displayCustomerRoom(bookingIdCustomer);
     
-        // วนลูปรับค่า confirm จนกว่าจะเป็น 'y' หรือ 'n'
         while (true) {
             System.out.print("Confirm check-out (press 'y' for yes or 'n' for no): ");
             confirm = scanner.nextLine().trim(); // ตัดช่องว่างหน้าและหลังออก
@@ -939,7 +948,6 @@ public class Main {
             }
         }
 
-        // พิมพ์ปฏิทิน
         System.out.println(yellow +"Mon Tue Wed Thu Fri Sat Sun" + reset);
         for (String[] week : calendar) {
             for (String dayStr : week) {
