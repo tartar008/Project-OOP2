@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class Manager {
     private static final String ROOM_FILE = "./resources/JSON_MaterRoom.json";
-    private static final String BOOKING_FILE = "./JSON_Booking.json"; 
+    private static final String BOOKING_FILE = "./resources/JSON_Booking.json";
     private static final String RESERVEROOM_FILE = "./resources/JSON_ReserveRoom.json";
 
     public Manager() {
@@ -207,7 +207,7 @@ public class Manager {
             for (Object roomObject : existingData) {
                 JSONObject room = (JSONObject) roomObject;
                 System.out.println("Room Number: " + room.get("roomNumber"));
-                System.out.println("Room Type: " + room.get("roomType"));
+                System.out.println("Room Type: " + room.get("type"));
                 System.out.println("Price: " + room.get("price"));
                 System.out.println("---------------------------");
             }
@@ -216,35 +216,37 @@ public class Manager {
         }
     }
 
-    // ส่วนที่เกี่ยวข้องกับการแสดงข้อมูลการจองห้อง
-    public void DisplayReserveRoom() {
-        JSONArray reservedRooms = ReadJsonReserveRoom(); // อ่านข้อมูลห้องที่จองจากไฟล์ JSON
+    // // ส่วนที่เกี่ยวข้องกับการแสดงข้อมูลการจองห้อง
+    // public void DisplayReserveRoom() {
+    // JSONArray reservedRooms = ReadJsonReserveRoom(); //
+    // อ่านข้อมูลห้องที่จองจากไฟล์ JSON
 
-        if (reservedRooms != null && !reservedRooms.isEmpty()) {
-            System.out.println("Displaying all reserved rooms:");
+    // if (reservedRooms != null && !reservedRooms.isEmpty()) {
+    // System.out.println("Displaying all reserved rooms:");
 
-            for (Object roomObject : reservedRooms) {
-                JSONObject room = (JSONObject) roomObject; // แปลงเป็น JSONObject
-                JSONObject guest = (JSONObject) room.get("guest"); // ดึงข้อมูล guest
+    // for (Object roomObject : reservedRooms) {
+    // JSONObject room = (JSONObject) roomObject; // แปลงเป็น JSONObject
+    // JSONObject guest = (JSONObject) room.get("guest"); // ดึงข้อมูล guest
 
-                // ตรวจสอบว่า guest ไม่เป็น null (ห้องนั้นมีการจอง)
-                if (guest != null) {
-                    System.out.println("Room Number: " + room.get("roomNumber"));
-                    System.out.println("Reserved By: " + guest.get("name"));
-                    System.out.println("Check-in Date: " + guest.get("checkInDate"));
-                    System.out.println("Check-out Date: " + guest.get("checkOutDate"));
-                    System.out.println("---------------------------");
-                } else {
-                    System.out.println("Room Number: " + room.get("roomNumber") + " is not reserved.");
-                    System.out.println("---------------------------");
-                }
-            }
-        } else {
-            System.out.println("No reserved rooms available.");
-        }
-    }
+    // // ตรวจสอบว่า guest ไม่เป็น null (ห้องนั้นมีการจอง)
+    // if (guest != null) {
+    // System.out.println("Room Number: " + room.get("roomNumber"));
+    // System.out.println("Reserved By: " + guest.get("name"));
+    // System.out.println("Check-in Date: " + guest.get("checkInDate"));
+    // System.out.println("Check-out Date: " + guest.get("checkOutDate"));
+    // System.out.println("---------------------------");
+    // } else {
+    // System.out.println("Room Number: " + room.get("roomNumber") + " is not
+    // reserved.");
+    // System.out.println("---------------------------");
+    // }
+    // }
+    // } else {
+    // System.out.println("No reserved rooms available.");
+    // }
+    // }
 
-// =============================================================================================
+    // =============================================================================================
 
     // ส่วนที่เกี่ยวข้องกับการอ่านและเขียน JSON
     private static JSONArray ReadJsonMasterRoom() {
@@ -290,20 +292,56 @@ public class Manager {
 
     // =============================================================================================
 
-    private static JSONArray ReadJsonReserveRoom() {
+    private static JSONArray ReadJsonBookings() {
         JSONObject existingData = new JSONObject();
         JSONParser jsonParser = new JSONParser();
-        JSONArray rooms = new JSONArray(); // เปลี่ยนจาก JSONObject เป็น JSONArray เนื่องจาก 'rooms' เป็นลิสต์ของห้อง
+        JSONArray bookings = new JSONArray();
 
-        try (FileReader reader = new FileReader(RESERVEROOM_FILE)) {
-            existingData = (JSONObject) jsonParser.parse(reader); // อ่านไฟล์ JSON
-            rooms = (JSONArray) existingData.get("ReserveRoom"); // ดึงข้อมูลห้องที่จอง
-        } catch (FileNotFoundException e) {
-            System.out.println("Reserve room file not found.");
+        try (FileReader reader = new FileReader(BOOKING_FILE)) {
+            existingData = (JSONObject) jsonParser.parse(reader);
+            bookings = (JSONArray) existingData.get("bookings");
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return rooms; // คืนค่า JSONArray ที่เก็บข้อมูลห้องที่จอง
+        return bookings;
+    }
+
+    public void displayAllBookingHistories() {
+        JSONArray bookings = ReadJsonBookings();
+
+        System.out.println("All Booking Histories:");
+
+        if (bookings.isEmpty()) {
+            System.out.println("No bookings found.");
+            return;
+        }
+
+        // พิมพ์หัวตาราง
+        System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n", "Booking ID", "Room Number", "Room Type",
+                "Check-in Date", "Check-out Date", "Total Price");
+        System.out.println(
+                "------------------------------------------------------------------------------------------------");
+
+        for (Object booking : bookings) {
+            JSONObject bookingDetails = (JSONObject) booking;
+            String bookingID = (String) bookingDetails.get("bookingID");
+            String checkInDate = (String) bookingDetails.get("checkInDate");
+            String checkOutDate = (String) bookingDetails.get("checkOutDate");
+            double totalPrice = (double) bookingDetails.get("totalPrice");
+
+            // ดึงข้อมูลห้อง
+            JSONArray rooms = (JSONArray) bookingDetails.get("room");
+
+            for (Object room : rooms) {
+                JSONObject roomDetails = (JSONObject) room;
+                int roomNumber = ((Long) roomDetails.get("roomNumber")).intValue();
+                String roomType = (String) roomDetails.get("roomType");
+
+                // พิมพ์ข้อมูลในรูปแบบตาราง
+                System.out.printf("%-15s %-15d %-15s %-15s %-15s %-15.2f\n", bookingID, roomNumber, roomType,
+                        checkInDate, checkOutDate, totalPrice);
+            }
+        }
     }
 
     // =============================================================================================
@@ -320,35 +358,41 @@ public class Manager {
             bookings = (JSONArray) existingData.get("bookings"); // แคสต์เป็น JSONArray ของการจอง
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
+            return; // ออกจากฟังก์ชันหากไม่พบไฟล์
         } catch (IOException | ParseException e) {
             e.printStackTrace();
+            return; // ออกจากฟังก์ชันหากเกิดข้อผิดพลาด
         }
 
-        // ตัวแปรเก็บรายได้ของแต่ละประเภทห้อง และรวมจำนวนห้อง
+        // ตัวแปรเก็บรายได้ของแต่ละประเภทห้อง และรวมรายได้ทั้งหมด
         Map<String, Double> roomTypeIncome = new HashMap<>();
         double totalIncome = 0.0;
-        int totalRooms = 0;
 
         // วนลูปผ่านการจองทั้งหมด
         for (Object bookingObject : bookings) {
             JSONObject booking = (JSONObject) bookingObject;
-            JSONObject room = (JSONObject) booking.get("room");
+            JSONArray rooms = (JSONArray) booking.get("room"); // ดึงห้องทั้งหมดในการจอง
 
-            String roomType = (String) room.get("roomType"); // ดึงประเภทห้อง
-            double totalPrice = (double) booking.get("totalPrice"); // ดึงราคาการจอง
+            // ตรวจสอบห้องในแต่ละการจอง
+            for (Object roomObject : rooms) {
+                JSONObject room = (JSONObject) roomObject;
 
-            // อัปเดตรายได้ของประเภทห้องใน Map
-            roomTypeIncome.put(roomType, roomTypeIncome.getOrDefault(roomType, 0.0) + totalPrice);
+                String roomType = (String) room.get("roomType"); // ดึงประเภทห้อง
+                double totalPrice = (double) booking.get("totalPrice"); // ดึงราคาการจอง
 
-            totalIncome += totalPrice; // รวมรายได้ทั้งหมดของโรงแรม
-            totalRooms++; // นับจำนวนห้องที่ถูกจอง
+                // อัปเดตรายได้ของประเภทห้องใน Map
+                roomTypeIncome.put(roomType, roomTypeIncome.getOrDefault(roomType, 0.0) + totalPrice);
+            }
+
+            totalIncome += (double) booking.get("totalPrice"); // รวมรายได้ทั้งหมดของโรงแรม
         }
 
         // แสดงผล
-        System.out.println("Total number of rooms booked: " + totalRooms);
+        System.out.println("Income by Room Type:");
         for (Map.Entry<String, Double> entry : roomTypeIncome.entrySet()) {
-            System.out.println("Room Type: " + entry.getKey() + " | Total Income: " + entry.getValue());
+            System.out.printf("Room Type: %s | Total Income: %.2f%n", entry.getKey(), entry.getValue());
         }
-        System.out.println("Total Income of the Hotel: " + totalIncome);
+        System.out.printf("Total Income of the Hotel: %.2f%n", totalIncome);
     }
+
 }

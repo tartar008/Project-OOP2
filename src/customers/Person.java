@@ -15,8 +15,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-
-    //Guest
+    
     public Person (String firstName, String lastName){
         this.firstName = firstName;
         this.lastName = lastName;

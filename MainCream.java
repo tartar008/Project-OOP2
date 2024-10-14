@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import javax.sound.midi.Receiver;
 
-public class Main {
+public class MainCream {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         File fileReserveRoom = new File("./resources/JSON_ReserveRoom.json");
@@ -56,33 +56,33 @@ public class Main {
                 scanner.nextLine();
         
                 if (choice == 2) {
-                    System.out.println("Exiting the system...\n");
+                    System.out.println("Exiting the system...");
                     break; // ออกจากโปรแกรม
                 } else if (choice == 1) {
                     String role = signIn(); 
                     if (role.equals("customer")) {
                         Customer agent = signUp();
                         System.err.println();
-                        System.out.println(" Welcome to the Hotel Booking! " + agent.getFirstName());
+                        System.out.println(cyan + " Welcome to the Hotel Booking! " + agent.getFirstName() + reset);
                         while (true) {
                             System.err.println();
                             try {
                                 System.out.println("[ 1 ] Booking a room");
-                                System.out.println("[ 2 ] Exit");
+                                System.out.println("[ 2 ] Log out");
                                 System.out.print("Enter choice: ");
                                 int choiceMain = scanner.nextInt();
                                 scanner.nextLine();
         
                                 if (choiceMain == 2) {
-                                    System.out.println("Exiting Customer role...\n");
+                                    System.out.println("Logging out...");
                                     break; // กลับไปที่ Main Menu
                                 } else if (choiceMain == 1) {
                                     reservationOnline(reserveRoom, agent);
                                 } else {
-                                    System.out.println("Invalid choice! Please select again.");
+                                    System.out.println("Invalid choice. Please select again.");
                                 }
                             } catch (InputMismatchException e) {
-                                System.out.println("Invalid input! Please enter a valid integer.");
+                                System.out.println("Invalid input. Please enter a valid integer.");
                                 scanner.nextLine();
                             }
                         }
@@ -92,10 +92,10 @@ public class Main {
                         RoleReceptionist();
                     }
                 } else {
-                    System.out.println("Invalid choice! Please select 1 or 2.");
+                    System.out.println("Invalid choice. Please select 1 or 2.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input! Please enter a valid number.");
+                System.out.println("Invalid input. Please enter a valid number.");
                 scanner.nextLine();
             }
         }
@@ -107,7 +107,7 @@ public class Main {
     public static void reservationOnline(ReserveRoom reserveRoom, Customer agent) {
         Scanner scanner = new Scanner(System.in);
 
-        reserveRoom.displayCalendar();
+        displayCalendar();
         LocalDate checkInDate, checkOutDate;
 
         while (true) {
@@ -116,7 +116,7 @@ public class Main {
                 int startDay = scanner.nextInt();
 
                 if (startDay < 1 || startDay > 30) {
-                    System.out.println("Invalid check-in day! Please enter a day between 1 and 30.");
+                    System.out.println("Invalid check-in day. Please enter a day between 1 and 30.");
                     continue;
                 }
                 
@@ -126,19 +126,19 @@ public class Main {
                 int endDay = scanner.nextInt();
                 
                 if (endDay < 1 || endDay > 30) {
-                    System.out.println("Invalid check-out day! Please enter a day between 1 and 30.");
+                    System.out.println("Invalid check-out day. Please enter a day between 1 and 30.");
                     continue;
                 }
         
                 checkOutDate = LocalDate.of(2024, 10, endDay);
         
                 if (checkInDate.isAfter(checkOutDate)) {
-                    System.out.println("Check-in date must be before check-out date! Please try again.");
+                    System.out.println("Check-in date must be before check-out date. Please try again.");
                     continue;
                 }
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input! Please enter a valid integer for the date.");
+                System.out.println("Invalid input. Please enter a valid integer for the date.");
                 scanner.nextLine();
             }
         }
@@ -193,7 +193,7 @@ public class Main {
                                     guests.add(agent);
                                     break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
                                 } else {
-                                    System.out.println("Invalid input! please enter 'y' or 'n'");
+                                    System.out.println("Invalid input, please enter 'y' or 'n'");
                                 }
                             }
                     
@@ -203,7 +203,7 @@ public class Main {
                             // ลบห้อง
                             selectedRoomType.remove(assignedRoom);
                         } else {
-                            System.out.println("No available room to assign!");
+                            System.out.println("No available room to assign");
                             break; // ออกจากลูปถ้ามีห้องไม่เพียงพอ
                         }
                     }
@@ -230,7 +230,7 @@ public class Main {
                     isCompleteInput = true; // ออกจากลูปการตรวจสอบการกรอกข้อมูล แต่ยังอยู่ในลูปหลัก
                 }
                 else {
-                    System.out.println("Invalid input! Please enter 'y' or 'n'");
+                    System.out.println("Invalid input. Please enter 'y' or 'n'");
                 }
             }
         } // end complete loop
@@ -254,16 +254,8 @@ public class Main {
             reserveRoom.UpdateJsonBookingDates(listBookRoom, checkInDate, checkOutDate); // ส่งไปอัพเดตสถานะ
             payment(booking);
         }
-        else if (comfirm.equalsIgnoreCase("n")) {
-            System.out.println("Cancel booking already...");
-            return; 
-        }
     }// end reservationOnline
 
-    private static TransectionRoom assignRoom(List<TransectionRoom> selectedRoomType) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'assignRoom'");
-    }
 
     public static String signIn() {
         printHeader("Sign In");
@@ -368,9 +360,9 @@ public class Main {
             if (phoneNum == null || phoneNum.trim().isEmpty()) {
                 System.out.println("Phone number cannot be null or empty. Please enter again.");
             } else if (phoneNum.length() != 10) { 
-                System.out.println("Phone number must be exactly 10 digits. Please enter again.");
+                System.out.println(red + "Phone number must be exactly 10 digits. Please enter again." + reset);
             } else if (!phoneNum.matches("[0-9]+")) { // ตรวจสอบว่าเป็นตัวเลขล้วน
-                System.out.println("Phone number must contain only numbers. Please enter again.");
+                System.out.println(red + "Phone number must contain only numbers. Please enter again." + reset);
             } else {
                 validPhoneNum = true;
             }
@@ -380,13 +372,13 @@ public class Main {
         String email = "";
         boolean validEmail = false;
         while (!validEmail) {
-            System.out.print("Enter Email (xxxx@email.com): ");
+            System.out.print("Enter Email (xxxx@gamail.com): ");
             email = scanner.nextLine();
 
             if (email == null || email.trim().isEmpty()) {
                 System.out.println("Email cannot be null or empty. Please enter again.");
             } else if (!email.matches("^[\\w-\\.]+@[\\w-]+\\.[a-zA-Z]{2,}$")) { // ตรวจสอบรูปแบบ email
-                System.out.println("Invalid email format! Please enter a valid email.");
+                System.out.println("Invalid email format. Please enter a valid email.");
             } else {
                 validEmail = true;
             }
@@ -399,7 +391,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Name guest
-        System.out.println(">>> Guest Detail <<<");
         String name = "";
         boolean validName = false;
         while (!validName) {
@@ -438,24 +429,10 @@ public class Main {
         return new Customer(name, surname);
     }
 
-    public static ArrayList<MasterRoom> SETROOM() {
-        // ArrayList<Room> rooms = Room.loadRoomsFromJson("rooms.json");
-        ArrayList<MasterRoom> rooms = new ArrayList<>();
-        // สร้างห้อง
-        if (rooms.isEmpty()) {
-            rooms.add(new MasterRoom(101, "Standard", 1000));
-            rooms.add(new MasterRoom(102, "Standard", 1000));
-            rooms.add(new MasterRoom(201, "Family", 2000));
-            rooms.add(new MasterRoom(301, "Honeymoon", 3000));
-            // Room.saveRoomsToJson(rooms, "rooms.json");
-        }
 
-        return rooms;
-    }// end setroom
 
     private static void displayAvailableRooms(List<TransectionRoom> standards, List<TransectionRoom> family,
             List<TransectionRoom> honeymoon) {
-        // printHeader("Available Rooms");
         System.out.println("[ 1 ] Standard Rooms: " + "[" + standards.size() + "]");
         System.out.println("[ 2 ] Family Rooms: " + "[" + family.size() + "]");
         System.out.println("[ 3 ] Honeymoon Rooms: " + "[" + honeymoon.size() + "]");
@@ -465,6 +442,10 @@ public class Main {
             List<TransectionRoom> honeymoon) {
         HashMap<Integer, String> roomTypeMap = new HashMap<>();
         int index = 0;
+        if (standards.isEmpty() && family.isEmpty() && honeymoon.isEmpty()) {
+            System.out.println("Sorry, no rooms are available at the moment.");
+            return -1; // คืนค่าเป็น -1 หรือค่าที่แสดงว่าไม่มีห้องว่าง
+        }
 
         if (!standards.isEmpty()) {
             roomTypeMap.put(++index, "Standard");
@@ -478,6 +459,7 @@ public class Main {
 
         int selectRoomType;
         while (true) {
+
             System.out.print("\nEnter your Type Room: ");
             selectRoomType = scanner.nextInt();
             scanner.nextLine();
@@ -485,7 +467,7 @@ public class Main {
             if (roomTypeMap.containsKey(selectRoomType)) {
                 break;
             } else {
-                System.out.println("Invalid selection! Please choose a valid room type.");
+                System.out.println("Invalid selection. Please choose a valid room type.");
             }
         }
         return selectRoomType;
@@ -505,9 +487,10 @@ public class Main {
         }
     }
 
+
     private static void RoleManager(Manager manager) {
         Scanner scanner = new Scanner(System.in);
-    
+
         while (true) {
             System.out.println("\n=== Hotel Management System ===");
             System.out.println("[ 1 ] Manage Rooms");
@@ -515,36 +498,26 @@ public class Main {
             System.out.println("[ 3 ] View Hotel Income");
             System.out.println("[ 4 ] Exit");
             System.out.print("Enter choice>>> ");
-    
-            try {
-                int choice = scanner.nextInt();
-                scanner.nextLine();
-    
-                if (choice < 1 || choice > 4) {
-                    System.out.println("Invalid choice! Please enter a number between 1 and 4.");
-                    continue;
-                }
-                switch (choice) {
-                    case 1:
-                        System.out.println("\n> Manage Rooms");
-                        ManageRooms(manager);
-                        break;
-                    case 2:
-                        System.out.println("\n> View Customer Stay History");
-                        ViewCustomerStayHistory(manager);
-                        break;
-                    case 3:
-                        System.out.println("\n> View Hotel Income");
-                        ViewHotelIncome(manager);
-                        break;
-                    case 4:
-                        System.out.println("Exiting Manager Role...\n");
-                        // scanner.close();
-                        return;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input! Please enter a valid number.");
-                scanner.nextLine();
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    ManageRooms(manager); // ฟังก์ชันสำหรับจัดการห้อง
+                    break;
+                case 2:
+                    ViewCustomerStayHistory(manager); // ฟังก์ชันสำหรับดูประวัติการเข้าพัก
+                    break;
+                case 3:
+                    ViewHotelIncome(manager); // ฟังก์ชันสำหรับดูรายได้โรงแรม
+                    break;
+                case 4:
+                    System.out.println("Exiting the system...");
+                    scanner.close();
+                    return; // ออกจากโปรแกรม
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
             }
         }
     }
@@ -557,7 +530,7 @@ public class Main {
         while (isRunning) {
             System.out.println("[ 1 ] Add Room");
             System.out.println("[ 2 ] Remove Room");
-            System.out.println("[ 3 ] Edit Room");
+            System.out.println("[ 3 ] Edit Room [Log]");
             System.out.println("[ 4 ] View All Rooms");
             System.out.println("[ 5 ] Exit");
             System.out.print("Enter choice>>> ");
@@ -566,7 +539,7 @@ public class Main {
                 int choice = scanner.nextInt();
                 
                 if (choice < 1 || choice > 5) {
-                    System.out.println("Invalid choice! Please enter a number between 1 and 5.");
+                    System.out.println("Invalid choice. Please enter a number between 1 and 5.");
                     scanner.nextLine();
                     continue;
                 }
@@ -575,7 +548,6 @@ public class Main {
                 double price;
                 switch (choice) {
                     case 1:
-                        System.out.println("\n> Add Room");
                         try {
                             try {
                                 System.out.print("Enter room number: ");
@@ -583,21 +555,21 @@ public class Main {
                                 scanner.nextLine();
                                 
                                 if (roomNumber <= 0) {
-                                    System.out.println("Invalid room number! Room number must be greater than zero.");
+                                    System.out.println("Invalid room number. Room number must be greater than zero.");
                                     continue;
                                 }
                             } catch (InputMismatchException e) {
-                                System.out.println("Invalid input! Please enter a valid number for the room.");
+                                System.out.println("Invalid input. Please enter a valid number for the room.");
                                 scanner.nextLine();
                                 continue;
                             }
                 
-                            System.out.print("Enter room type [Standard/Family/Honeymoon]: ");
+                            System.out.print("Enter room type (Standard/Family/Honeymoon): ");
                             roomType = scanner.nextLine().trim();
                             if (!roomType.equalsIgnoreCase("Standard") && 
                                 !roomType.equalsIgnoreCase("Family") && 
                                 !roomType.equalsIgnoreCase("Honeymoon")) {
-                                System.out.println("Invalid room type! Please enter 'Standard', 'Family', or 'Honeymoon'.");
+                                System.out.println("Invalid room type. Please enter 'Standard', 'Family', or 'Honeymoon'.");
                                 continue;
                             }
                 
@@ -607,31 +579,27 @@ public class Main {
                                 scanner.nextLine();
                             
                                 if (price < 0) {
-                                    System.out.println("Invalid room price! Price cannot be negative.");
+                                    System.out.println("Invalid room price. Price cannot be negative.");
                                     continue;
                                 }
                             } catch (InputMismatchException e) {
-                                System.out.println("Invalid input! Please enter a valid number for the price.");
+                                System.out.println("Invalid input. Please enter a valid number for the price.");
                                 scanner.nextLine(); 
                                 continue;
                             }
                 
                             manager.AddRoom(roomNumber, roomType, price);
-                            System.out.println("Add Room Complete!");
                         } catch (InputMismatchException e) {
-                            System.out.println("Invalid input! Please enter the correct data types.");
+                            System.out.println("Invalid input. Please enter the correct data types.");
                             scanner.nextLine();
                         }
                         break;
                     case 2:
-                    System.out.println("\n> Remove Room");
                         System.out.print("Enter room number to remove: ");
                         roomNumber = scanner.nextInt();
                         manager.RemoveRoom(roomNumber);
-                        System.out.println("Remove Room Complete!");
                         break;
                     case 3:
-                    System.out.println("\n> Edit Room");
                         System.out.print("Enter room number to edit: ");
                         int editRoomNumber = scanner.nextInt();
                         scanner.nextLine(); 
@@ -643,26 +611,24 @@ public class Main {
                         double newPrice = scanner.nextDouble();
 
                         manager.EditRoom(editRoomNumber, newRoomType, newPrice);
-                        System.out.println("Edit Room Complete!");
                         break;
                     case 4:
-                    System.out.println("\n> View All Rooms");
                         manager.DisplayAllRooms();
                         break;
                     case 5:
                         return; // ออกจากเมนูจัดการ
                     default:
-                        System.out.println("Invalid choice!");
+                        System.out.println("Invalid choice.");
                 }
             } catch (InputMismatchException e) {
-            System.out.println("Invalid input! Please enter a valid number.");
+            System.out.println("Invalid input. Please enter a valid number.");
             scanner.nextLine();
             }
         }
     }
 
     private static void ViewCustomerStayHistory(Manager manager) {
-        manager.displayAllBookingHistories();
+        manager.DisplayReserveRoom();
 
     }
 
@@ -671,10 +637,15 @@ public class Main {
     }
 
     private static void printHeader(String message) {
-        System.out.println("\n" + "=".repeat(50));
-        System.out.printf("%-48s%s%n", message, "=");
-        System.out.println("=".repeat(50));
+        int totalWidth = 50; // ความกว้างทั้งหมด
+        int paddingSize = (totalWidth - message.length()) / 2; 
+        String padding = " ".repeat(paddingSize); // สร้างช่องว่าง
+    
+        System.out.println("\n" + "=".repeat(totalWidth));
+        System.out.printf("%s%s%s%n", padding, message, padding); // แทรกช่องว่างด้านซ้ายขวา
+        System.out.println("=".repeat(totalWidth));
     }
+    
 
     public static void RoleReceptionist(){
         Scanner scanner = new Scanner(System.in);
@@ -761,93 +732,13 @@ public class Main {
     }//end checkOut
 
 
-
-
     public static void payment(Booking booking) {
-        Scanner scanner = new Scanner(System.in);
-        Payment payment = new Payment();
-        String paymentMethod;
-        int choice;
-        double amount1 = 0.0; // กำหนดค่าเริ่มต้นสำหรับจำนวนเงิน
-        boolean isCheckAmount = false;
-    
-        // แสดงตัวเลือกวิธีการชำระเงินและรับค่าจนกว่าจะถูกต้อง
-        while (true) {
-            // แสดงตัวเลือกวิธีการชำระเงิน
-            System.out.println("Select the payment method:");
-            System.out.println("[ 1 ] Credit Card");
-            System.out.println("[ 2 ] Promptpay");
-            System.out.print("Enter your choice [1 or 2]: ");
-            
-            try {
-                choice = scanner.nextInt();
-    
-                // กำหนดวิธีการชำระเงินตามตัวเลือก
-                switch (choice) {
-                    case 1:
-                        paymentMethod = "Credit Card";
-    
-                        // รับข้อมูลบัตรเครดิต
-                        System.out.print("Enter your credit card number: ");
-                        String cardNumber = scanner.next();
-                        System.out.print("Enter your credit card expiration date (MM/YY): ");
-                        String expirationDate = scanner.next();
-                        System.out.print("Enter your CVV: ");
-                        String cvv = scanner.next();
-    
-                        // กำหนดข้อมูลบัตรเครดิตใน Payment
-                        payment.setCreditCardDetails(cardNumber, expirationDate, cvv);
-    
-                        // กำหนดจำนวนเงินที่ต้องจ่ายจาก booking (ไม่ให้กรอกเอง)
-                        amount1 = booking.getTotalPrice();
-                        break;
-    
-                    case 2:
-                        paymentMethod = "Promptpay";
-    
-                        // รับข้อมูลหมายเลข PromptPay
-                        System.out.print("Enter your Promptpay phone number: ");
-                        String phoneNumber = scanner.next();
-    
-                        // กำหนดหมายเลข PromptPay ใน Payment
-                        payment.setPromptPayDetails(phoneNumber);
-    
-                        // ให้ผู้ใช้กรอกจำนวนเงินในกรณี PromptPay
-                        System.out.print("Enter the amount to pay: ");
-                        amount1 = scanner.nextDouble();
-                        
-                        // ตรวจสอบเงินทอน (หากชำระเกินราคา)
-                        double totalPrice = booking.getTotalPrice();
-                        if (amount1 > totalPrice) {
-                            double change = amount1 - totalPrice;
-                            System.out.println("You have overpaid. Your change is: " + change + " THB.");
-                            amount1 = totalPrice; // ใช้จำนวนเงินที่ต้องชำระจริง
-                        }
-                        break;
-    
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                        continue; // กลับไปเริ่มลูปใหม่เมื่อเลือกตัวเลือกผิด
-                }
-                break; // ออกจากลูปเมื่อเลือกวิธีการชำระเงินถูกต้อง
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input! Please enter a number [1 or 2].");
-                scanner.nextLine(); // clear invalid input from scanner buffer
-            }
-        }
-    
-        // ประมวลผลการชำระเงินทันทีหลังเลือกวิธีการชำระเงินสำเร็จ
-        isCheckAmount = payment.processPayment(booking, amount1, paymentMethod);
-    
-        // ถ้าเกิดปัญหาเกี่ยวกับจำนวนเงิน ให้พิมพ์ข้อผิดพลาด
-        if (!isCheckAmount) {
-            System.out.println("Payment failed. Please check the payment details and amount.");
-        } else {
-            // ชำระเงินเสร็จสิ้น
-            System.out.println("Payment successful!");
-        }
+        PaymentAndReceipt payment = new PaymentAndReceipt();
+        double amount1 = 4000.0;  // ตัวอย่างจำนวนเงินที่ต้องชำระ
+        String paymentMethod = "Credit Card";  // วิธีการชำระเงิน
+        
+        payment.processPayment(booking, amount1, paymentMethod);
     }
-    
     public static void displayCalendar() {
         String[][] calendar = new String[5][7]; // ปฏิทิน 30 วัน
         int day = 1;
@@ -878,6 +769,4 @@ public class Main {
     private static final String cyan = "\033[36m";    // สีฟ้าอ่อน
     private static final String red = "\033[31m";    // สีฟ้าอ่อน
     private static final String yellow = "\033[93m";    // สีฟ้าอ่อน
-
-    
 }

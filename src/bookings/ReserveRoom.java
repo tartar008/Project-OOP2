@@ -139,7 +139,6 @@ public class ReserveRoom {
                     if (isRoomAvailable && room.isRoomAvailableForPeriod(checkInDate, checkOutDate)) {
                         // ตรวจสอบก่อนที่จะเพิ่มห้องซ้ำ
                         if (!addedRoomNumbers.contains(room.getRoom().getRoomNumber())) {
-                            System.out.println("Available room: " + room.getRoom().getRoomNumber());
                             availableRooms.add(room); // เพิ่มห้องที่ว่างลงใน availableRooms
                             addedRoomNumbers.add(room.getRoom().getRoomNumber()); // บันทึกหมายเลขห้องที่ถูกเพิ่ม
                         }

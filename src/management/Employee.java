@@ -1,6 +1,5 @@
 package src.management;
 
-
 import src.customers.Person;
 
 public class Employee extends Person{
@@ -12,4 +11,4 @@ public class Employee extends Person{
         this.empId = empId;
         this.position = position;
     }
-} 
+}

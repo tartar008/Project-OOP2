@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class TransectionRoom {
     private MasterRoom room;
-    private Map<LocalDate, Boolean> availability;//จำเป็นอยู่มั้ย
+    private Map<LocalDate, Boolean> availability;
     private boolean isOccupied;
 
     public TransectionRoom (){
@@ -26,7 +26,7 @@ public class TransectionRoom {
             availability.put(date, true);
         }
     }
-    
+
 
   
     public boolean getIsOccupied() {
@@ -53,27 +53,7 @@ public class TransectionRoom {
         }
         return true;
     }
-
-    public boolean bookRoom(LocalDate checkInDate, LocalDate checkOutDate) { //check-in
-        if (!isRoomAvailableForPeriod(checkInDate, checkOutDate)) {
-        System.out.println("Room is not available in the selected period.");
-        return false;
-        }
-        for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
-            availability.put(date, false);
-        }
-        System.out.println("Room " + room.getRoomNumber() + " has been booked from " + checkInDate + " to " + checkOutDate);
-        return true;
-    }
  
-    public void cancelBooking(LocalDate checkInDate, LocalDate checkOutDate) { //
-        for (LocalDate date = checkInDate; !date.isAfter(checkOutDate); date = date.plusDays(1)) {
-            availability.put(date, true); 
-        }
-        System.out.println("Booking for room " + room.getRoomNumber() + " has been cancelled from " + checkInDate + " to " + checkOutDate);
-    }
-
-
     public MasterRoom getRoom() {
         return room;
     }
