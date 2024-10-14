@@ -36,59 +36,56 @@ public class Receptionist extends Person {
         return staffId;
     }
 
-    // หา bookingID
     public boolean findBookingById(String bookingID) {
         JSONArray bookingsArray = readJsonBooking();
-        Boolean found = false;
-        String bookingId = "";
         for (Object bookingObj : bookingsArray) {
             JSONObject bookingJson = (JSONObject) bookingObj;
             String id = (String) bookingJson.get("bookingID");
             if (id.equals(bookingID)) {
-                found = true;
-                break;
+                return true;
             }
         }
-        if (!found) {
-            return false;
-        }
-        return true;
+        return false;
     }
-
+    
     public void updateRoomStatus(String bookingId, boolean status) {
         JSONArray roomsArray = readReserveRoom(); // อ่านห้องจาก JSON ReserveRoom
         if (roomsArray == null) {
             System.out.println("Unable to read JSON_ReserveRoom.json.");
             return;
         }
-
-        Long roomNumber = findRoomByBookingId(bookingId);
+    
+        ArrayList<Long> roomNumbers = findRoomByBookingId(bookingId);
+        if (roomNumbers == null || roomNumbers.isEmpty()) {
+            System.out.println("No rooms found for booking ID: " + bookingId);
+            return;
+        }
+    
         boolean roomFound = false; // สำหรับการตรวจสอบว่าห้องมีอยู่หรือไม่
-
-        for (Object roomObj : roomsArray) {
-            JSONObject roomJson = (JSONObject) roomObj;
-            Long currentRoomNumber = (Long) roomJson.get("roomNumber");
-
-            if (currentRoomNumber.equals(roomNumber)) {
-                roomJson.put("isOccupied", status);
-                roomFound = true;
-
-                // เขียนข้อมูลกลับลงไฟล์ JSON_ReserveRoom.json
-                writeJsonReserveRoom(roomsArray); // เรียกใช้เมธอดในการเขียน JSON กลับ
-                System.out.println("Room " + roomNumber + " status updated.");
-                break; // ออกจากลูปเมื่อพบห้อง
+        for (Long roomNumber : roomNumbers) {
+            for (Object roomObj : roomsArray) {
+                JSONObject roomJson = (JSONObject) roomObj;
+                Long currentRoomNumber = (Long) roomJson.get("roomNumber");
+    
+                if (currentRoomNumber.equals(roomNumber)) {
+                    roomJson.put("isOccupied", status);
+                    roomFound = true;
+                }
             }
         }
-
-        if (!roomFound) {
-            System.out.println("Room number " + roomNumber + " not found in the reserve room data.");
+    
+        if (roomFound) {
+            writeJsonReserveRoom(roomsArray); // เรียกใช้เมธอดในการเขียน JSON กลับ
+            System.out.println("Room status updated for booking ID: " + bookingId);
+        } else {
+            System.out.println("Room number(s) " + roomNumbers + " not found in the reserve room data.");
         }
     }
-
-    public Long findRoomByBookingId(String bookingId) {
+    
+    public ArrayList<Long> findRoomByBookingId(String bookingId) {
         JSONArray bookingArray = readJsonBooking(); // อ่านเพื่อจะดึงหมายเลขห้องที่มี bookingId ของ customer
-        boolean found = false;
-        Long roomNumber = null;
+        ArrayList<Long> roomNumbers = new ArrayList<>();
+        
         for (Object bookingObj : bookingArray) {
             JSONObject bookingJson = (JSONObject) bookingObj;
             String id = (String) bookingJson.get("bookingID");
@@ -97,19 +94,14 @@ public class Receptionist extends Person {
                 if (rooms != null && !rooms.isEmpty()) {
                     for (Object roomObj : rooms) {
                         JSONObject roomJson = (JSONObject) roomObj;
-                        roomNumber = (Long) roomJson.get("roomNumber");
+                        roomNumbers.add((Long) roomJson.get("roomNumber"));
                     }
                 }
-                found = true;
                 break;
             }
         }
-        if (!found) {
-            return null;
-        }
-        return roomNumber;
+        return roomNumbers; // ถ้าไม่พบ bookingId จะส่งคืน empty list
     }
-
 
 
     // ========================= about json file

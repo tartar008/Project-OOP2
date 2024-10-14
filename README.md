@@ -3,6 +3,7 @@
 ## Main.java
 
 ```
+
 javac -cp lib/json-simple-1.1.1.jar -d bin src/bookings/*.java src/customers/*.java src/management/*.java src/rooms/*.java Main.java Main.java
 
 java -cp "bin;lib/json-simple-1.1.1.jar" Main
