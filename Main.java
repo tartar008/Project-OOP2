@@ -639,7 +639,7 @@ public class Main {
     }
 
     private static void ViewCustomerStayHistory(Manager manager) {
-        manager.DisplayReserveRoom();
+        manager.displayAllBookingHistories();
 
     }
 
