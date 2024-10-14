@@ -358,35 +358,41 @@ public class Manager {
             bookings = (JSONArray) existingData.get("bookings"); // แคสต์เป็น JSONArray ของการจอง
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
+            return; // ออกจากฟังก์ชันหากไม่พบไฟล์
         } catch (IOException | ParseException e) {
             e.printStackTrace();
+            return; // ออกจากฟังก์ชันหากเกิดข้อผิดพลาด
         }
 
-        // ตัวแปรเก็บรายได้ของแต่ละประเภทห้อง และรวมจำนวนห้อง
+        // ตัวแปรเก็บรายได้ของแต่ละประเภทห้อง และรวมรายได้ทั้งหมด
         Map<String, Double> roomTypeIncome = new HashMap<>();
         double totalIncome = 0.0;
-        int totalRooms = 0;
 
         // วนลูปผ่านการจองทั้งหมด
         for (Object bookingObject : bookings) {
             JSONObject booking = (JSONObject) bookingObject;
-            JSONObject room = (JSONObject) booking.get("room");
+            JSONArray rooms = (JSONArray) booking.get("room"); // ดึงห้องทั้งหมดในการจอง
 
-            String roomType = (String) room.get("roomType"); // ดึงประเภทห้อง
-            double totalPrice = (double) booking.get("totalPrice"); // ดึงราคาการจอง
+            // ตรวจสอบห้องในแต่ละการจอง
+            for (Object roomObject : rooms) {
+                JSONObject room = (JSONObject) roomObject;
 
-            // อัปเดตรายได้ของประเภทห้องใน Map
-            roomTypeIncome.put(roomType, roomTypeIncome.getOrDefault(roomType, 0.0) + totalPrice);
+                String roomType = (String) room.get("roomType"); // ดึงประเภทห้อง
+                double totalPrice = (double) booking.get("totalPrice"); // ดึงราคาการจอง
 
-            totalIncome += totalPrice; // รวมรายได้ทั้งหมดของโรงแรม
-            totalRooms++; // นับจำนวนห้องที่ถูกจอง
+                // อัปเดตรายได้ของประเภทห้องใน Map
+                roomTypeIncome.put(roomType, roomTypeIncome.getOrDefault(roomType, 0.0) + totalPrice);
+            }
+
+            totalIncome += (double) booking.get("totalPrice"); // รวมรายได้ทั้งหมดของโรงแรม
         }
 
         // แสดงผล
-        System.out.println("Total number of rooms booked: " + totalRooms);
+        System.out.println("Income by Room Type:");
         for (Map.Entry<String, Double> entry : roomTypeIncome.entrySet()) {
-            System.out.println("Room Type: " + entry.getKey() + " | Total Income: " + entry.getValue());
+            System.out.printf("Room Type: %s | Total Income: %.2f%n", entry.getKey(), entry.getValue());
         }
-        System.out.println("Total Income of the Hotel: " + totalIncome);
+        System.out.printf("Total Income of the Hotel: %.2f%n", totalIncome);
     }
+
 }
