@@ -24,7 +24,8 @@ import javax.sound.midi.Receiver;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scannerInt = new Scanner(System.in);
+        Scanner scannerString = new Scanner(System.in);
         File fileReserveRoom = new File("./resources/JSON_ReserveRoom.json");
 
         // สร้างผู้จัดการ และ สร้างห้องขึ้นมาผ่านผู้จัดการ
@@ -44,13 +45,13 @@ public class Main {
 
         // สร้าง TransectionRoom สำหรับเก็บ MasterRoom
         ReserveRoom reserveRoom = new ReserveRoom();
-        
+
         for (MasterRoom runRoom : rooms) {
             TransectionRoom transectionRoom = new TransectionRoom(runRoom);
             reserveRoom.AddTransectionRoom(transectionRoom);
         }
 
-        if(fileReserveRoom.exists() && fileReserveRoom.length()==0){
+        if (fileReserveRoom.exists() && fileReserveRoom.length() == 0) {
             reserveRoom.WriteJsonBooking();
         }
 
@@ -61,15 +62,14 @@ public class Main {
                 System.out.println("[ 1 ] Sign in");
                 System.out.println("[ 2 ] Exit");
                 System.out.print("Enter your choice: ");
-                
-                int choice = scanner.nextInt();
-                scanner.nextLine();
-        
+
+                int choice = scannerInt.nextInt();
+
                 if (choice == 2) {
                     System.out.println("Exiting the system...");
                     break; // ออกจากโปรแกรม
                 } else if (choice == 1) {
-                    String role = signIn(); 
+                    String role = signIn();
                     if (role.equals("customer")) {
                         Customer agent = signUp();
                         System.err.println();
@@ -80,9 +80,8 @@ public class Main {
                                 System.out.println("[ 1 ] Booking a room");
                                 System.out.println("[ 2 ] Log out");
                                 System.out.print("Enter choice: ");
-                                int choiceMain = scanner.nextInt();
-                                scanner.nextLine();
-        
+                                int choiceMain = scannerInt.nextInt();
+
                                 if (choiceMain == 2) {
                                     System.out.println("Logging out...");
                                     break; // กลับไปที่ Main Menu
@@ -93,7 +92,7 @@ public class Main {
                                 }
                             } catch (InputMismatchException e) {
                                 System.out.println("Invalid input. Please enter a valid integer.");
-                                scanner.nextLine();
+                                scannerString.nextLine();
                             }
                         }
                     } else if (role.equals("manager")) {
@@ -106,11 +105,9 @@ public class Main {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine();
+                scannerString.nextLine();
             }
         }
-        
-        
 
     }// end main
 
@@ -129,19 +126,19 @@ public class Main {
                     System.out.println("Invalid check-in day. Please enter a day between 1 and 30.");
                     continue;
                 }
-                
+
                 checkInDate = LocalDate.of(2024, 10, startDay);
-                
+
                 System.out.print("Enter check-out date (day): ");
                 int endDay = scanner.nextInt();
-                
+
                 if (endDay < 1 || endDay > 30) {
                     System.out.println("Invalid check-out day. Please enter a day between 1 and 30.");
                     continue;
                 }
-        
+
                 checkOutDate = LocalDate.of(2024, 10, endDay);
-        
+
                 if (checkInDate.isAfter(checkOutDate)) {
                     System.out.println("Check-in date must be before check-out date. Please try again.");
                     continue;
@@ -170,6 +167,7 @@ public class Main {
         Booking booking = new Booking();
         boolean isComplete = false;
         int roomType;
+        boolean OneCustomerSelect = true;
 
         while (!isComplete) {
             displayAvailableRooms(standards, family, honeymoon);
@@ -187,30 +185,39 @@ public class Main {
                     limitRoom = false;
                     for (int i = 0; i < numOfRoom; i++) {
                         TransectionRoom assignedRoom = reserveRoom.assignRoom(selectedRoomType);
-                    
+
                         if (assignedRoom != null) {
                             System.out.println("\n> " + assignedRoom.getRoom().getType() + " Room #" + (i + 1) + " <");
-                            
+
                             // ตรวจสอบว่าผู้ใช้ป้อนข้อมูลเกี่ยวกับการจองได้ถูกต้อง
                             String isBookingforSomeOne;
                             while (true) {
-                                System.out.print("I am booking for someone else?(y/n): ");
-                                isBookingforSomeOne = scanner.nextLine();
-                    
-                                if (isBookingforSomeOne.equalsIgnoreCase("y")) {
-                                    guests.add(getInputGuest());
-                                    break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
-                                } else if (isBookingforSomeOne.equalsIgnoreCase("n")) {
-                                    guests.add(agent);
-                                    break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                                System.out.println("OneCustomerSelect: " + OneCustomerSelect);
+                                if (OneCustomerSelect) {
+                                    System.out.print("I am booking for someone else?(y/n): ");
+                                    isBookingforSomeOne = scanner.nextLine();
+
+                                    if (isBookingforSomeOne.equalsIgnoreCase("y")) {
+                                        guests.add(getInputGuest());
+                                        break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                                    } else if (isBookingforSomeOne.equalsIgnoreCase("n")) {
+
+                                        OneCustomerSelect = false;
+                                        guests.add(agent);
+                                        break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                                    } else {
+                                        System.out.println("Invalid input, please enter 'y' or 'n'");
+                                    }
+
                                 } else {
-                                    System.out.println("Invalid input, please enter 'y' or 'n'");
+                                    guests.add(getInputGuest());
+                                    break;
                                 }
                             }
-                    
+
                             listBookRoom.add(assignedRoom);
                             booking = new Booking(agent, guests, listBookRoom, checkInDate, checkOutDate);
-                    
+
                             // ลบห้อง
                             selectedRoomType.remove(assignedRoom);
                         } else {
@@ -227,26 +234,24 @@ public class Main {
 
             String complete = "";
             boolean isCompleteInput = false;
-            
+
             while (!isCompleteInput) {
                 System.out.print("Do you want to book another room? (y/n): ");
                 complete = scanner.nextLine().trim(); // ใช้ trim() เพื่อเอาช่องว่างที่ขอบออก
-        
+
                 if (complete.equalsIgnoreCase("n")) {
                     isComplete = true; // ออกจากลูปหลัก
                     isCompleteInput = true; // ออกจากลูปการตรวจสอบการกรอกข้อมูล
-                }
-                else if (complete.equalsIgnoreCase("y")) {
+                } else if (complete.equalsIgnoreCase("y")) {
                     System.out.println("Please complete the process.");
                     isCompleteInput = true; // ออกจากลูปการตรวจสอบการกรอกข้อมูล แต่ยังอยู่ในลูปหลัก
-                }
-                else {
+                } else {
                     System.out.println("Invalid input. Please enter 'y' or 'n'");
                 }
             }
         } // end complete loop
 
-        booking.bookingInfo(); 
+        booking.bookingInfo();
 
         String comfirm;
         while (true) {
@@ -267,29 +272,22 @@ public class Main {
         }
     }// end reservationOnline
 
-    private static TransectionRoom assignRoom(List<TransectionRoom> selectedRoomType) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'assignRoom'");
-    }
-
     public static String signIn() {
         printHeader("Sign In");
         Scanner scanner = new Scanner(System.in);
-        
-        //Username
+
+        // Username
         String username = "";
         boolean validUsername = false;
         while (!validUsername) {
             System.out.print("Enter username: ");
             username = scanner.nextLine();
-    
+
             if (username == null || username.trim().isEmpty()) {
                 System.out.println("Username cannot be null or empty! Please enter again.");
-            }
-            else if (!username.matches("[a-zA-Z]+")) { 
+            } else if (!username.matches("[a-zA-Z]+")) {
                 System.out.println("Username must contain only letters! Please enter again.");
-            }
-            else {
+            } else {
                 validUsername = true;
             }
         }
@@ -300,17 +298,14 @@ public class Main {
         while (!validPassword) {
             System.out.print("Enter password: ");
             pwd = scanner.nextLine();
-    
+
             if (pwd == null || pwd.trim().isEmpty()) {
                 System.out.println("Password cannot be null or empty! Please enter again.");
-            } 
-            else if (pwd.length() > 10) { 
+            } else if (pwd.length() > 10) {
                 System.out.println("Password not exceed 10 characters! Please enter again.");
-            }
-            else if (!pwd.matches("[A-Za-z0-9]+")) {  
+            } else if (!pwd.matches("[A-Za-z0-9]+")) {
                 System.out.println("Password must contain only letters or numbers! Please enter again.");
-            }
-            else {
+            } else {
                 validPassword = true;
             }
         }
@@ -318,7 +313,7 @@ public class Main {
         // เช็คใน json
         if (username.equals("Admin") && pwd.equals("System123")) { // รหัสผ่านเป็นตัวอย่าง
             return "manager";
-        } else if(username.equals("Receptionist") && pwd.equals("System321")) {
+        } else if (username.equals("Receptionist") && pwd.equals("System321")) {
             return "receptionist";
         } else {
             return "customer";
@@ -328,7 +323,7 @@ public class Main {
     public static Customer signUp() {
         Scanner scanner = new Scanner(System.in);
         printHeader("Sign Up");
-        
+
         // Firstname
         String firstName = "";
         boolean validFirstName = false;
@@ -338,11 +333,9 @@ public class Main {
 
             if (firstName == null || firstName.trim().isEmpty()) {
                 System.out.println("First name cannot be null or empty. Please enter again.");
-            }
-            else if (!firstName.matches("[a-zA-Z]+")) {
+            } else if (!firstName.matches("[a-zA-Z]+")) {
                 System.out.println("First name must contain only letters. Please enter again.");
-            }
-            else {
+            } else {
                 validFirstName = true;
             }
         }
@@ -356,16 +349,14 @@ public class Main {
 
             if (lastName == null || lastName.trim().isEmpty()) {
                 System.out.println("Last name cannot be null or empty. Please enter again.");
-            }
-            else if (!lastName.matches("[a-zA-Z]+")) {
+            } else if (!lastName.matches("[a-zA-Z]+")) {
                 System.out.println("Last name must contain only letters. Please enter again.");
-            }
-            else {
+            } else {
                 validLastName = true;
             }
         }
-        
-        //Phone Number
+
+        // Phone Number
         String phoneNum = "";
         boolean validPhoneNum = false;
         while (!validPhoneNum) {
@@ -374,7 +365,7 @@ public class Main {
 
             if (phoneNum == null || phoneNum.trim().isEmpty()) {
                 System.out.println("Phone number cannot be null or empty. Please enter again.");
-            } else if (phoneNum.length() != 10) { 
+            } else if (phoneNum.length() != 10) {
                 System.out.println("Phone number must be exactly 10 digits. Please enter again.");
             } else if (!phoneNum.matches("[0-9]+")) { // ตรวจสอบว่าเป็นตัวเลขล้วน
                 System.out.println("Phone number must contain only numbers. Please enter again.");
@@ -414,11 +405,9 @@ public class Main {
 
             if (name == null || name.trim().isEmpty()) {
                 System.out.println("Name cannot be null or empty. Please enter again.");
-            }
-            else if (!name.matches("[a-zA-Z]+")) {
+            } else if (!name.matches("[a-zA-Z]+")) {
                 System.out.println("Name must contain only letters. Please enter again.");
-            }
-            else {
+            } else {
                 validName = true;
             }
         }
@@ -432,11 +421,9 @@ public class Main {
 
             if (surname == null || surname.trim().isEmpty()) {
                 System.out.println("surname cannot be null or empty. Please enter again.");
-            }
-            else if (!surname.matches("[a-zA-Z]+")) {
+            } else if (!surname.matches("[a-zA-Z]+")) {
                 System.out.println("surname must contain only letters. Please enter again.");
-            }
-            else {
+            } else {
                 validSurname = true;
             }
         }
@@ -511,7 +498,6 @@ public class Main {
         }
     }
 
-
     private static void RoleManager(Manager manager) {
         Scanner scanner = new Scanner(System.in);
 
@@ -561,7 +547,7 @@ public class Main {
 
             try {
                 int choice = scanner.nextInt();
-                
+
                 if (choice < 1 || choice > 5) {
                     System.out.println("Invalid choice. Please enter a number between 1 and 5.");
                     scanner.nextLine();
@@ -577,7 +563,7 @@ public class Main {
                                 System.out.print("Enter room number: ");
                                 roomNumber = scanner.nextInt();
                                 scanner.nextLine();
-                                
+
                                 if (roomNumber <= 0) {
                                     System.out.println("Invalid room number. Room number must be greater than zero.");
                                     continue;
@@ -587,31 +573,32 @@ public class Main {
                                 scanner.nextLine();
                                 continue;
                             }
-                
+
                             System.out.print("Enter room type (Standard/Family/Honeymoon): ");
                             roomType = scanner.nextLine().trim();
-                            if (!roomType.equalsIgnoreCase("Standard") && 
-                                !roomType.equalsIgnoreCase("Family") && 
-                                !roomType.equalsIgnoreCase("Honeymoon")) {
-                                System.out.println("Invalid room type. Please enter 'Standard', 'Family', or 'Honeymoon'.");
+                            if (!roomType.equalsIgnoreCase("Standard") &&
+                                    !roomType.equalsIgnoreCase("Family") &&
+                                    !roomType.equalsIgnoreCase("Honeymoon")) {
+                                System.out.println(
+                                        "Invalid room type. Please enter 'Standard', 'Family', or 'Honeymoon'.");
                                 continue;
                             }
-                
+
                             try {
                                 System.out.print("Enter room price: ");
                                 price = scanner.nextDouble();
                                 scanner.nextLine();
-                            
+
                                 if (price < 0) {
                                     System.out.println("Invalid room price. Price cannot be negative.");
                                     continue;
                                 }
                             } catch (InputMismatchException e) {
                                 System.out.println("Invalid input. Please enter a valid number for the price.");
-                                scanner.nextLine(); 
+                                scanner.nextLine();
                                 continue;
                             }
-                
+
                             manager.AddRoom(roomNumber, roomType, price);
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input. Please enter the correct data types.");
@@ -626,7 +613,7 @@ public class Main {
                     case 3:
                         System.out.print("Enter room number to edit: ");
                         int editRoomNumber = scanner.nextInt();
-                        scanner.nextLine(); 
+                        scanner.nextLine();
 
                         System.out.print("Enter new room type: ");
                         String newRoomType = scanner.nextLine();
@@ -645,8 +632,8 @@ public class Main {
                         System.out.println("Invalid choice.");
                 }
             } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please enter a valid number.");
-            scanner.nextLine();
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine();
             }
         }
     }
@@ -666,81 +653,120 @@ public class Main {
         System.out.println("=".repeat(50));
     }
 
-    public static void RoleReceptionist(){
+    public static void RoleReceptionist() {
         Scanner scanner = new Scanner(System.in);
         Receptionist somchai = new Receptionist("Somchai", "Jingjai", "0999999999", "somza@gmail.com", "rp-001");
 
-        while (true) {  // วนลูปเพื่อให้ผู้ใช้สามารถกรอกข้อมูลได้ใหม่ถ้าผิดพลาด
+        while (true) { // วนลูปเพื่อให้ผู้ใช้สามารถกรอกข้อมูลได้ใหม่ถ้าผิดพลาด
             try {
                 System.out.println("[ 1 ] Check-In\n[ 2 ] Check-Out\n[ 3 ] Exit");
-                System.out.print("Enter your choice: ");   
+                System.out.print("Enter your choice: ");
                 int choiceMain = scanner.nextInt();
                 scanner.nextLine();
 
                 if (choiceMain < 1 || choiceMain > 3) {
                     System.out.println("Invalid choice. Please enter a number between 1 and 3.");
-                    continue;  
+                    continue;
                 }
                 switch (choiceMain) {
                     case 1:
                         checkIn(somchai);
                         break;
-    
+
                     case 2:
                         checkOut(somchai);
                         break;
-    
+
                     case 3:
                         System.out.println("Exiting...");
-                        return;  // ออกจากเมนู
+                        return; // ออกจากเมนู
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine();  // ล้างบัฟเฟอร์เพื่อข้ามค่าที่ไม่ถูกต้อง
+                scanner.nextLine(); // ล้างบัฟเฟอร์เพื่อข้ามค่าที่ไม่ถูกต้อง
             }
         }
-    }//end RoleReceptionist
-    
+    }// end RoleReceptionist
 
-    public static void checkIn(Receptionist receptionist){
+    public static void checkIn(Receptionist receptionist) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter booking id: ");
         String bookingIdCustomer = scanner.nextLine();
 
-        boolean findBooking = receptionist.findBookingById(bookingIdCustomer); 
+        boolean findBooking = receptionist.findBookingById(bookingIdCustomer);
 
         if (findBooking) {
             receptionist.updateRoomStatus(bookingIdCustomer, true);
-        }
-        else {
+        } else {
             System.out.println("Booking with ID: " + bookingIdCustomer + " not found.");
         }
 
-    }//end checkIn
+    }// end checkIn
 
-    public static void checkOut(Receptionist receptionist){
+    public static void checkOut(Receptionist receptionist) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter booking id: ");
         String bookingIdCustomer = scanner.nextLine();
 
-        boolean findBooking = receptionist.findBookingById(bookingIdCustomer); 
+        boolean findBooking = receptionist.findBookingById(bookingIdCustomer);
 
         if (findBooking) {
             receptionist.updateRoomStatus(bookingIdCustomer, false);
-        }
-        else {
+        } else {
             System.out.println("Booking with ID: " + bookingIdCustomer + " not found.");
         }
 
-    }//end checkOut
-
+    }// end checkOut
 
     public static void payment(Booking booking) {
-        PaymentAndReceipt payment = new PaymentAndReceipt();
+        Scanner scanner = new Scanner(System.in);
     
-        double amount1 = 4000.0;  // ตัวอย่างจำนวนเงินที่ต้องชำระ
-        String paymentMethod = "Credit Card";  // วิธีการชำระเงิน
-        
-        payment.processPayment(booking, amount1, paymentMethod);
+        Payment payment = new Payment();
+        String paymentMethod;
+        int choice;
+        double amount1;
+        boolean isCheckAmount = false;
+    
+        // แสดงตัวเลือกวิธีการชำระเงินและรับค่าจนกว่าจะถูกต้อง
+        while (true) {
+            // แสดงตัวเลือกวิธีการชำระเงิน
+            System.out.println("Select the payment method:");
+            System.out.println("[ 1 ] Credit Card");
+            System.out.println("[ 2 ] Promptpay");
+            System.out.print("Enter your choice (1 or 2): ");
+            choice = scanner.nextInt();
+    
+            // กำหนดวิธีการชำระเงินตามตัวเลือก
+            switch (choice) {
+                case 1:
+                    paymentMethod = "Credit Card";
+                    break;
+                case 2:
+                    paymentMethod = "Promptpay";
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    continue; // กลับไปเริ่มลูปใหม่เมื่อเลือกตัวเลือกผิด
+            }
+            break; // ออกจากลูปเมื่อเลือกวิธีการชำระเงินถูกต้อง
+        }
+    
+        // รับจำนวนเงินและประมวลผลการชำระเงินจนกว่าจำนวนเงินจะถูกต้อง
+        while (!isCheckAmount) {
+            // รับค่าจำนวนเงินที่ต้องชำระจากผู้ใช้
+            System.out.print("Enter the amount to pay: ");
+            amount1 = scanner.nextDouble();
+    
+            // ประมวลผลการชำระเงิน
+            isCheckAmount = payment.processPayment(booking, amount1, paymentMethod);
+            
+            if (!isCheckAmount) {
+                System.out.println("Please enter a valid amount.");
+            }
+        }
+    
+        // ชำระเงินเสร็จสิ้น
+        System.out.println("Payment successful!");
     }
+    
 }

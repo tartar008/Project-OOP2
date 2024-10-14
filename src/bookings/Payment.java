@@ -3,10 +3,10 @@ package src.bookings;
 import java.time.LocalDate;
 import src.rooms.TransectionRoom;
 
-public class PaymentAndReceipt {
+public class Payment {
 
     // Constructor
-    public PaymentAndReceipt() {
+    public Payment() {
     }
 
     // Method to process payment
@@ -14,10 +14,16 @@ public class PaymentAndReceipt {
         // ตรวจสอบว่า amount ถูกต้องหรือไม่
         if (amount <= 0) {
             System.out.println("Invalid payment amount. Payment failed.");
-            return false;  // ชำระเงินไม่สำเร็จ
+            return false; // ชำระเงินไม่สำเร็จ
         }
 
-        LocalDate date = LocalDate.now();  // วันที่ปัจจุบัน
+        // ตรวจสอบว่า amount มากกว่าหรือเท่ากับราคาที่ต้องจ่าย
+        if (amount < booking.getTotalPrice()) {
+            System.out.println("Payment amount is less than the total price. Payment failed.");
+            return false; // ชำระเงินไม่สำเร็จ
+        }
+
+        LocalDate date = LocalDate.now(); // วันที่ปัจจุบัน
 
         System.out.println("Processing payment of " + amount + " using " + paymentMethod);
 
@@ -36,16 +42,17 @@ public class PaymentAndReceipt {
         System.out.println("Check-in Date: " + booking.getCheckInDate());
         System.out.println("Check-out Date: " + booking.getCheckOutDate());
         System.out.println("Rooms booked:");
-    
+
         // ดึงข้อมูลห้องที่จองจาก Booking
         for (TransectionRoom room : booking.getRooms()) {
-            System.out.println(" - Room #" + room.getRoom().getRoomNumber() + " (" + room.getRoom().getType() + "), Price per night: " + room.getRoom().getPrice());
+            System.out.println(" - Room #" + room.getRoom().getRoomNumber() + " (" + room.getRoom().getType()
+                    + "), Price per night: " + room.getRoom().getPrice());
         }
-    
+
         System.out.println("Total amount: " + amount + " THB");
         System.out.println("Payment Method: " + paymentMethod);
         System.out.println("Payment Date: " + date);
         System.out.println("====================================");
     }
-    
+
 }
