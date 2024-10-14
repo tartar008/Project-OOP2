@@ -1,1 +1,855 @@
-{"bookings":[{"checkOutDate":"2024-10-05","totalPrice":8000.0,"checkInDate":"2024-10-01","bookingID":"BKG001","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":2000.0}],"customer":{"phone":"123-456-7890","surname":null,"customerID":"CUST123","name":"John Doe","email":"john.doe@example.com"}},{"checkOutDate":"2024-10-06","totalPrice":12000.0,"checkInDate":"2024-10-02","bookingID":"BKG002","room":[{"roomNumber":102,"guestLastName":null,"guestFirstName":null,"roomType":"Deluxe","pricePerNight":3000.0}],"customer":{"phone":"987-654-3210","surname":null,"customerID":"CUST456","name":"Jane Smith","email":"jane.smith@example.com"}},{"checkOutDate":"2024-10-02","totalPrice":1000.0,"checkInDate":"2024-10-01","bookingID":"BKG-20241012020604","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"10101010","surname":null,"customerID":null,"name":"Kareema","email":"k"}},{"checkOutDate":"2024-10-11","totalPrice":1000.0,"checkInDate":"2024-10-10","bookingID":"BKG-20241013011754","room":[{"roomNumber":102,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"ss","surname":null,"customerID":null,"name":"ee","email":"ww"}},{"checkOutDate":"2024-10-11","totalPrice":1000.0,"checkInDate":"2024-10-10","bookingID":"BKG-20241013020418","room":[{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"","surname":null,"customerID":null,"name":"ff","email":"ss"}},{"checkOutDate":"2024-10-11","totalPrice":1000.0,"checkInDate":"2024-10-10","bookingID":"BKG-20241013020838","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"dd","surname":null,"customerID":null,"name":"tt","email":"ss"}},{"checkOutDate":"2024-10-02","totalPrice":2000.0,"checkInDate":"2024-10-01","bookingID":"BKG-20241013020930","room":[{"roomNumber":102,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":103,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"dd","surname":null,"customerID":null,"name":"tt","email":"ss"}},{"checkOutDate":"2024-10-14","totalPrice":2000.0,"checkInDate":"2024-10-12","bookingID":"BKG-20241013021044","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"dd","surname":null,"customerID":null,"name":"tt","email":"ss"}},{"checkOutDate":"2024-10-15","totalPrice":3000.0,"checkInDate":"2024-10-12","bookingID":"BKG-20241013021119","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"vv","surname":null,"customerID":null,"name":"rr","email":"cc"}},{"checkOutDate":"2024-10-05","totalPrice":4000.0,"checkInDate":"2024-10-01","bookingID":"BKG-20241013021232","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"dd","surname":null,"customerID":null,"name":"tt","email":"dd"}},{"checkOutDate":"2024-10-03","totalPrice":2000.0,"checkInDate":"2024-10-02","bookingID":"BKG-20241013021838","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":103,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"K","surname":null,"customerID":null,"name":"K","email":"K"}},{"checkOutDate":"2024-10-05","totalPrice":3000.0,"checkInDate":"2024-10-02","bookingID":"BKG-20241013030212","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"ff","surname":null,"customerID":null,"name":"tt","email":"dd"}},{"checkOutDate":"2024-10-07","totalPrice":4000.0,"checkInDate":"2024-10-05","bookingID":"BKG-20241013030309","room":[{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":103,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"ff","surname":null,"customerID":null,"name":"tt","email":"dd"}},{"checkOutDate":"2024-10-06","totalPrice":1000.0,"checkInDate":"2024-10-05","bookingID":"BKG-20241013031326","room":[{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"kk","surname":null,"customerID":null,"name":"kk","email":"kk"}},{"checkOutDate":"2024-10-06","totalPrice":1000.0,"checkInDate":"2024-10-05","bookingID":"BKG-20241013032529","room":[{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"dd","surname":null,"customerID":null,"name":"dd","email":"dd"}},{"checkOutDate":"2024-10-29","totalPrice":12000.0,"checkInDate":"2024-10-25","bookingID":"BKG-20241013152853","room":[{"roomNumber":103,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"3698521470","surname":null,"customerID":null,"name":"dsf","email":"sdss@de.fd"}},{"checkOutDate":"2024-10-09","totalPrice":1000.0,"checkInDate":"2024-10-08","bookingID":"BKG-2024101346","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"0637363669","surname":null,"customerID":null,"name":"Kareema","email":"kareeza@gmail.com"}},{"checkOutDate":"2024-10-06","totalPrice":36000.0,"checkInDate":"2024-10-03","bookingID":"BKG-2024101425","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":102,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":103,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":2000.0},{"roomNumber":203,"guestLastName":null,"guestFirstName":null,"roomType":"Family","pricePerNight":2000.0},{"roomNumber":201,"guestLastName":null,"guestFirstName":null,"roomType":"Family","pricePerNight":2000.0},{"roomNumber":202,"guestLastName":null,"guestFirstName":null,"roomType":"Family","pricePerNight":2000.0}],"customer":{"phone":"0000000000","surname":null,"customerID":null,"name":"asdfdg","email":"sds@ldd.dd"}},{"checkOutDate":"2024-10-13","totalPrice":3000.0,"checkInDate":"2024-10-12","bookingID":"BKG-2024101413","room":[{"roomNumber":105,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":2000.0}],"customer":{"phone":"9638527410","surname":null,"customerID":null,"name":"asdf","email":"asdf2df@ghjk.sdf"}},{"checkOutDate":"2024-10-02","totalPrice":1000.0,"checkInDate":"2024-10-01","bookingID":"BKG-2024101406","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"0000000000","surname":null,"customerID":null,"name":"sdf","email":"aaa@ss.ss"}},{"checkOutDate":"2024-10-02","totalPrice":1000.0,"checkInDate":"2024-10-01","bookingID":"BKG-2024101447","room":[{"roomNumber":104,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0}],"customer":{"phone":"1111111111","surname":null,"customerID":null,"name":"lkjp","email":"aaaa@jkk.llll"}},{"checkOutDate":"2024-10-03","totalPrice":4000.0,"checkInDate":"2024-10-01","bookingID":"BKG-2024101511","room":[{"roomNumber":201,"guestLastName":null,"guestFirstName":null,"roomType":"Family","pricePerNight":2000.0}],"customer":{"phone":"0000000000","surname":null,"customerID":"CTM-2024101504","name":"asdf","email":"jhgvc@dfgujhk.dd"}},{"checkOutDate":"2024-10-04","totalPrice":3000.0,"checkInDate":"2024-10-03","bookingID":"BKG-2024101556","room":[{"roomNumber":302,"guestLastName":null,"guestFirstName":null,"roomType":"Honeymoon","pricePerNight":3000.0}],"customer":{"phone":"0000000000","surname":null,"customerID":"CTM-2024101544","name":"Areeda","email":"asdf2@fgyh.dfg"}},{"checkOutDate":"2024-10-06","totalPrice":3000.0,"checkInDate":"2024-10-05","bookingID":"BKG-2024101540","room":[{"roomNumber":102,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":1000.0},{"roomNumber":101,"guestLastName":null,"guestFirstName":null,"roomType":"Standard","pricePerNight":2000.0}],"customer":{"phone":"0000000000","surname":null,"customerID":"CTM-2024101544","name":"Areeda","email":"asdf2@fgyh.dfg"}},{"checkOutDate":"2024-10-09","totalPrice":4000.0,"checkInDate":"2024-10-08","bookingID":"BKG-2024101541","room":[{"roomNumber":103,"guestLastName":"sdfdfdg","guestFirstName":"sdf","roomType":"Standard","pricePerNight":1000.0},{"roomNumber":105,"guestLastName":"sdfdfdg","guestFirstName":"sdf","roomType":"Standard","pricePerNight":1000.0},{"roomNumber":101,"guestLastName":"sdfdfdg","guestFirstName":"sdf","roomType":"Standard","pricePerNight":2000.0}],"customer":{"phone":"0000000000","surname":"sdfdfdg","customerID":"CTM-2024101514","name":"sdf","email":"area@tui.dfd"}}]}
+{
+    "bookings": [
+        {
+            "checkOutDate": "2024-10-05",
+            "totalPrice": 8000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG001",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "123-456-7890",
+                "surname": null,
+                "customerID": "CUST123",
+                "name": "John Doe",
+                "email": "john.doe@example.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-06",
+            "totalPrice": 12000.0,
+            "checkInDate": "2024-10-02",
+            "bookingID": "BKG002",
+            "room": [
+                {
+                    "roomNumber": 102,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Deluxe",
+                    "pricePerNight": 3000.0
+                }
+            ],
+            "customer": {
+                "phone": "987-654-3210",
+                "surname": null,
+                "customerID": "CUST456",
+                "name": "Jane Smith",
+                "email": "jane.smith@example.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-20241012020604",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "10101010",
+                "surname": null,
+                "customerID": null,
+                "name": "Kareema",
+                "email": "k"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-11",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-10",
+            "bookingID": "BKG-20241013011754",
+            "room": [
+                {
+                    "roomNumber": 102,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "ss",
+                "surname": null,
+                "customerID": null,
+                "name": "ee",
+                "email": "ww"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-11",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-10",
+            "bookingID": "BKG-20241013020418",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "",
+                "surname": null,
+                "customerID": null,
+                "name": "ff",
+                "email": "ss"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-11",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-10",
+            "bookingID": "BKG-20241013020838",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "dd",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "ss"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-20241013020930",
+            "room": [
+                {
+                    "roomNumber": 102,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 103,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "dd",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "ss"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-14",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-12",
+            "bookingID": "BKG-20241013021044",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "dd",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "ss"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-15",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-12",
+            "bookingID": "BKG-20241013021119",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "vv",
+                "surname": null,
+                "customerID": null,
+                "name": "rr",
+                "email": "cc"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-05",
+            "totalPrice": 4000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-20241013021232",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "dd",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-03",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-02",
+            "bookingID": "BKG-20241013021838",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 103,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "K",
+                "surname": null,
+                "customerID": null,
+                "name": "K",
+                "email": "K"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-05",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-02",
+            "bookingID": "BKG-20241013030212",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "ff",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-07",
+            "totalPrice": 4000.0,
+            "checkInDate": "2024-10-05",
+            "bookingID": "BKG-20241013030309",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 103,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "ff",
+                "surname": null,
+                "customerID": null,
+                "name": "tt",
+                "email": "dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-06",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-05",
+            "bookingID": "BKG-20241013031326",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "kk",
+                "surname": null,
+                "customerID": null,
+                "name": "kk",
+                "email": "kk"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-06",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-05",
+            "bookingID": "BKG-20241013032529",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "dd",
+                "surname": null,
+                "customerID": null,
+                "name": "dd",
+                "email": "dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-29",
+            "totalPrice": 12000.0,
+            "checkInDate": "2024-10-25",
+            "bookingID": "BKG-20241013152853",
+            "room": [
+                {
+                    "roomNumber": 103,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "3698521470",
+                "surname": null,
+                "customerID": null,
+                "name": "dsf",
+                "email": "sdss@de.fd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-09",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-08",
+            "bookingID": "BKG-2024101346",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "0637363669",
+                "surname": null,
+                "customerID": null,
+                "name": "Kareema",
+                "email": "kareeza@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-06",
+            "totalPrice": 36000.0,
+            "checkInDate": "2024-10-03",
+            "bookingID": "BKG-2024101425",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 102,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 103,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                },
+                {
+                    "roomNumber": 203,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                },
+                {
+                    "roomNumber": 201,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                },
+                {
+                    "roomNumber": 202,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": null,
+                "customerID": null,
+                "name": "asdfdg",
+                "email": "sds@ldd.dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-13",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-12",
+            "bookingID": "BKG-2024101413",
+            "room": [
+                {
+                    "roomNumber": 105,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "9638527410",
+                "surname": null,
+                "customerID": null,
+                "name": "asdf",
+                "email": "asdf2df@ghjk.sdf"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-2024101406",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": null,
+                "customerID": null,
+                "name": "sdf",
+                "email": "aaa@ss.ss"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-2024101447",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "1111111111",
+                "surname": null,
+                "customerID": null,
+                "name": "lkjp",
+                "email": "aaaa@jkk.llll"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-03",
+            "totalPrice": 4000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-2024101511",
+            "room": [
+                {
+                    "roomNumber": 201,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": null,
+                "customerID": "CTM-2024101504",
+                "name": "asdf",
+                "email": "jhgvc@dfgujhk.dd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-04",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-03",
+            "bookingID": "BKG-2024101556",
+            "room": [
+                {
+                    "roomNumber": 302,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Honeymoon",
+                    "pricePerNight": 3000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": null,
+                "customerID": "CTM-2024101544",
+                "name": "Areeda",
+                "email": "asdf2@fgyh.dfg"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-06",
+            "totalPrice": 3000.0,
+            "checkInDate": "2024-10-05",
+            "bookingID": "BKG-2024101540",
+            "room": [
+                {
+                    "roomNumber": 102,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": null,
+                    "guestFirstName": null,
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": null,
+                "customerID": "CTM-2024101544",
+                "name": "Areeda",
+                "email": "asdf2@fgyh.dfg"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-09",
+            "totalPrice": 4000.0,
+            "checkInDate": "2024-10-08",
+            "bookingID": "BKG-2024101541",
+            "room": [
+                {
+                    "roomNumber": 103,
+                    "guestLastName": "sdfdfdg",
+                    "guestFirstName": "sdf",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 105,
+                    "guestLastName": "sdfdfdg",
+                    "guestFirstName": "sdf",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": "sdfdfdg",
+                    "guestFirstName": "sdf",
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": "sdfdfdg",
+                "customerID": "CTM-2024101514",
+                "name": "sdf",
+                "email": "area@tui.dfd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-08",
+            "totalPrice": 4800.0,
+            "checkInDate": "2024-10-04",
+            "bookingID": "BKG-2024101556",
+            "room": [
+                {
+                    "roomNumber": 109,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1200.0
+                }
+            ],
+            "customer": {
+                "phone": "1234567890",
+                "surname": "dfdrg",
+                "customerID": "CTM-2024101527",
+                "name": "werty",
+                "email": "trf@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-19",
+            "totalPrice": 7200.0,
+            "checkInDate": "2024-10-18",
+            "bookingID": "BKG-2024101534",
+            "room": [
+                {
+                    "roomNumber": 104,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 102,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 105,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 101,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                },
+                {
+                    "roomNumber": 103,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                },
+                {
+                    "roomNumber": 109,
+                    "guestLastName": "dfdrg",
+                    "guestFirstName": "werty",
+                    "roomType": "Standard",
+                    "pricePerNight": 1200.0
+                }
+            ],
+            "customer": {
+                "phone": "1234567890",
+                "surname": "dfdrg",
+                "customerID": "CTM-2024101527",
+                "name": "werty",
+                "email": "trf@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-12",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-11",
+            "bookingID": "BKG-2024101541",
+            "room": [
+                {
+                    "roomNumber": 205,
+                    "guestLastName": "kk",
+                    "guestFirstName": "Kareema",
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0650360000",
+                "surname": "rrrr",
+                "customerID": "CTM-2024101543",
+                "name": "aaaa",
+                "email": "aaaa@gmail.com"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-2024101513",
+            "room": [
+                {
+                    "roomNumber": 101,
+                    "guestLastName": "asdf",
+                    "guestFirstName": "sd",
+                    "roomType": "Standard",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": "asdf",
+                "customerID": "CTM-2024101503",
+                "name": "sd",
+                "email": "sss@wefg.sd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-02",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-01",
+            "bookingID": "BKG-2024101507",
+            "room": [
+                {
+                    "roomNumber": 205,
+                    "guestLastName": "asdf",
+                    "guestFirstName": "sd",
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": "asdf",
+                "customerID": "CTM-2024101503",
+                "name": "sd",
+                "email": "sss@wefg.sd"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-04",
+            "totalPrice": 1000.0,
+            "checkInDate": "2024-10-03",
+            "bookingID": "BKG-2024101531",
+            "room": [
+                {
+                    "roomNumber": 102,
+                    "guestLastName": "sdfdg",
+                    "guestFirstName": "dfgf",
+                    "roomType": "Standard",
+                    "pricePerNight": 1000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": "sdfdg",
+                "customerID": "CTM-2024101504",
+                "name": "dfgf",
+                "email": "er@er.ere"
+            }
+        },
+        {
+            "checkOutDate": "2024-10-07",
+            "totalPrice": 2000.0,
+            "checkInDate": "2024-10-06",
+            "bookingID": "BKG-2024101555",
+            "room": [
+                {
+                    "roomNumber": 202,
+                    "guestLastName": "eeeee",
+                    "guestFirstName": "aaaa",
+                    "roomType": "Family",
+                    "pricePerNight": 2000.0
+                }
+            ],
+            "customer": {
+                "phone": "0000000000",
+                "surname": "eeeee",
+                "customerID": "CTM-2024101546",
+                "name": "aaaa",
+                "email": "aaa@sss.dss"
+            }
+        }
+    ]
+}

@@ -456,6 +456,7 @@ public class Main {
     private static void displayAvailableRooms(List<TransectionRoom> standards, List<TransectionRoom> family,
             List<TransectionRoom> honeymoon) {
         // printHeader("Available Rooms");
+        System.out.println();
         System.out.println("[ 1 ] Standard Rooms: " + "[" + standards.size() + "]");
         System.out.println("[ 2 ] Family Rooms: " + "[" + family.size() + "]");
         System.out.println("[ 3 ] Honeymoon Rooms: " + "[" + honeymoon.size() + "]");
@@ -617,7 +618,6 @@ public class Main {
                             }
                 
                             manager.AddRoom(roomNumber, roomType, price);
-                            System.out.println("Add Room Complete!");
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Please enter the correct data types.");
                             scanner.nextLine();
@@ -628,7 +628,6 @@ public class Main {
                         System.out.print("Enter room number to remove: ");
                         roomNumber = scanner.nextInt();
                         manager.RemoveRoom(roomNumber);
-                        System.out.println("Remove Room Complete!");
                         break;
                     case 3:
                     System.out.println("\n> Edit Room");
@@ -643,7 +642,6 @@ public class Main {
                         double newPrice = scanner.nextDouble();
 
                         manager.EditRoom(editRoomNumber, newRoomType, newPrice);
-                        System.out.println("Edit Room Complete!");
                         break;
                     case 4:
                     System.out.println("\n> View All Rooms");
@@ -694,7 +692,7 @@ public class Main {
                 }
         
                 if (choiceMain == 3) {
-                    System.out.println("Exiting...");
+                    System.out.println("Exiting Receptionist Role...\\n");
                     break;  
                 }
         
@@ -732,36 +730,81 @@ public class Main {
     }//end RoleReceptionist
     
 
-    public static void checkIn(Receptionist receptionist, String bookingIdCustomer){
+    public static void checkIn(Receptionist receptionist, String bookingIdCustomer) {
         Scanner scanner = new Scanner(System.in);
         String confirm;
+    
+        // แสดงรายละเอียดห้องของลูกค้า
         receptionist.displayCustomerRoom(bookingIdCustomer);
-        System.out.print("Confirm check-in(pressing 'y'): ");
-        confirm = scanner.nextLine();
-        if(confirm.equalsIgnoreCase("y")){
-            receptionist.updateRoomStatus(bookingIdCustomer, true);
+    
+        // วนลูปรับค่า confirm จนกว่าจะเป็น 'y' หรือ 'n'
+        while (true) {
+            System.out.print("Confirm check-in (press 'y' for yes or 'n' for no): ");
+            confirm = scanner.nextLine().trim(); // ตัดช่องว่างหน้าและหลังออก
+    
+            if (confirm.equalsIgnoreCase("y")) {
+                // ถ้าผู้ใช้ยืนยันการเช็คอิน
+                receptionist.updateRoomStatus(bookingIdCustomer, true);
+                System.out.println("Check-in successful!");
+                break; // ออกจากลูปเมื่อเช็คอินเสร็จสิ้น
+            } else if (confirm.equalsIgnoreCase("n")) {
+                // ถ้าผู้ใช้ยกเลิกการเช็คอิน
+                System.out.println("Check-in canceled.");
+                break; // ออกจากลูป
+            } else {
+                // ถ้าผู้ใช้ป้อนค่าไม่ถูกต้อง
+                System.out.println("Invalid input. Please press 'y' for yes or 'n' for no.");
+            }
         }
-
-    }//end checkIn
-
-    public static void checkOut(Receptionist receptionist, String bookingIdCustomer){
+    }// end checkIn
+    
+    public static void checkOut(Receptionist receptionist, String bookingIdCustomer) {
         Scanner scanner = new Scanner(System.in);
         String confirm;
-        
+    
+        // แสดงรายละเอียดห้องของลูกค้า
         receptionist.displayCustomerRoom(bookingIdCustomer);
-        System.out.print("Confirm check-out(pressing 'y'): ");
-        confirm = scanner.nextLine();
-
-        if(confirm.equalsIgnoreCase("y")){
-            receptionist.checkOut(bookingIdCustomer);
-            System.out.println();
-        
-            receptionist.updateRoomStatus(bookingIdCustomer, false);
+    
+        // วนลูปรับค่า confirm จนกว่าจะเป็น 'y' หรือ 'n'
+        while (true) {
+            System.out.print("Confirm check-out (press 'y' for yes or 'n' for no): ");
+            confirm = scanner.nextLine().trim(); // ตัดช่องว่างหน้าและหลังออก
+    
+            if (confirm.equalsIgnoreCase("y")) {
+                // ถ้าผู้ใช้ยืนยันการเช็คเอาท์
+                receptionist.checkOut(bookingIdCustomer);
+                System.out.println("Check-out successful!");
+    
+                // อัปเดตสถานะห้องเป็นว่าง
+                receptionist.updateRoomStatus(bookingIdCustomer, false);
+                break; // ออกจากลูปเมื่อเช็คเอาท์เสร็จสิ้น
+            } else if (confirm.equalsIgnoreCase("n")) {
+                // ถ้าผู้ใช้ยกเลิกการเช็คเอาท์
+                System.out.println("Check-out canceled.");
+                break; // ออกจากลูป
+            } else {
+                // ถ้าผู้ใช้ป้อนค่าไม่ถูกต้อง
+                System.out.println("Invalid input. Please press 'y' for yes or 'n' for no.");
+            }
         }
-    }//end checkOut
+    }// end checkOut
 
+    // ฟังก์ชันสำหรับตรวจสอบว่า expiration date อยู่ในอนาคตหรือไม่
+    private static boolean isExpirationDateValid(String expirationDate) {
+        String[] parts = expirationDate.split("/");
+        int month = Integer.parseInt(parts[0]);
+        int year = Integer.parseInt("20" + parts[1]); // เปลี่ยน YY เป็น YYYY
 
+        LocalDate currentDate = LocalDate.now();
+        int currentYear = currentDate.getYear();
+        int currentMonth = currentDate.getMonthValue();
 
+        // ตรวจสอบปีว่ามากกว่าปัจจุบันหรือเดือนมากกว่าปัจจุบันถ้าปีเท่ากัน
+        if (year > currentYear || (year == currentYear && month >= currentMonth)) {
+            return true;
+        }
+        return false;
+    }
 
     public static void payment(Booking booking) {
         Scanner scanner = new Scanner(System.in);
@@ -785,43 +828,75 @@ public class Main {
                 // กำหนดวิธีการชำระเงินตามตัวเลือก
                 switch (choice) {
                     case 1:
-                        paymentMethod = "Credit Card";
-    
-                        // รับข้อมูลบัตรเครดิต
-                        System.out.print("Enter your credit card number: ");
+                    paymentMethod = "Credit Card";
+
+                    // รับข้อมูลบัตรเครดิต
+                    while (true) {
+                        System.out.print("Enter your credit card number (16 digits): ");
                         String cardNumber = scanner.next();
-                        System.out.print("Enter your credit card expiration date (MM/YY): ");
-                        String expirationDate = scanner.next();
-                        System.out.print("Enter your CVV: ");
-                        String cvv = scanner.next();
-    
-                        // กำหนดข้อมูลบัตรเครดิตใน Payment
-                        payment.setCreditCardDetails(cardNumber, expirationDate, cvv);
-    
-                        // กำหนดจำนวนเงินที่ต้องจ่ายจาก booking (ไม่ให้กรอกเอง)
-                        amount1 = booking.getTotalPrice();
-                        break;
-    
+                        if (cardNumber.matches("\\d{16}")) {
+                            while (true) {
+                                System.out.print("Enter your credit card expiration date (MM/YY): ");
+                                String expirationDate = scanner.next();
+
+                                // ตรวจสอบรูปแบบ MM/YY และตรวจสอบวันหมดอายุ
+                                if (expirationDate.matches("(0[1-9]|1[0-2])/\\d{2}")) {
+                                    if (isExpirationDateValid(expirationDate)) {
+                                        while (true) {
+                                            // ตรวจสอบ CVV ว่าเป็นตัวเลข 3 หลัก
+                                            System.out.print("Enter your CVV (3 digits): ");
+                                            String cvv = scanner.next();
+                                            if (cvv.matches("\\d{3}")) {
+                                                // กำหนดข้อมูลบัตรเครดิตใน Payment
+                                                payment.setCreditCardDetails(cardNumber, expirationDate, cvv);
+
+                                                // กำหนดจำนวนเงินที่ต้องจ่ายจาก booking (ไม่ให้กรอกเอง)
+                                                amount1 = booking.getTotalPrice();
+                                                break;
+                                            } else {
+                                                System.out.println("Invalid CVV! Please enter a 3-digit number.");
+                                            }
+                                        }
+                                        break;
+                                    } else {
+                                        System.out.println("Credit card expiration date is in the past. Please enter a valid expiration date.");
+                                    }
+                                } else {
+                                    System.out.println("Invalid expiration date format! Please use MM/YY format.");
+                                }
+                            }
+                            break;
+                        } else {
+                            System.out.println("Invalid credit card number! Please enter a 16-digit number.");
+                        }
+                    }
+                    break;
+
                     case 2:
                         paymentMethod = "Promptpay";
     
                         // รับข้อมูลหมายเลข PromptPay
-                        System.out.print("Enter your Promptpay phone number: ");
-                        String phoneNumber = scanner.next();
+                        while (true) {
+                            System.out.print("Enter your Promptpay phone number (10 digits): ");
+                            String phoneNumber = scanner.next();
+                            if (phoneNumber.matches("\\d{10}")) {
+                                payment.setPromptPayDetails(phoneNumber);
     
-                        // กำหนดหมายเลข PromptPay ใน Payment
-                        payment.setPromptPayDetails(phoneNumber);
-    
-                        // ให้ผู้ใช้กรอกจำนวนเงินในกรณี PromptPay
-                        System.out.print("Enter the amount to pay: ");
-                        amount1 = scanner.nextDouble();
-                        
-                        // ตรวจสอบเงินทอน (หากชำระเกินราคา)
-                        double totalPrice = booking.getTotalPrice();
-                        if (amount1 > totalPrice) {
-                            double change = amount1 - totalPrice;
-                            System.out.println("You have overpaid. Your change is: " + change + " THB.");
-                            amount1 = totalPrice; // ใช้จำนวนเงินที่ต้องชำระจริง
+                                // ให้ผู้ใช้กรอกจำนวนเงินในกรณี PromptPay
+                                System.out.print("Enter the amount to pay: ");
+                                amount1 = scanner.nextDouble();
+                                
+                                // ตรวจสอบเงินทอน (หากชำระเกินราคา)
+                                double totalPrice = booking.getTotalPrice();
+                                if (amount1 > totalPrice) {
+                                    double change = amount1 - totalPrice;
+                                    System.out.println("You have overpaid. Your change is: " + change + " THB.");
+                                    amount1 = totalPrice; // ใช้จำนวนเงินที่ต้องชำระจริง
+                                }
+                                break;
+                            } else {
+                                System.out.println("Invalid Promptpay number! Please enter a 10-digit phone number.");
+                            }
                         }
                         break;
     
@@ -847,6 +922,7 @@ public class Main {
             System.out.println("Payment successful!");
         }
     }
+    
     
     public static void displayCalendar() {
         String[][] calendar = new String[5][7]; // ปฏิทิน 30 วัน

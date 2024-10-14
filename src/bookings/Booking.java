@@ -154,23 +154,24 @@ public class Booking {
     }
 
     public void bookingInfo() {
-        System.out.println("==================================================");
-        System.out.println("|                  Booking Details            |");
-        System.out.println("==================================================");
-        System.out.printf("| Booking ID:        %s                           \n", bookingID);
-        System.out.printf("| Customer:          %s %s                        \n",
+        String line = "-".repeat(50);
+        System.out.println(line);
+        System.out.println("|                  Booking Details              |");
+        System.out.println(line);
+        System.out.printf("| Booking ID     :  %s                           \n", bookingID);
+        System.out.printf("| Customer       :  %s %s                        \n",
                 agent.getFirstName(), agent.getLastName());
 
         // แสดงรายการห้องพักที่จอง
         for (TransectionRoom room : rooms) {
-            System.out.printf("| Room Type:         %s   %.2f                \n",
+            System.out.printf("| Room Type  :    %s   %.2f                \n",
                     room.getRoom().getType(), room.getRoom().getPrice());
         }
 
-        System.out.printf("| Check-in Date:     %s                            \n", checkInDate);
-        System.out.printf("| Check-out Date:    %s                            \n", checkOutDate);
-        System.out.printf("| Total Price:       %.2f                          \n", totalPrice);
-        System.out.println("==================================================");
+        System.out.printf("| Check-in Date  :   %s                            \n", checkInDate);
+        System.out.printf("| Check-out Date :   %s                            \n", checkOutDate);
+        System.out.printf("| Total Price    :   %.2f                          \n", totalPrice);
+        System.out.println(line);
     }
 
     // ====================================================================================================================

@@ -61,26 +61,33 @@ public class Payment {
 
     // Method to print formatted receipt
     public void printFormattedReceipt(Booking booking, double amount, String paymentMethod, LocalDate date) {
-        System.out.println("====================================");
-        System.out.println("            Receipt                 ");
-        System.out.println("====================================");
-        System.out.println("Customer: " + booking.getAgent().getFirstName() + " " + booking.getAgent().getLastName());
-        System.out.println("Phone: " + booking.getAgent().getPhoneNumber());
-        System.out.println("Email: " + booking.getAgent().getEmail());
-        System.out.println("Check-in Date: " + booking.getCheckInDate());
-        System.out.println("Check-out Date: " + booking.getCheckOutDate());
+        String line = "=".repeat(60); // สร้างเส้นแบ่งด้วย '='
+    
+        System.out.println(line);
+        System.out.println("                     Receipt                     ");
+        System.out.println(line);
+        
+        // แสดงข้อมูลลูกค้า
+        System.out.printf("Customer             : %s %s%n", booking.getAgent().getFirstName(), booking.getAgent().getLastName());
+        System.out.printf("Phone                : %s%n", booking.getAgent().getPhoneNumber());
+        System.out.printf("Email                : %s%n", booking.getAgent().getEmail());
+        System.out.printf("Check-in Date        : %s%n", booking.getCheckInDate());
+        System.out.printf("Check-out Date       : %s%n", booking.getCheckOutDate());
         System.out.println("Rooms booked:");
-
+    
         // ดึงข้อมูลห้องที่จองจาก Booking
         for (TransectionRoom room : booking.getRooms()) {
-            System.out.println(" - Room #" + room.getRoom().getRoomNumber() + " (" + room.getRoom().getType()
-                    + "), Price per night: " + room.getRoom().getPrice());
+            System.out.printf(" - Room #%d (%s), Price per night: %.2f THB%n", 
+                room.getRoom().getRoomNumber(), 
+                room.getRoom().getType(), 
+                room.getRoom().getPrice());
         }
-
-        System.out.println("Total amount: " + amount + " THB");
-        System.out.println("Payment Method: " + paymentMethod);
-        System.out.println("Payment Date: " + date);
-        System.out.println("====================================");
+    
+        System.out.println(line); // เส้นแบ่งก่อนแสดงยอดรวม
+        System.out.printf("Total amount: %.2f THB%n", amount);
+        System.out.printf("Payment Method: %s%n", paymentMethod);
+        System.out.printf("Payment Date: %s%n", date);
+        System.out.println(line);
     }
 }
 
