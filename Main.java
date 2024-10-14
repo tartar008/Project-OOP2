@@ -107,7 +107,7 @@ public class Main {
     public static void reservationOnline(ReserveRoom reserveRoom, Customer agent) {
         Scanner scanner = new Scanner(System.in);
 
-        reserveRoom.displayCalendar();
+        displayCalendar();
         LocalDate checkInDate, checkOutDate;
 
         while (true) {

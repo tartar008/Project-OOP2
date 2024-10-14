@@ -162,31 +162,6 @@ public class ReserveRoom {
         return availableRooms; // คืนค่าเป็น List ของห้องที่ว่าง
     }
 
-    public void displayCalendar() {
-        String[][] calendar = new String[5][7]; // ปฏิทิน 30 วัน
-        int day = 1;
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (day <= 30) {
-                    // แสดงวันที่ปกติ
-                    calendar[i][j] = String.format("%02d", day);
-                    day++;
-                } else {
-                    calendar[i][j] = "  "; // วันที่นอกช่วง 30 วัน
-                }
-            }
-        }
-
-        // พิมพ์ปฏิทิน
-        System.out.println("Mon Tue Wed Thu Fri Sat Sun");
-        for (String[] week : calendar) {
-            for (String dayStr : week) {
-                System.out.print(dayStr + "  ");
-            }
-            System.out.println();
-        }
-    }
-
     // สุ่มเลขห้อง
     public TransectionRoom assignRoom(List<TransectionRoom> rooms) {
         Random random = new Random();
