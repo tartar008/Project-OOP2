@@ -42,7 +42,7 @@ public class ReserveRoom {
         List<Integer> occupiedRoomNumbers = new ArrayList<>(); // เก็บหมายเลขห้องที่ถูกจองจาก JSON
 
         // อ่านข้อมูลห้องจากไฟล์ JSON
-        JSONArray roomsArray = readJsonBooking();
+        JSONArray roomsArray = readJsonReserveRoom();
 
         // ตรวจสอบห้องที่มีใน roomsArray (ซึ่งหมายถึงห้องที่ไม่ว่าง)
         for (Object roomObj : roomsArray) {
@@ -105,7 +105,7 @@ public class ReserveRoom {
             LocalDate checkOutDate) {
         List<TransectionRoom> availableRooms = new ArrayList<>(); // ใช้ List
         List<Integer> addedRoomNumbers = new ArrayList<>(); // เก็บหมายเลขห้องที่ถูกเพิ่มลงใน availableRooms
-        JSONArray roomsArray = readJsonBooking();
+        JSONArray roomsArray = readJsonReserveRoom();
 
         if (roomsArray != null) {
             for (TransectionRoom room : transectionRooms) {
@@ -208,7 +208,7 @@ public class ReserveRoom {
     public void UpdateJsonBookingDates(ArrayList<TransectionRoom> listBookRoom, LocalDate startDate,
             LocalDate endDate) {
         // อ่านข้อมูลห้องทั้งหมดจากไฟล์ JSON
-        JSONArray readReserveRoom = readJsonBooking();
+        JSONArray readReserveRoom = readJsonReserveRoom();
 
         // วนลูปตรวจสอบห้องที่ต้องการอัปเดต
         for (TransectionRoom room : listBookRoom) {
@@ -253,7 +253,7 @@ public class ReserveRoom {
         }
     }
 
-    public JSONArray readJsonBooking() {
+    public JSONArray readJsonReserveRoom() {
         JSONParser jsonParser = new JSONParser();
         JSONArray roomsArray = new JSONArray(); // สร้าง JSONArray เพื่อเก็บข้อมูลห้อง
         File reserveRoomfile = new File(RESERVEROOM_FILE);

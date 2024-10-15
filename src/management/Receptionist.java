@@ -168,7 +168,7 @@ public class Receptionist extends Person {
         return false; 
     }
     
-    public void checkIn(String bookingIdInput) {
+    public boolean checkIn(String bookingIdInput) {
         boolean isBookingFound = findBookingById(bookingIdInput);
     
         if (isBookingFound) {
@@ -200,26 +200,22 @@ public class Receptionist extends Person {
     
                                 // ถ้าห้องถูกจองอยู่แล้ว (isOccupied == true)
                                 if (isOccupied != null && isOccupied) {
-                                    System.out.println(red+"Room " + roomNumber + " is already occupied."+reset);
+                                    System.out.println(red + "Room " + roomNumber + " is already occupied." + reset);
                                     continue; // ข้ามห้องที่ไม่ว่าง
                                 }
-    
-                                // อัปเดตสถานะห้องให้เป็น occupied (true)
-                                else{
-                                    roomJson.put("isOccupied", true);
-                                    updateRoomStatus(bookingIdInput, true); // อัปเดต JSON และเขียนกลับไปยังไฟล์
-                                    System.out.println(green+"Check-In success"+reset);
-                                }
+                                return true; // ห้องว่างและ check-in สำเร็จ
                             }
                         }
                     }
                 }
             }
         } else {
-            System.out.println(red+"Booking ID not found.");
+            System.out.println(red + "Booking ID not found.");
         }
-
+    
+        return false; // คืนค่า false ถ้า check-in ไม่สำเร็จ
     }
+    
     
     
 

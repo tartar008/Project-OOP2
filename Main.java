@@ -159,6 +159,7 @@ public class Main {
         Booking booking = new Booking();
         boolean isComplete = false;
         int roomType;
+        boolean OneCustomerSelect = true;
 
         while (!isComplete) {
             displayAvailableRooms(standards, family, honeymoon);
@@ -183,17 +184,26 @@ public class Main {
                             // ตรวจสอบว่าผู้ใช้ป้อนข้อมูลเกี่ยวกับการจองได้ถูกต้อง
                             String isBookingforSomeOne;
                             while (true) {
-                                System.out.print("I am booking for someone else?(y/n): ");
-                                isBookingforSomeOne = scanner.nextLine();
-                    
-                                if (isBookingforSomeOne.equalsIgnoreCase("y")) {
-                                    guests.add(getInputGuest());
-                                    break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
-                                } else if (isBookingforSomeOne.equalsIgnoreCase("n")) {
-                                    guests.add(agent);
-                                    break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                              
+                                if (OneCustomerSelect) {
+                                    System.out.print("I am booking for someone else?(y/n): ");
+                                    isBookingforSomeOne = scanner.nextLine();
+
+                                    if (isBookingforSomeOne.equalsIgnoreCase("y")) {
+                                        guests.add(getInputGuest());
+                                        break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                                    } else if (isBookingforSomeOne.equalsIgnoreCase("n")) {
+
+                                        OneCustomerSelect = false;
+                                        guests.add(agent);
+                                        break; // ออกจากลูปเมื่อป้อนข้อมูลถูกต้อง
+                                    } else {
+                                        System.out.println("Invalid input, please enter 'y' or 'n'");
+                                    }
+
                                 } else {
-                                    System.out.println("Invalid input! please enter 'y' or 'n'");
+                                    guests.add(getInputGuest());
+                                    break;
                                 }
                             }
                     
@@ -702,7 +712,7 @@ public class Main {
                 }
         
                 if (choiceMain == 3) {
-                    System.out.println("Exiting Receptionist Role...\\n");
+                    System.out.println("Exiting Receptionist Role...\n");
                     break;  
                 }
         
@@ -754,9 +764,15 @@ public class Main {
     
             if (confirm.equalsIgnoreCase("y")) {
                 // ถ้าผู้ใช้ยืนยันการเช็คอิน
-                receptionist.updateRoomStatus(bookingIdCustomer, true);
-                System.out.println("Check-in successful!");
-                break; // ออกจากลูปเมื่อเช็คอินเสร็จสิ้น
+                boolean isCheckIn = receptionist.checkIn(bookingIdCustomer);
+                if(isCheckIn){
+                    receptionist.updateRoomStatus(bookingIdCustomer, true);
+                    System.out.println(green + "Check-In success" + reset);                    
+                    break; 
+                }
+                else{
+                    System.out.println(red + "Check-In fails" + reset);
+                }
             } else if (confirm.equalsIgnoreCase("n")) {
                 // ถ้าผู้ใช้ยกเลิกการเช็คอิน
                 System.out.println("Check-in canceled.");
